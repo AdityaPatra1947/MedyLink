@@ -1,5 +1,12 @@
 # ML insights: run guide and viva notes
 
+The additive **Disease prediction** task is documented in
+[Disease task setup and evaluation](../ml/DISEASE_TASK.md). It compares Logistic
+Regression, Decision Tree, Random Forest and KNN, and has separate model storage
+from the blood-pressure task described below. The new condition search supports
+multiple diseases across the exploration view; saved model evaluations retain
+their training selection.
+
 The ML work is an administrator-only extension. Existing patient and doctor
 dashboards, authentication, provider approval, and clinical access rules are
 unchanged. The current implementation operates on the explicitly synthetic

@@ -3,6 +3,8 @@ import type { ClusterResult, StationAnchor } from "./analytics-types";
 export interface MLFilters {
   dataset_id: string;
   disease_code: string;
+  disease_codes?: string;
+  disease_search?: string;
   line: string;
   station_id: string;
   date_from: string | null;
@@ -109,8 +111,9 @@ export interface MLPatientGroups {
   }[];
 }
 
-export interface MLRun {
+export interface MLRun<TReport = MLReport> {
   id: string;
+  task?: "blood_pressure" | "disease";
   status: "queued" | "running" | "completed" | "failed" | "insufficient_data";
   created_at: string;
   started_at: string | null;
@@ -118,7 +121,50 @@ export interface MLRun {
   filters: MLFilters;
   error: string | null;
   message: string;
-  report: MLReport | null;
+  report: TReport | null;
+}
+
+export interface MLDiseaseReport {
+  status: "completed" | "insufficient_data";
+  reason?: string;
+  models: {
+    id: string;
+    name: string;
+    cv: { mean: Pick<MLMetrics, "accuracy" | "macro_f1"> };
+    holdout: Pick<MLMetrics, "accuracy" | "macro_f1"> & {
+      examples?: number | null;
+      patients?: number | null;
+      per_disease_recall?: Record<string, number | null>;
+    };
+  }[];
+  selection: {
+    model_id: string;
+    model_name: string;
+    prediction_enabled: boolean;
+    message: string;
+    criterion?: string;
+    gate_checks?: Record<string, boolean>;
+  } | null;
+  split?: {
+    training_patients: number | null;
+    holdout_patients: number | null;
+    training_examples?: number | null;
+    holdout_examples?: number | null;
+  };
+  feature_importance?: { feature: string; label: string; importance: number }[];
+  class_labels?: { code: string; label: string }[];
+  training_dates?: { from: string | null; through: string | null };
+}
+
+export interface MLDiseaseInsights {
+  model: MLRun<MLDiseaseReport> | null;
+  training: MLRun<MLDiseaseReport> | null;
+  prediction: {
+    prediction_enabled: boolean;
+    counts: { code: string; label: string; count: number | null }[] | null;
+    reason?: string;
+  };
+  source: { patients: number | null; visits: number | null };
 }
 
 export interface MLInsights {
@@ -143,11 +189,16 @@ export interface MLInsights {
     disease_counts: { code: string; label: string; count: number | null }[];
     monthly_counts: { month: string; count: number | null }[];
     stations: { station_id: string; station_name: string; patient_count: number | null; suppressed?: boolean }[];
+    station_disease_counts?: {
+      station_id: string; station_name: string; patient_count: number | null;
+      diseases: { code: string; label: string; count: number | null }[];
+    }[];
   };
   prediction: MLPrediction;
   patient_groups: MLPatientGroups;
   hotspots: (Partial<ClusterResult> & { status?: string; reason?: string }) | null;
   model: MLRun | null;
   training: MLRun | null;
+  disease?: MLDiseaseInsights;
   notes: string[];
 }

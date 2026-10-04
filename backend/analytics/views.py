@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from accounts.permissions import IsAdministrator
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import ValidationError
@@ -10,6 +12,7 @@ from .services import (
     LINES,
     THRESHOLD,
     execute_run,
+    live_dataset_metadata,
     resolve_filters,
     run_payload,
     safe_count,
@@ -32,6 +35,8 @@ class CatalogView(AdminAnalyticsView):
             batch = get_object_or_404(DatasetBatch, key=requested, synthetic=True)
         if batch is None and batches:
             batch = batches[0]
+        metadata = {item.pk: live_dataset_metadata(item) for item in batches}
+        current = metadata.get(batch.pk) if batch else None
         stations = (
             [
                 {
@@ -60,10 +65,10 @@ class CatalogView(AdminAnalyticsView):
                 "datasets": [
                     {
                         "dataset_id": item.key,
-                        "as_of": item.as_of.isoformat(),
-                        "observation_start": item.observation_start.isoformat(),
+                        "as_of": metadata[item.pk]["as_of"].isoformat(),
+                        "observation_start": metadata[item.pk]["observation_start"].isoformat(),
                         "generator_version": item.generator_version,
-                        "patient_count": safe_count(item.patient_count),
+                        "patient_count": safe_count(metadata[item.pk]["patient_count"]),
                     }
                     for item in batches
                 ],
@@ -77,8 +82,8 @@ class CatalogView(AdminAnalyticsView):
                     "disease_code": "DENGUE",
                     "line": "",
                     "station_id": "",
-                    "date_from": "2026-09-01",
-                    "date_to": "2026-09-29",
+                    "date_from": max(current["observation_start"], current["as_of"] - timedelta(days=28)).isoformat() if current else "2026-09-01",
+                    "date_to": current["as_of"].isoformat() if current else "2026-09-29",
                     "radius_km": 0.5,
                     "min_samples": 5,
                 },

@@ -5,7 +5,12 @@ from django.core.management.base import BaseCommand, CommandError
 
 from analytics.ml_dataset import build_dataset, resolve_ml_filters
 from analytics.ml_serializers import MLFilters
-from analytics.ml_services import enqueue_training, execute_training, run_payload
+from analytics.ml_services import (
+    disease_source,
+    enqueue_training,
+    execute_training,
+    run_payload,
+)
 
 
 class Command(BaseCommand):
@@ -16,6 +21,9 @@ class Command(BaseCommand):
         parser.add_argument("--date-from")
         parser.add_argument("--date-to")
         parser.add_argument("--disease-code", default="")
+        parser.add_argument("--disease-codes", default="", help="Comma-separated disease codes (OR selection).")
+        parser.add_argument("--disease-search", default="", help="Partial disease name; narrows any chosen codes.")
+        parser.add_argument("--task", choices=["blood_pressure", "disease"], default="blood_pressure")
         parser.add_argument("--line", default="")
         parser.add_argument("--station-id", default="")
         parser.add_argument("--admin-email")
@@ -24,12 +32,13 @@ class Command(BaseCommand):
         mode.add_argument("--sync", action="store_true")
 
     def handle(self, *args, **options):
-        serializer = MLFilters(data={key: options[key] for key in ("dataset_id", "date_from", "date_to", "disease_code", "line", "station_id")})
+        serializer = MLFilters(data={key: options[key] for key in ("dataset_id", "date_from", "date_to", "disease_code", "disease_codes", "disease_search", "line", "station_id")})
         if not serializer.is_valid():
             raise CommandError("Invalid training filters.")
         batch, filters = resolve_ml_filters(serializer.validated_data)
         if options["dry_run"]:
-            self.stdout.write(json.dumps({"dry_run": True, "source": build_dataset(batch, filters)["source"]}, indent=2))
+            data = build_dataset(batch, filters)
+            self.stdout.write(json.dumps({"dry_run": True, "task": options["task"], "source": data["source"], **({"disease_source": disease_source(data)} if options["task"] == "disease" else {})}, indent=2))
             return
         admins = User.objects.filter(role="admin", is_active=True, email_verified_at__isnull=False)
         if options.get("admin_email"):
@@ -37,7 +46,7 @@ class Command(BaseCommand):
         actor = admins.order_by("created_at").first()
         if actor is None:
             raise CommandError("An active verified administrator is required to record training.")
-        run, reused = enqueue_training(batch, actor, filters, asynchronous=False)
+        run, reused = enqueue_training(batch, actor, filters, asynchronous=False, task=options["task"])
         if reused:
             raise CommandError("A training run is already queued or running. Wait for it or retry after an interrupted run expires.")
         run = execute_training(run.id)

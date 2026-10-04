@@ -138,7 +138,11 @@ Sign in on port **3001** using the locally generated demo administrator credenti
 
 ## Machine learning
 
-The educational prediction task asks whether the **next recorded visit** contains an elevated blood-pressure reading. This is a recorded-measurement category, not a diagnosis or a fixed-time forecast. Inputs come from eligible earlier observations; names, contact details and doctor identities are excluded from the feature matrix.
+The admin workspace has two educational prediction tasks: **primary disease classification** from measurements and symptoms at a visit, and **next-visit blood pressure** from eligible earlier observations. Neither provides a clinical diagnosis. Names, contact details and doctor identities are excluded from both feature matrices.
+
+Disease prediction compares **Logistic Regression, Decision Tree, Random Forest and KNN** using a stratified 80/20 patient split and five patient-level cross-validation folds. The best CV macro-F1 model can produce aggregate predictions only when final-test macro-F1 is at least 70% and accuracy is at least 75%. The page includes a searchable multi-disease filter, station-condition counts, accuracy bars, top-five feature contributions and independent retraining. [Run the disease task and synthetic generator](ml/DISEASE_TASK.md).
+
+The existing blood-pressure task and aggregate clustering use the following techniques:
 
 | Technique | Purpose |
 | --- | --- |
@@ -162,6 +166,10 @@ npm run synthetic:manage -- run_ml_training --dry-run
 
 # Train and save a new private run using all eligible history.
 npm run synthetic:manage -- run_ml_training --sync
+
+# Append 3,000 seeded patients once, then train the separate disease task.
+npm run synthetic:manage -- generate_synthetic_data --count 3000 --seed 42
+npm run synthetic:manage -- run_ml_training --task disease --sync
 ```
 
 Saved models stay under ignored `.local/ml/`. Read [the ML run guide and viva notes](docs/ML_INSIGHTS.md), [pipeline details](ml/README.md), [aggregate evaluation](ml/reports/evaluation.json) and [the illustrated PDF guide](output/pdf/MedyLink_ML_Explained.pdf).

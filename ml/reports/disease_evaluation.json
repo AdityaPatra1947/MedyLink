@@ -1,0 +1,4705 @@
+{
+  "recorded_at": "2026-10-04T08:45:55.782195+00:00",
+  "synthetic": true,
+  "version": "1.0.0",
+  "task": "disease",
+  "status": "completed",
+  "target": {
+    "id": "primary_disease",
+    "label": "Primary recorded disease",
+    "definition": "Classify one of ten primary diseases using information available at the visit.",
+    "disclaimer": "Based on simulated data, not real patients. Predictions support decisions and are not a diagnosis."
+  },
+  "seed": 42,
+  "created_at": "2026-10-04T08:45:24.773709+00:00",
+  "versions": {
+    "python": "3.12.14",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.3"
+  },
+  "data": {
+    "input_rows": 11255,
+    "eligible_rows": 10997,
+    "eligible_patients": 3892,
+    "class_counts": {
+      "DENGUE": 1643,
+      "INFLUENZA": 1477,
+      "HYPERTENSION": 1259,
+      "TYPE2_DIABETES": 1276,
+      "ASTHMA": 1130,
+      "ANEMIA": 1060,
+      "GASTROENTERITIS": 973,
+      "HYPOTHYROIDISM": 868,
+      "OSTEOARTHRITIS": 744,
+      "MALARIA": 567
+    },
+    "patients_per_class": {
+      "DENGUE": 602,
+      "INFLUENZA": 543,
+      "HYPERTENSION": 438,
+      "TYPE2_DIABETES": 440,
+      "ASTHMA": 387,
+      "ANEMIA": 367,
+      "GASTROENTERITIS": 355,
+      "HYPOTHYROIDISM": 304,
+      "OSTEOARTHRITIS": 257,
+      "MALARIA": 201
+    },
+    "dominant_class_patients": {
+      "DENGUE": 602,
+      "INFLUENZA": 542,
+      "HYPERTENSION": 438,
+      "TYPE2_DIABETES": 440,
+      "ASTHMA": 387,
+      "ANEMIA": 367,
+      "GASTROENTERITIS": 354,
+      "HYPOTHYROIDISM": 304,
+      "OSTEOARTHRITIS": 257,
+      "MALARIA": 201
+    },
+    "patients_with_multiple_primary_labels": null,
+    "excluded_rows": {
+      "missing_or_unknown_primary_disease": 258
+    },
+    "missing_feature_counts": {
+      "age": 0,
+      "month": 0,
+      "temperature": 471,
+      "systolic": 454,
+      "diastolic": 445,
+      "glucose": 683,
+      "hemoglobin": 2486,
+      "spo2": 2456,
+      "pulse": 473,
+      "platelets": 2422,
+      "fever": 2450,
+      "cough": 2431,
+      "joint_pain": 2447,
+      "vomiting": 2441,
+      "fatigue": 2466,
+      "breathlessness": 2442,
+      "headache": 2482,
+      "rash": 2442,
+      "gender": 0,
+      "station_id": 0
+    },
+    "date_from": "2024-10-31T10:00:00+00:00",
+    "date_to": "2026-09-30T10:03:00+00:00",
+    "small_count_rule": "Counts from one to four are hidden individually (null); zero means no records."
+  },
+  "labels": [
+    "DENGUE",
+    "INFLUENZA",
+    "HYPERTENSION",
+    "TYPE2_DIABETES",
+    "ASTHMA",
+    "ANEMIA",
+    "GASTROENTERITIS",
+    "HYPOTHYROIDISM",
+    "OSTEOARTHRITIS",
+    "MALARIA"
+  ],
+  "class_labels": [
+    {
+      "code": "DENGUE",
+      "label": "Dengue"
+    },
+    {
+      "code": "INFLUENZA",
+      "label": "Influenza"
+    },
+    {
+      "code": "HYPERTENSION",
+      "label": "Hypertension"
+    },
+    {
+      "code": "TYPE2_DIABETES",
+      "label": "Type 2 diabetes"
+    },
+    {
+      "code": "ASTHMA",
+      "label": "Asthma"
+    },
+    {
+      "code": "ANEMIA",
+      "label": "Anemia"
+    },
+    {
+      "code": "GASTROENTERITIS",
+      "label": "Gastroenteritis"
+    },
+    {
+      "code": "HYPOTHYROIDISM",
+      "label": "Hypothyroidism"
+    },
+    {
+      "code": "OSTEOARTHRITIS",
+      "label": "Osteoarthritis"
+    },
+    {
+      "code": "MALARIA",
+      "label": "Malaria"
+    }
+  ],
+  "features": [
+    {
+      "key": "age",
+      "label": "Age"
+    },
+    {
+      "key": "month",
+      "label": "Visit month"
+    },
+    {
+      "key": "temperature",
+      "label": "Temperature"
+    },
+    {
+      "key": "systolic",
+      "label": "Upper blood pressure reading"
+    },
+    {
+      "key": "diastolic",
+      "label": "Lower blood pressure reading"
+    },
+    {
+      "key": "glucose",
+      "label": "Blood sugar"
+    },
+    {
+      "key": "hemoglobin",
+      "label": "Hemoglobin"
+    },
+    {
+      "key": "spo2",
+      "label": "Blood oxygen level"
+    },
+    {
+      "key": "pulse",
+      "label": "Heart rate"
+    },
+    {
+      "key": "platelets",
+      "label": "Platelet count"
+    },
+    {
+      "key": "fever",
+      "label": "Fever"
+    },
+    {
+      "key": "cough",
+      "label": "Cough"
+    },
+    {
+      "key": "joint_pain",
+      "label": "Joint pain"
+    },
+    {
+      "key": "vomiting",
+      "label": "Vomiting"
+    },
+    {
+      "key": "fatigue",
+      "label": "Fatigue"
+    },
+    {
+      "key": "breathlessness",
+      "label": "Breathlessness"
+    },
+    {
+      "key": "headache",
+      "label": "Headache"
+    },
+    {
+      "key": "rash",
+      "label": "Rash"
+    },
+    {
+      "key": "gender",
+      "label": "Recorded gender"
+    },
+    {
+      "key": "station_id",
+      "label": "Station area"
+    }
+  ],
+  "models": [
+    {
+      "id": "logistic_regression",
+      "name": "Logistic Regression",
+      "cv": {
+        "mean": {
+          "accuracy": 0.7627809080928517,
+          "macro_f1": 0.7456225127260805
+        },
+        "std": {
+          "accuracy": 0.01276754357296335,
+          "macro_f1": 0.014771174277360478
+        },
+        "folds": [
+          {
+            "accuracy": 0.7643124665596576,
+            "macro_f1": 0.7482171755779328,
+            "per_disease_recall": {
+              "DENGUE": 0.8220486111111113,
+              "INFLUENZA": 0.8323643410852717,
+              "HYPERTENSION": 0.8214285714285715,
+              "TYPE2_DIABETES": 0.8004694835680753,
+              "ASTHMA": 0.7244623655913971,
+              "ANEMIA": 0.7740112994350278,
+              "GASTROENTERITIS": 0.6257309941520466,
+              "HYPOTHYROIDISM": 0.6683673469387753,
+              "OSTEOARTHRITIS": 0.6361788617886177,
+              "MALARIA": 0.8203125000000002
+            },
+            "per_disease_counts": {
+              "DENGUE": 258,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 198,
+              "TYPE2_DIABETES": 208,
+              "ASTHMA": 181,
+              "ANEMIA": 173,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 147,
+              "OSTEOARTHRITIS": 118,
+              "MALARIA": 83
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                217,
+                null,
+                7,
+                null,
+                6,
+                null,
+                6,
+                8,
+                null,
+                null
+              ],
+              [
+                7,
+                209,
+                null,
+                null,
+                6,
+                0,
+                null,
+                null,
+                5,
+                6
+              ],
+              [
+                0,
+                8,
+                163,
+                6,
+                null,
+                null,
+                null,
+                8,
+                5,
+                null
+              ],
+              [
+                0,
+                5,
+                null,
+                171,
+                null,
+                0,
+                6,
+                5,
+                10,
+                null
+              ],
+              [
+                5,
+                null,
+                7,
+                9,
+                130,
+                null,
+                8,
+                8,
+                5,
+                null
+              ],
+              [
+                null,
+                null,
+                8,
+                8,
+                null,
+                139,
+                null,
+                null,
+                0,
+                7
+              ],
+              [
+                null,
+                6,
+                7,
+                5,
+                5,
+                8,
+                102,
+                5,
+                null,
+                6
+              ],
+              [
+                null,
+                12,
+                null,
+                null,
+                null,
+                10,
+                8,
+                103,
+                5,
+                0
+              ],
+              [
+                0,
+                null,
+                9,
+                7,
+                null,
+                6,
+                6,
+                13,
+                73,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                0,
+                null,
+                0,
+                null,
+                null,
+                null,
+                70
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1757,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7398341359015517,
+            "macro_f1": 0.7209522045107086,
+            "per_disease_recall": {
+              "DENGUE": 0.8116319444444451,
+              "INFLUENZA": 0.7936046511627911,
+              "HYPERTENSION": 0.7619047619047618,
+              "TYPE2_DIABETES": 0.7273809523809521,
+              "ASTHMA": 0.8104838709677412,
+              "ANEMIA": 0.7231638418079092,
+              "GASTROENTERITIS": 0.5906432748538006,
+              "HYPOTHYROIDISM": 0.714285714285713,
+              "OSTEOARTHRITIS": 0.6785714285714282,
+              "MALARIA": 0.6380208333333336
+            },
+            "per_disease_counts": {
+              "DENGUE": 254,
+              "INFLUENZA": 226,
+              "HYPERTENSION": 202,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 181,
+              "ANEMIA": 166,
+              "GASTROENTERITIS": 160,
+              "HYPOTHYROIDISM": 139,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 89
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 42,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                213,
+                6,
+                null,
+                null,
+                5,
+                null,
+                null,
+                7,
+                0,
+                13
+              ],
+              [
+                null,
+                183,
+                10,
+                5,
+                null,
+                0,
+                15,
+                null,
+                null,
+                5
+              ],
+              [
+                5,
+                null,
+                156,
+                null,
+                7,
+                8,
+                8,
+                9,
+                null,
+                null
+              ],
+              [
+                5,
+                null,
+                6,
+                146,
+                13,
+                null,
+                10,
+                null,
+                8,
+                null
+              ],
+              [
+                null,
+                0,
+                null,
+                7,
+                147,
+                null,
+                6,
+                11,
+                null,
+                null
+              ],
+              [
+                0,
+                6,
+                null,
+                null,
+                9,
+                127,
+                6,
+                5,
+                null,
+                null
+              ],
+              [
+                5,
+                12,
+                6,
+                null,
+                null,
+                11,
+                96,
+                6,
+                8,
+                10
+              ],
+              [
+                0,
+                null,
+                null,
+                6,
+                null,
+                null,
+                5,
+                101,
+                15,
+                null
+              ],
+              [
+                0,
+                null,
+                6,
+                12,
+                null,
+                0,
+                6,
+                7,
+                83,
+                null
+              ],
+              [
+                null,
+                6,
+                0,
+                null,
+                null,
+                6,
+                5,
+                null,
+                0,
+                60
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1736,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7710387525796836,
+            "macro_f1": 0.7552392008603434,
+            "per_disease_recall": {
+              "DENGUE": 0.8737113402061861,
+              "INFLUENZA": 0.7835249042145593,
+              "HYPERTENSION": 0.8127130197682346,
+              "TYPE2_DIABETES": 0.7476190476190476,
+              "ASTHMA": 0.724462365591397,
+              "ANEMIA": 0.7725988700564967,
+              "GASTROENTERITIS": 0.7525445292620858,
+              "HYPOTHYROIDISM": 0.6751700680272105,
+              "OSTEOARTHRITIS": 0.6971544715447154,
+              "MALARIA": 0.7473958333333334
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 201,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 183,
+              "ANEMIA": 174,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 135,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 95
+            },
+            "per_disease_patients": {
+              "DENGUE": 97,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                240,
+                6,
+                0,
+                5,
+                0,
+                0,
+                null,
+                5,
+                null,
+                8
+              ],
+              [
+                6,
+                199,
+                null,
+                null,
+                null,
+                null,
+                10,
+                null,
+                null,
+                14
+              ],
+              [
+                6,
+                null,
+                165,
+                7,
+                null,
+                null,
+                8,
+                null,
+                5,
+                0
+              ],
+              [
+                null,
+                null,
+                null,
+                153,
+                null,
+                0,
+                6,
+                9,
+                12,
+                7
+              ],
+              [
+                8,
+                null,
+                9,
+                null,
+                135,
+                null,
+                null,
+                10,
+                0,
+                5
+              ],
+              [
+                12,
+                null,
+                0,
+                6,
+                6,
+                138,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                5,
+                null,
+                null,
+                10,
+                null,
+                117,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                6,
+                null,
+                null,
+                7,
+                97,
+                6,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                7,
+                null,
+                6,
+                6,
+                85,
+                null
+              ],
+              [
+                7,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                0,
+                73
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1765,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.777465166130761,
+            "macro_f1": 0.7642109570460714,
+            "per_disease_recall": {
+              "DENGUE": 0.8567708333333337,
+              "INFLUENZA": 0.7681992337164759,
+              "HYPERTENSION": 0.8202380952380959,
+              "TYPE2_DIABETES": 0.8130952380952385,
+              "ASTHMA": 0.7876344086021501,
+              "ANEMIA": 0.7048022598870051,
+              "GASTROENTERITIS": 0.738095238095238,
+              "HYPOTHYROIDISM": 0.7361111111111109,
+              "OSTEOARTHRITIS": 0.680894308943089,
+              "MALARIA": 0.7626262626262624
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 240,
+              "HYPERTENSION": 199,
+              "TYPE2_DIABETES": 204,
+              "ASTHMA": 176,
+              "ANEMIA": 163,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 136,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 88
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 56,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 33
+            },
+            "confusion_matrix": [
+              [
+                230,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                5,
+                null,
+                15
+              ],
+              [
+                9,
+                187,
+                9,
+                null,
+                5,
+                6,
+                null,
+                9,
+                null,
+                8
+              ],
+              [
+                6,
+                0,
+                166,
+                null,
+                null,
+                null,
+                null,
+                null,
+                10,
+                null
+              ],
+              [
+                6,
+                null,
+                null,
+                171,
+                null,
+                null,
+                5,
+                9,
+                8,
+                0
+              ],
+              [
+                8,
+                null,
+                9,
+                null,
+                143,
+                null,
+                0,
+                null,
+                5,
+                0
+              ],
+              [
+                6,
+                null,
+                12,
+                0,
+                null,
+                119,
+                9,
+                null,
+                0,
+                8
+              ],
+              [
+                null,
+                null,
+                null,
+                10,
+                null,
+                null,
+                125,
+                6,
+                5,
+                null
+              ],
+              [
+                5,
+                0,
+                10,
+                null,
+                5,
+                0,
+                6,
+                104,
+                null,
+                0
+              ],
+              [
+                7,
+                5,
+                null,
+                null,
+                null,
+                null,
+                null,
+                12,
+                85,
+                null
+              ],
+              [
+                7,
+                null,
+                0,
+                null,
+                null,
+                0,
+                null,
+                0,
+                0,
+                72
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1752,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7612540192926045,
+            "macro_f1": 0.7394930256353464,
+            "per_disease_recall": {
+              "DENGUE": 0.8593750000000007,
+              "INFLUENZA": 0.863419293218721,
+              "HYPERTENSION": 0.8602150537634411,
+              "TYPE2_DIABETES": 0.7734741784037565,
+              "ASTHMA": 0.6787634408602145,
+              "ANEMIA": 0.6853448275862063,
+              "GASTROENTERITIS": 0.6286549707602334,
+              "HYPOTHYROIDISM": 0.6527777777777775,
+              "OSTEOARTHRITIS": 0.7581300813008119,
+              "MALARIA": 0.6458333333333336
+            },
+            "per_disease_counts": {
+              "DENGUE": 262,
+              "INFLUENZA": 236,
+              "HYPERTENSION": 211,
+              "TYPE2_DIABETES": 214,
+              "ASTHMA": 183,
+              "ANEMIA": 170,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 137,
+              "OSTEOARTHRITIS": 115,
+              "MALARIA": 93
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 88,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 58,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                226,
+                6,
+                null,
+                null,
+                null,
+                6,
+                null,
+                5,
+                5,
+                7
+              ],
+              [
+                6,
+                205,
+                null,
+                null,
+                null,
+                5,
+                5,
+                null,
+                null,
+                6
+              ],
+              [
+                0,
+                8,
+                184,
+                null,
+                null,
+                null,
+                6,
+                null,
+                null,
+                0
+              ],
+              [
+                0,
+                0,
+                5,
+                169,
+                null,
+                null,
+                6,
+                13,
+                10,
+                null
+              ],
+              [
+                0,
+                12,
+                7,
+                null,
+                127,
+                9,
+                8,
+                12,
+                5,
+                null
+              ],
+              [
+                8,
+                null,
+                14,
+                null,
+                null,
+                120,
+                5,
+                15,
+                0,
+                0
+              ],
+              [
+                null,
+                7,
+                null,
+                8,
+                null,
+                null,
+                110,
+                11,
+                8,
+                null
+              ],
+              [
+                6,
+                8,
+                null,
+                null,
+                5,
+                7,
+                null,
+                90,
+                9,
+                null
+              ],
+              [
+                8,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                6,
+                85,
+                0
+              ],
+              [
+                null,
+                null,
+                null,
+                0,
+                5,
+                null,
+                8,
+                null,
+                null,
+                63
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1779,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          }
+        ]
+      },
+      "holdout": {
+        "accuracy": 0.7683996576807872,
+        "macro_f1": 0.7476909923569881,
+        "per_disease_recall": {
+          "DENGUE": 0.8491735537190087,
+          "INFLUENZA": 0.8065749235474015,
+          "HYPERTENSION": 0.8143939393939402,
+          "TYPE2_DIABETES": 0.8342803030303031,
+          "ASTHMA": 0.7575757575757589,
+          "ANEMIA": 0.7043378995433794,
+          "GASTROENTERITIS": 0.6713615023474174,
+          "HYPOTHYROIDISM": 0.6912568306010924,
+          "OSTEOARTHRITIS": 0.763071895424836,
+          "MALARIA": 0.608333333333333
+        },
+        "per_disease_counts": {
+          "DENGUE": 335,
+          "INFLUENZA": 289,
+          "HYPERTENSION": 248,
+          "TYPE2_DIABETES": 254,
+          "ASTHMA": 226,
+          "ANEMIA": 214,
+          "GASTROENTERITIS": 201,
+          "HYPOTHYROIDISM": 174,
+          "OSTEOARTHRITIS": 148,
+          "MALARIA": 119
+        },
+        "per_disease_patients": {
+          "DENGUE": 121,
+          "INFLUENZA": 109,
+          "HYPERTENSION": 88,
+          "TYPE2_DIABETES": 88,
+          "ASTHMA": 77,
+          "ANEMIA": 73,
+          "GASTROENTERITIS": 71,
+          "HYPOTHYROIDISM": 61,
+          "OSTEOARTHRITIS": 51,
+          "MALARIA": 40
+        },
+        "confusion_matrix": [
+          [
+            287,
+            null,
+            5,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            19
+          ],
+          [
+            null,
+            236,
+            7,
+            null,
+            6,
+            0,
+            19,
+            6,
+            5,
+            7
+          ],
+          [
+            5,
+            5,
+            206,
+            8,
+            7,
+            null,
+            7,
+            5,
+            null,
+            null
+          ],
+          [
+            null,
+            6,
+            8,
+            213,
+            5,
+            5,
+            5,
+            6,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            7,
+            5,
+            178,
+            null,
+            11,
+            7,
+            null,
+            5
+          ],
+          [
+            null,
+            5,
+            5,
+            9,
+            13,
+            155,
+            6,
+            9,
+            null,
+            7
+          ],
+          [
+            null,
+            null,
+            null,
+            6,
+            6,
+            null,
+            146,
+            9,
+            7,
+            14
+          ],
+          [
+            6,
+            11,
+            10,
+            5,
+            8,
+            null,
+            5,
+            121,
+            null,
+            null
+          ],
+          [
+            5,
+            5,
+            null,
+            5,
+            null,
+            null,
+            null,
+            10,
+            115,
+            0
+          ],
+          [
+            5,
+            6,
+            null,
+            10,
+            null,
+            null,
+            null,
+            null,
+            6,
+            79
+          ]
+        ],
+        "confusion_labels": [
+          "DENGUE",
+          "INFLUENZA",
+          "HYPERTENSION",
+          "TYPE2_DIABETES",
+          "ASTHMA",
+          "ANEMIA",
+          "GASTROENTERITIS",
+          "HYPOTHYROIDISM",
+          "OSTEOARTHRITIS",
+          "MALARIA"
+        ],
+        "examples": 2208,
+        "patients": 779,
+        "confusion_matrix_suppressed": true
+      }
+    },
+    {
+      "id": "decision_tree",
+      "name": "Decision Tree",
+      "cv": {
+        "mean": {
+          "accuracy": 0.6569307744052134,
+          "macro_f1": 0.666920253999255
+        },
+        "std": {
+          "accuracy": 0.01629066053356485,
+          "macro_f1": 0.016636062712653336
+        },
+        "folds": [
+          {
+            "accuracy": 0.6336276083467095,
+            "macro_f1": 0.649446783261588,
+            "per_disease_recall": {
+              "DENGUE": 0.5329861111111123,
+              "INFLUENZA": 0.6947674418604659,
+              "HYPERTENSION": 0.6726190476190471,
+              "TYPE2_DIABETES": 0.6079812206572771,
+              "ASTHMA": 0.6223118279569885,
+              "ANEMIA": 0.7358757062146887,
+              "GASTROENTERITIS": 0.5423976608187131,
+              "HYPOTHYROIDISM": 0.7942176870748299,
+              "OSTEOARTHRITIS": 0.516260162601626,
+              "MALARIA": 0.643229166666667
+            },
+            "per_disease_counts": {
+              "DENGUE": 258,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 198,
+              "TYPE2_DIABETES": 208,
+              "ASTHMA": 181,
+              "ANEMIA": 173,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 147,
+              "OSTEOARTHRITIS": 118,
+              "MALARIA": 83
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                154,
+                36,
+                null,
+                0,
+                null,
+                null,
+                null,
+                37,
+                null,
+                16
+              ],
+              [
+                6,
+                177,
+                null,
+                null,
+                0,
+                0,
+                13,
+                35,
+                null,
+                5
+              ],
+              [
+                null,
+                null,
+                134,
+                null,
+                null,
+                0,
+                7,
+                37,
+                null,
+                9
+              ],
+              [
+                0,
+                null,
+                null,
+                134,
+                0,
+                null,
+                null,
+                47,
+                17,
+                0
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                112,
+                0,
+                null,
+                49,
+                null,
+                null
+              ],
+              [
+                0,
+                null,
+                null,
+                null,
+                0,
+                130,
+                8,
+                25,
+                null,
+                null
+              ],
+              [
+                null,
+                9,
+                null,
+                0,
+                0,
+                null,
+                89,
+                35,
+                5,
+                null
+              ],
+              [
+                null,
+                8,
+                null,
+                0,
+                0,
+                null,
+                null,
+                118,
+                8,
+                null
+              ],
+              [
+                null,
+                null,
+                5,
+                null,
+                0,
+                6,
+                null,
+                37,
+                58,
+                null
+              ],
+              [
+                6,
+                7,
+                null,
+                0,
+                0,
+                null,
+                null,
+                5,
+                0,
+                57
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1757,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.6411182450508293,
+            "macro_f1": 0.6458341818688338,
+            "per_disease_recall": {
+              "DENGUE": 0.5824652777777789,
+              "INFLUENZA": 0.6860465116279074,
+              "HYPERTENSION": 0.6619047619047618,
+              "TYPE2_DIABETES": 0.633333333333333,
+              "ASTHMA": 0.880376344086021,
+              "ANEMIA": 0.6567796610169481,
+              "GASTROENTERITIS": 0.5979532163742683,
+              "HYPOTHYROIDISM": 0.530612244897958,
+              "OSTEOARTHRITIS": 0.6170634920634918,
+              "MALARIA": 0.4531250000000004
+            },
+            "per_disease_counts": {
+              "DENGUE": 254,
+              "INFLUENZA": 226,
+              "HYPERTENSION": 202,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 181,
+              "ANEMIA": 166,
+              "GASTROENTERITIS": 160,
+              "HYPOTHYROIDISM": 139,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 89
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 42,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                169,
+                31,
+                0,
+                0,
+                30,
+                null,
+                null,
+                8,
+                null,
+                8
+              ],
+              [
+                null,
+                159,
+                8,
+                null,
+                33,
+                null,
+                14,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                138,
+                null,
+                32,
+                6,
+                6,
+                6,
+                5,
+                null
+              ],
+              [
+                null,
+                null,
+                0,
+                128,
+                51,
+                0,
+                6,
+                null,
+                6,
+                0
+              ],
+              [
+                0,
+                null,
+                null,
+                null,
+                159,
+                null,
+                null,
+                8,
+                null,
+                null
+              ],
+              [
+                0,
+                null,
+                0,
+                null,
+                40,
+                116,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                12,
+                6,
+                0,
+                25,
+                8,
+                98,
+                null,
+                null,
+                5
+              ],
+              [
+                null,
+                null,
+                0,
+                null,
+                38,
+                0,
+                null,
+                75,
+                17,
+                null
+              ],
+              [
+                null,
+                0,
+                null,
+                6,
+                19,
+                null,
+                8,
+                null,
+                77,
+                0
+              ],
+              [
+                5,
+                17,
+                0,
+                0,
+                9,
+                5,
+                5,
+                null,
+                0,
+                44
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1736,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.670545746388443,
+            "macro_f1": 0.688225305679627,
+            "per_disease_recall": {
+              "DENGUE": 0.5575601374570452,
+              "INFLUENZA": 0.6839080459770116,
+              "HYPERTENSION": 0.7777777777777779,
+              "TYPE2_DIABETES": 0.6904761904761906,
+              "ASTHMA": 0.5981182795698915,
+              "ANEMIA": 0.7344632768361578,
+              "GASTROENTERITIS": 0.6709075487701434,
+              "HYPOTHYROIDISM": 0.8231292517006797,
+              "OSTEOARTHRITIS": 0.6178861788617886,
+              "MALARIA": 0.5546875000000001
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 201,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 183,
+              "ANEMIA": 174,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 135,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 95
+            },
+            "per_disease_patients": {
+              "DENGUE": 97,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                174,
+                41,
+                null,
+                null,
+                null,
+                0,
+                null,
+                35,
+                null,
+                6
+              ],
+              [
+                0,
+                173,
+                null,
+                0,
+                0,
+                null,
+                11,
+                43,
+                null,
+                8
+              ],
+              [
+                0,
+                null,
+                147,
+                null,
+                0,
+                null,
+                null,
+                38,
+                null,
+                0
+              ],
+              [
+                0,
+                null,
+                null,
+                144,
+                0,
+                0,
+                null,
+                44,
+                5,
+                null
+              ],
+              [
+                null,
+                0,
+                7,
+                null,
+                112,
+                null,
+                null,
+                54,
+                0,
+                null
+              ],
+              [
+                null,
+                6,
+                null,
+                null,
+                null,
+                131,
+                null,
+                30,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                0,
+                null,
+                null,
+                106,
+                27,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                114,
+                8,
+                null
+              ],
+              [
+                null,
+                null,
+                0,
+                null,
+                6,
+                0,
+                null,
+                26,
+                76,
+                null
+              ],
+              [
+                6,
+                12,
+                null,
+                null,
+                0,
+                7,
+                null,
+                null,
+                null,
+                56
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1765,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.6662647374062164,
+            "macro_f1": 0.6794898551840275,
+            "per_disease_recall": {
+              "DENGUE": 0.7734375000000006,
+              "INFLUENZA": 0.53352490421456,
+              "HYPERTENSION": 0.6809523809523811,
+              "TYPE2_DIABETES": 0.6464285714285718,
+              "ASTHMA": 0.7056451612903221,
+              "ANEMIA": 0.6285310734463272,
+              "GASTROENTERITIS": 0.6473214285714282,
+              "HYPOTHYROIDISM": 0.8055555555555557,
+              "OSTEOARTHRITIS": 0.6747967479674793,
+              "MALARIA": 0.5277777777777778
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 240,
+              "HYPERTENSION": 199,
+              "TYPE2_DIABETES": 204,
+              "ASTHMA": 176,
+              "ANEMIA": 163,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 136,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 88
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 56,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 33
+            },
+            "confusion_matrix": [
+              [
+                214,
+                null,
+                null,
+                null,
+                null,
+                10,
+                null,
+                27,
+                null,
+                null
+              ],
+              [
+                31,
+                136,
+                7,
+                0,
+                null,
+                6,
+                null,
+                50,
+                null,
+                null
+              ],
+              [
+                null,
+                0,
+                140,
+                null,
+                null,
+                null,
+                null,
+                36,
+                8,
+                null
+              ],
+              [
+                null,
+                0,
+                null,
+                135,
+                0,
+                0,
+                0,
+                57,
+                5,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                129,
+                null,
+                null,
+                31,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                6,
+                0,
+                null,
+                108,
+                6,
+                25,
+                null,
+                11
+              ],
+              [
+                null,
+                6,
+                0,
+                null,
+                null,
+                0,
+                111,
+                26,
+                null,
+                null
+              ],
+              [
+                null,
+                0,
+                8,
+                0,
+                6,
+                0,
+                null,
+                111,
+                null,
+                null
+              ],
+              [
+                8,
+                null,
+                0,
+                null,
+                null,
+                0,
+                null,
+                22,
+                83,
+                0
+              ],
+              [
+                20,
+                null,
+                0,
+                0,
+                0,
+                null,
+                null,
+                7,
+                null,
+                51
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1752,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.6730975348338691,
+            "macro_f1": 0.6716051440021991,
+            "per_disease_recall": {
+              "DENGUE": 0.7595486111111119,
+              "INFLUENZA": 0.5577841451766963,
+              "HYPERTENSION": 0.7873357228195939,
+              "TYPE2_DIABETES": 0.6713615023474185,
+              "ASTHMA": 0.8696236559139784,
+              "ANEMIA": 0.623563218390804,
+              "GASTROENTERITIS": 0.5614035087719291,
+              "HYPOTHYROIDISM": 0.6163194444444442,
+              "OSTEOARTHRITIS": 0.6707317073170723,
+              "MALARIA": 0.479166666666667
+            },
+            "per_disease_counts": {
+              "DENGUE": 262,
+              "INFLUENZA": 236,
+              "HYPERTENSION": 211,
+              "TYPE2_DIABETES": 214,
+              "ASTHMA": 183,
+              "ANEMIA": 170,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 137,
+              "OSTEOARTHRITIS": 115,
+              "MALARIA": 93
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 88,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 58,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                204,
+                5,
+                null,
+                null,
+                21,
+                null,
+                null,
+                5,
+                9,
+                7
+              ],
+              [
+                36,
+                139,
+                null,
+                0,
+                31,
+                null,
+                9,
+                9,
+                null,
+                5
+              ],
+              [
+                null,
+                6,
+                167,
+                null,
+                27,
+                null,
+                0,
+                6,
+                0,
+                0
+              ],
+              [
+                null,
+                0,
+                null,
+                149,
+                39,
+                null,
+                null,
+                8,
+                10,
+                0
+              ],
+              [
+                null,
+                0,
+                7,
+                0,
+                158,
+                null,
+                null,
+                8,
+                null,
+                0
+              ],
+              [
+                0,
+                null,
+                20,
+                0,
+                28,
+                109,
+                null,
+                6,
+                0,
+                null
+              ],
+              [
+                8,
+                null,
+                null,
+                null,
+                30,
+                null,
+                99,
+                5,
+                5,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                0,
+                29,
+                null,
+                0,
+                84,
+                8,
+                null
+              ],
+              [
+                5,
+                null,
+                null,
+                0,
+                17,
+                null,
+                0,
+                8,
+                77,
+                null
+              ],
+              [
+                12,
+                null,
+                null,
+                0,
+                14,
+                6,
+                7,
+                null,
+                0,
+                48
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1779,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          }
+        ]
+      },
+      "holdout": {
+        "accuracy": 0.667415489944373,
+        "macro_f1": 0.6783866709641952,
+        "per_disease_recall": {
+          "DENGUE": 0.7913223140495872,
+          "INFLUENZA": 0.5389908256880743,
+          "HYPERTENSION": 0.7272727272727277,
+          "TYPE2_DIABETES": 0.6477272727272734,
+          "ASTHMA": 0.637445887445888,
+          "ANEMIA": 0.5890410958904112,
+          "GASTROENTERITIS": 0.6455399061032862,
+          "HYPOTHYROIDISM": 0.8319672131147539,
+          "OSTEOARTHRITIS": 0.6895424836601296,
+          "MALARIA": 0.5145833333333331
+        },
+        "per_disease_counts": {
+          "DENGUE": 335,
+          "INFLUENZA": 289,
+          "HYPERTENSION": 248,
+          "TYPE2_DIABETES": 254,
+          "ASTHMA": 226,
+          "ANEMIA": 214,
+          "GASTROENTERITIS": 201,
+          "HYPOTHYROIDISM": 174,
+          "OSTEOARTHRITIS": 148,
+          "MALARIA": 119
+        },
+        "per_disease_patients": {
+          "DENGUE": 121,
+          "INFLUENZA": 109,
+          "HYPERTENSION": 88,
+          "TYPE2_DIABETES": 88,
+          "ASTHMA": 77,
+          "ANEMIA": 73,
+          "GASTROENTERITIS": 71,
+          "HYPOTHYROIDISM": 61,
+          "OSTEOARTHRITIS": 51,
+          "MALARIA": 40
+        },
+        "confusion_matrix": [
+          [
+            269,
+            5,
+            5,
+            null,
+            null,
+            null,
+            null,
+            22,
+            8,
+            19
+          ],
+          [
+            31,
+            166,
+            8,
+            null,
+            null,
+            null,
+            11,
+            61,
+            null,
+            null
+          ],
+          [
+            5,
+            0,
+            185,
+            null,
+            null,
+            0,
+            0,
+            46,
+            null,
+            null
+          ],
+          [
+            null,
+            6,
+            7,
+            170,
+            6,
+            null,
+            null,
+            54,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            0,
+            150,
+            0,
+            0,
+            56,
+            null,
+            8
+          ],
+          [
+            null,
+            null,
+            5,
+            null,
+            6,
+            128,
+            null,
+            54,
+            7,
+            null
+          ],
+          [
+            9,
+            null,
+            null,
+            null,
+            0,
+            null,
+            140,
+            36,
+            null,
+            null
+          ],
+          [
+            8,
+            null,
+            7,
+            null,
+            0,
+            0,
+            0,
+            143,
+            8,
+            null
+          ],
+          [
+            6,
+            null,
+            0,
+            null,
+            0,
+            0,
+            null,
+            29,
+            105,
+            null
+          ],
+          [
+            22,
+            0,
+            0,
+            7,
+            0,
+            null,
+            null,
+            13,
+            null,
+            68
+          ]
+        ],
+        "confusion_labels": [
+          "DENGUE",
+          "INFLUENZA",
+          "HYPERTENSION",
+          "TYPE2_DIABETES",
+          "ASTHMA",
+          "ANEMIA",
+          "GASTROENTERITIS",
+          "HYPOTHYROIDISM",
+          "OSTEOARTHRITIS",
+          "MALARIA"
+        ],
+        "examples": 2208,
+        "patients": 779,
+        "confusion_matrix_suppressed": true
+      }
+    },
+    {
+      "id": "random_forest",
+      "name": "Random Forest",
+      "cv": {
+        "mean": {
+          "accuracy": 0.7934568570735495,
+          "macro_f1": 0.778968196096189
+        },
+        "std": {
+          "accuracy": 0.0159950221727904,
+          "macro_f1": 0.01738787056809528
+        },
+        "folds": [
+          {
+            "accuracy": 0.8021669341894061,
+            "macro_f1": 0.7866375880346449,
+            "per_disease_recall": {
+              "DENGUE": 0.8949652777777781,
+              "INFLUENZA": 0.921511627906977,
+              "HYPERTENSION": 0.848809523809524,
+              "TYPE2_DIABETES": 0.7711267605633805,
+              "ASTHMA": 0.8077956989247307,
+              "ANEMIA": 0.8022598870056493,
+              "GASTROENTERITIS": 0.66812865497076,
+              "HYPOTHYROIDISM": 0.6717687074829929,
+              "OSTEOARTHRITIS": 0.6849593495934957,
+              "MALARIA": 0.7473958333333335
+            },
+            "per_disease_counts": {
+              "DENGUE": 258,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 198,
+              "TYPE2_DIABETES": 208,
+              "ASTHMA": 181,
+              "ANEMIA": 173,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 147,
+              "OSTEOARTHRITIS": 118,
+              "MALARIA": 83
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                234,
+                null,
+                null,
+                null,
+                null,
+                0,
+                5,
+                0,
+                null,
+                null
+              ],
+              [
+                null,
+                227,
+                null,
+                null,
+                5,
+                0,
+                null,
+                null,
+                0,
+                null
+              ],
+              [
+                null,
+                6,
+                167,
+                null,
+                5,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                6,
+                11,
+                166,
+                null,
+                null,
+                5,
+                5,
+                9,
+                0
+              ],
+              [
+                7,
+                null,
+                5,
+                5,
+                144,
+                null,
+                5,
+                6,
+                null,
+                null
+              ],
+              [
+                0,
+                null,
+                6,
+                6,
+                12,
+                142,
+                0,
+                null,
+                0,
+                null
+              ],
+              [
+                null,
+                12,
+                6,
+                null,
+                null,
+                null,
+                107,
+                7,
+                null,
+                null
+              ],
+              [
+                null,
+                12,
+                null,
+                null,
+                8,
+                5,
+                null,
+                103,
+                6,
+                0
+              ],
+              [
+                null,
+                null,
+                7,
+                5,
+                5,
+                null,
+                5,
+                10,
+                78,
+                null
+              ],
+              [
+                6,
+                6,
+                null,
+                0,
+                null,
+                0,
+                0,
+                null,
+                null,
+                65
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1757,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7675227394328519,
+            "macro_f1": 0.7500746206297311,
+            "per_disease_recall": {
+              "DENGUE": 0.8671875000000002,
+              "INFLUENZA": 0.864341085271318,
+              "HYPERTENSION": 0.7738095238095236,
+              "TYPE2_DIABETES": 0.7523809523809523,
+              "ASTHMA": 0.8319892473118272,
+              "ANEMIA": 0.7245762711864403,
+              "GASTROENTERITIS": 0.6695906432748535,
+              "HYPOTHYROIDISM": 0.6360544217687062,
+              "OSTEOARTHRITIS": 0.7242063492063487,
+              "MALARIA": 0.6145833333333337
+            },
+            "per_disease_counts": {
+              "DENGUE": 254,
+              "INFLUENZA": 226,
+              "HYPERTENSION": 202,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 181,
+              "ANEMIA": 166,
+              "GASTROENTERITIS": 160,
+              "HYPOTHYROIDISM": 139,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 89
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 42,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                226,
+                7,
+                0,
+                0,
+                null,
+                null,
+                null,
+                null,
+                0,
+                8
+              ],
+              [
+                null,
+                197,
+                9,
+                null,
+                6,
+                0,
+                9,
+                null,
+                null,
+                0
+              ],
+              [
+                6,
+                null,
+                159,
+                null,
+                18,
+                null,
+                8,
+                null,
+                null,
+                0
+              ],
+              [
+                5,
+                null,
+                null,
+                152,
+                20,
+                0,
+                6,
+                5,
+                5,
+                0
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                151,
+                null,
+                null,
+                10,
+                null,
+                0
+              ],
+              [
+                0,
+                null,
+                null,
+                null,
+                13,
+                128,
+                5,
+                6,
+                null,
+                null
+              ],
+              [
+                null,
+                13,
+                6,
+                0,
+                8,
+                8,
+                106,
+                null,
+                8,
+                6
+              ],
+              [
+                null,
+                null,
+                null,
+                6,
+                14,
+                null,
+                null,
+                91,
+                16,
+                null
+              ],
+              [
+                0,
+                null,
+                8,
+                10,
+                null,
+                0,
+                8,
+                null,
+                87,
+                null
+              ],
+              [
+                null,
+                14,
+                null,
+                0,
+                5,
+                5,
+                null,
+                null,
+                0,
+                59
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1736,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.8151991133532064,
+            "macro_f1": 0.801500817063965,
+            "per_disease_recall": {
+              "DENGUE": 0.9321305841924402,
+              "INFLUENZA": 0.8831417624521073,
+              "HYPERTENSION": 0.8737218813905934,
+              "TYPE2_DIABETES": 0.7797619047619049,
+              "ASTHMA": 0.7795698924731175,
+              "ANEMIA": 0.7994350282485871,
+              "GASTROENTERITIS": 0.8059796437659027,
+              "HYPOTHYROIDISM": 0.7108843537414962,
+              "OSTEOARTHRITIS": 0.6788617886178862,
+              "MALARIA": 0.6744791666666666
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 201,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 183,
+              "ANEMIA": 174,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 135,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 95
+            },
+            "per_disease_patients": {
+              "DENGUE": 97,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                253,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                null,
+                0,
+                null
+              ],
+              [
+                7,
+                221,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                174,
+                6,
+                null,
+                0,
+                8,
+                null,
+                null,
+                0
+              ],
+              [
+                null,
+                null,
+                7,
+                159,
+                5,
+                0,
+                8,
+                6,
+                9,
+                0
+              ],
+              [
+                9,
+                null,
+                7,
+                null,
+                145,
+                5,
+                6,
+                5,
+                null,
+                0
+              ],
+              [
+                13,
+                null,
+                0,
+                0,
+                5,
+                143,
+                null,
+                7,
+                0,
+                0
+              ],
+              [
+                null,
+                5,
+                null,
+                null,
+                6,
+                null,
+                123,
+                null,
+                null,
+                null
+              ],
+              [
+                5,
+                null,
+                null,
+                5,
+                5,
+                5,
+                5,
+                101,
+                null,
+                0
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                13,
+                null,
+                6,
+                null,
+                84,
+                0
+              ],
+              [
+                8,
+                null,
+                null,
+                null,
+                7,
+                null,
+                null,
+                0,
+                0,
+                67
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1765,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7960878885316185,
+            "macro_f1": 0.7857118462105764,
+            "per_disease_recall": {
+              "DENGUE": 0.9114583333333335,
+              "INFLUENZA": 0.8237547892720314,
+              "HYPERTENSION": 0.8130952380952386,
+              "TYPE2_DIABETES": 0.7880952380952384,
+              "ASTHMA": 0.7916666666666662,
+              "ANEMIA": 0.7090395480225983,
+              "GASTROENTERITIS": 0.7351190476190474,
+              "HYPOTHYROIDISM": 0.7326388888888886,
+              "OSTEOARTHRITIS": 0.7784552845528451,
+              "MALARIA": 0.7499999999999999
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 240,
+              "HYPERTENSION": 199,
+              "TYPE2_DIABETES": 204,
+              "ASTHMA": 176,
+              "ANEMIA": 163,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 136,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 88
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 56,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 33
+            },
+            "confusion_matrix": [
+              [
+                248,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                9,
+                199,
+                5,
+                0,
+                7,
+                6,
+                null,
+                6,
+                null,
+                5
+              ],
+              [
+                8,
+                0,
+                165,
+                null,
+                7,
+                0,
+                null,
+                null,
+                10,
+                0
+              ],
+              [
+                7,
+                null,
+                null,
+                166,
+                null,
+                null,
+                0,
+                9,
+                12,
+                0
+              ],
+              [
+                7,
+                null,
+                7,
+                null,
+                143,
+                null,
+                null,
+                7,
+                6,
+                0
+              ],
+              [
+                null,
+                null,
+                9,
+                0,
+                8,
+                121,
+                12,
+                null,
+                0,
+                7
+              ],
+              [
+                null,
+                6,
+                null,
+                7,
+                8,
+                0,
+                124,
+                6,
+                null,
+                null
+              ],
+              [
+                5,
+                null,
+                8,
+                null,
+                10,
+                0,
+                null,
+                103,
+                null,
+                0
+              ],
+              [
+                6,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                8,
+                95,
+                0
+              ],
+              [
+                7,
+                5,
+                0,
+                0,
+                null,
+                0,
+                null,
+                null,
+                null,
+                69
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1752,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7863076098606646,
+            "macro_f1": 0.7709161085420276,
+            "per_disease_recall": {
+              "DENGUE": 0.8949652777777782,
+              "INFLUENZA": 0.9140401146131812,
+              "HYPERTENSION": 0.8458781362007172,
+              "TYPE2_DIABETES": 0.7957746478873247,
+              "ASTHMA": 0.7352150537634404,
+              "ANEMIA": 0.6738505747126432,
+              "GASTROENTERITIS": 0.6739766081871342,
+              "HYPOTHYROIDISM": 0.6527777777777775,
+              "OSTEOARTHRITIS": 0.8191056910569097,
+              "MALARIA": 0.6223958333333338
+            },
+            "per_disease_counts": {
+              "DENGUE": 262,
+              "INFLUENZA": 236,
+              "HYPERTENSION": 211,
+              "TYPE2_DIABETES": 214,
+              "ASTHMA": 183,
+              "ANEMIA": 170,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 137,
+              "OSTEOARTHRITIS": 115,
+              "MALARIA": 93
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 88,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 58,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                235,
+                5,
+                null,
+                null,
+                null,
+                5,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                5,
+                216,
+                null,
+                0,
+                null,
+                5,
+                5,
+                0,
+                null,
+                null
+              ],
+              [
+                0,
+                8,
+                183,
+                null,
+                12,
+                null,
+                null,
+                0,
+                null,
+                0
+              ],
+              [
+                0,
+                null,
+                null,
+                174,
+                12,
+                null,
+                5,
+                10,
+                8,
+                0
+              ],
+              [
+                0,
+                11,
+                12,
+                5,
+                138,
+                5,
+                7,
+                null,
+                null,
+                0
+              ],
+              [
+                10,
+                null,
+                13,
+                null,
+                12,
+                117,
+                5,
+                5,
+                null,
+                0
+              ],
+              [
+                null,
+                14,
+                0,
+                8,
+                11,
+                0,
+                115,
+                null,
+                null,
+                null
+              ],
+              [
+                5,
+                9,
+                null,
+                null,
+                11,
+                null,
+                null,
+                90,
+                8,
+                null
+              ],
+              [
+                10,
+                null,
+                null,
+                null,
+                0,
+                null,
+                0,
+                null,
+                92,
+                0
+              ],
+              [
+                8,
+                null,
+                null,
+                0,
+                6,
+                null,
+                5,
+                null,
+                null,
+                62
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1779,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          }
+        ]
+      },
+      "holdout": {
+        "accuracy": 0.7916131792896876,
+        "macro_f1": 0.7768873806645162,
+        "per_disease_recall": {
+          "DENGUE": 0.8760330578512399,
+          "INFLUENZA": 0.851681957186545,
+          "HYPERTENSION": 0.8257575757575765,
+          "TYPE2_DIABETES": 0.819128787878788,
+          "ASTHMA": 0.8517316017316034,
+          "ANEMIA": 0.6815068493150688,
+          "GASTROENTERITIS": 0.7781690140845071,
+          "HYPOTHYROIDISM": 0.6325136612021851,
+          "OSTEOARTHRITIS": 0.771241830065359,
+          "MALARIA": 0.6145833333333329
+        },
+        "per_disease_counts": {
+          "DENGUE": 335,
+          "INFLUENZA": 289,
+          "HYPERTENSION": 248,
+          "TYPE2_DIABETES": 254,
+          "ASTHMA": 226,
+          "ANEMIA": 214,
+          "GASTROENTERITIS": 201,
+          "HYPOTHYROIDISM": 174,
+          "OSTEOARTHRITIS": 148,
+          "MALARIA": 119
+        },
+        "per_disease_patients": {
+          "DENGUE": 121,
+          "INFLUENZA": 109,
+          "HYPERTENSION": 88,
+          "TYPE2_DIABETES": 88,
+          "ASTHMA": 77,
+          "ANEMIA": 73,
+          "GASTROENTERITIS": 71,
+          "HYPOTHYROIDISM": 61,
+          "OSTEOARTHRITIS": 51,
+          "MALARIA": 40
+        },
+        "confusion_matrix": [
+          [
+            297,
+            14,
+            5,
+            null,
+            5,
+            0,
+            null,
+            null,
+            0,
+            7
+          ],
+          [
+            null,
+            248,
+            9,
+            0,
+            8,
+            0,
+            13,
+            0,
+            null,
+            5
+          ],
+          [
+            6,
+            6,
+            209,
+            5,
+            11,
+            0,
+            6,
+            null,
+            null,
+            0
+          ],
+          [
+            6,
+            5,
+            5,
+            210,
+            10,
+            null,
+            5,
+            7,
+            null,
+            0
+          ],
+          [
+            null,
+            null,
+            5,
+            null,
+            194,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            6,
+            5,
+            6,
+            29,
+            151,
+            null,
+            null,
+            5,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            5,
+            14,
+            null,
+            165,
+            null,
+            null,
+            null
+          ],
+          [
+            7,
+            13,
+            10,
+            null,
+            15,
+            null,
+            8,
+            111,
+            5,
+            0
+          ],
+          [
+            6,
+            8,
+            null,
+            null,
+            null,
+            0,
+            null,
+            7,
+            114,
+            null
+          ],
+          [
+            7,
+            8,
+            null,
+            8,
+            null,
+            null,
+            null,
+            null,
+            null,
+            81
+          ]
+        ],
+        "confusion_labels": [
+          "DENGUE",
+          "INFLUENZA",
+          "HYPERTENSION",
+          "TYPE2_DIABETES",
+          "ASTHMA",
+          "ANEMIA",
+          "GASTROENTERITIS",
+          "HYPOTHYROIDISM",
+          "OSTEOARTHRITIS",
+          "MALARIA"
+        ],
+        "examples": 2208,
+        "patients": 779,
+        "confusion_matrix_suppressed": true
+      }
+    },
+    {
+      "id": "knn",
+      "name": "KNN",
+      "cv": {
+        "mean": {
+          "accuracy": 0.7412142527808478,
+          "macro_f1": 0.7280101691289576
+        },
+        "std": {
+          "accuracy": 0.01552199182845968,
+          "macro_f1": 0.018809015288622707
+        },
+        "folds": [
+          {
+            "accuracy": 0.7462546816479401,
+            "macro_f1": 0.7351590983375825,
+            "per_disease_recall": {
+              "DENGUE": 0.8472222222222225,
+              "INFLUENZA": 0.8410852713178298,
+              "HYPERTENSION": 0.7690476190476189,
+              "TYPE2_DIABETES": 0.7863849765258218,
+              "ASTHMA": 0.7083333333333325,
+              "ANEMIA": 0.7542372881355927,
+              "GASTROENTERITIS": 0.6388888888888886,
+              "HYPOTHYROIDISM": 0.585034013605442,
+              "OSTEOARTHRITIS": 0.6321138211382114,
+              "MALARIA": 0.6927083333333336
+            },
+            "per_disease_counts": {
+              "DENGUE": 258,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 198,
+              "TYPE2_DIABETES": 208,
+              "ASTHMA": 181,
+              "ANEMIA": 173,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 147,
+              "OSTEOARTHRITIS": 118,
+              "MALARIA": 83
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                222,
+                10,
+                5,
+                null,
+                null,
+                null,
+                6,
+                0,
+                null,
+                null
+              ],
+              [
+                9,
+                211,
+                5,
+                null,
+                6,
+                null,
+                null,
+                null,
+                0,
+                null
+              ],
+              [
+                5,
+                7,
+                154,
+                7,
+                null,
+                null,
+                null,
+                7,
+                null,
+                null
+              ],
+              [
+                null,
+                8,
+                10,
+                170,
+                null,
+                0,
+                null,
+                null,
+                10,
+                0
+              ],
+              [
+                19,
+                10,
+                null,
+                9,
+                128,
+                null,
+                6,
+                null,
+                null,
+                0
+              ],
+              [
+                null,
+                null,
+                5,
+                9,
+                5,
+                134,
+                7,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                13,
+                7,
+                6,
+                5,
+                null,
+                102,
+                6,
+                null,
+                null
+              ],
+              [
+                11,
+                14,
+                null,
+                5,
+                null,
+                6,
+                6,
+                92,
+                7,
+                0
+              ],
+              [
+                5,
+                null,
+                6,
+                9,
+                null,
+                null,
+                6,
+                10,
+                72,
+                null
+              ],
+              [
+                null,
+                10,
+                5,
+                0,
+                null,
+                null,
+                null,
+                0,
+                0,
+                60
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1757,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7191011235955056,
+            "macro_f1": 0.7011150871208371,
+            "per_disease_recall": {
+              "DENGUE": 0.8489583333333335,
+              "INFLUENZA": 0.7102713178294577,
+              "HYPERTENSION": 0.7499999999999998,
+              "TYPE2_DIABETES": 0.7666666666666665,
+              "ASTHMA": 0.7580645161290314,
+              "ANEMIA": 0.7358757062146889,
+              "GASTROENTERITIS": 0.6301169590643271,
+              "HYPOTHYROIDISM": 0.6224489795918355,
+              "OSTEOARTHRITIS": 0.6507936507936504,
+              "MALARIA": 0.47135416666666713
+            },
+            "per_disease_counts": {
+              "DENGUE": 254,
+              "INFLUENZA": 226,
+              "HYPERTENSION": 202,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 181,
+              "ANEMIA": 166,
+              "GASTROENTERITIS": 160,
+              "HYPOTHYROIDISM": 139,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 89
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 86,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 42,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                221,
+                7,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                8
+              ],
+              [
+                16,
+                168,
+                9,
+                8,
+                6,
+                null,
+                13,
+                null,
+                null,
+                null
+              ],
+              [
+                8,
+                6,
+                153,
+                6,
+                7,
+                10,
+                8,
+                null,
+                null,
+                0
+              ],
+              [
+                8,
+                null,
+                6,
+                156,
+                14,
+                null,
+                null,
+                null,
+                null,
+                0
+              ],
+              [
+                null,
+                8,
+                null,
+                5,
+                139,
+                5,
+                6,
+                8,
+                null,
+                null
+              ],
+              [
+                8,
+                6,
+                null,
+                null,
+                null,
+                128,
+                7,
+                5,
+                null,
+                null
+              ],
+              [
+                5,
+                14,
+                6,
+                null,
+                6,
+                11,
+                101,
+                0,
+                8,
+                7
+              ],
+              [
+                9,
+                5,
+                null,
+                7,
+                7,
+                7,
+                5,
+                89,
+                7,
+                null
+              ],
+              [
+                null,
+                6,
+                8,
+                11,
+                null,
+                null,
+                5,
+                null,
+                81,
+                0
+              ],
+              [
+                7,
+                12,
+                null,
+                null,
+                null,
+                7,
+                7,
+                null,
+                null,
+                46
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1736,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7571275701291752,
+            "macro_f1": 0.7464574016625758,
+            "per_disease_recall": {
+              "DENGUE": 0.8926116838487979,
+              "INFLUENZA": 0.734674329501916,
+              "HYPERTENSION": 0.8365712338104979,
+              "TYPE2_DIABETES": 0.7642857142857142,
+              "ASTHMA": 0.7311827956989237,
+              "ANEMIA": 0.7683615819209033,
+              "GASTROENTERITIS": 0.7228583545377432,
+              "HYPOTHYROIDISM": 0.6734693877551016,
+              "OSTEOARTHRITIS": 0.5914634146341463,
+              "MALARIA": 0.6484375000000001
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 243,
+              "HYPERTENSION": 201,
+              "TYPE2_DIABETES": 198,
+              "ASTHMA": 183,
+              "ANEMIA": 174,
+              "GASTROENTERITIS": 148,
+              "HYPOTHYROIDISM": 135,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 95
+            },
+            "per_disease_patients": {
+              "DENGUE": 97,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 49,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                243,
+                9,
+                null,
+                null,
+                0,
+                0,
+                null,
+                null,
+                null,
+                7
+              ],
+              [
+                17,
+                192,
+                null,
+                11,
+                null,
+                null,
+                10,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                6,
+                168,
+                null,
+                null,
+                null,
+                8,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                5,
+                5,
+                155,
+                7,
+                0,
+                11,
+                9,
+                null,
+                0
+              ],
+              [
+                16,
+                null,
+                10,
+                null,
+                136,
+                5,
+                null,
+                0,
+                null,
+                null
+              ],
+              [
+                15,
+                5,
+                0,
+                null,
+                null,
+                137,
+                5,
+                null,
+                5,
+                null
+              ],
+              [
+                8,
+                8,
+                7,
+                null,
+                null,
+                null,
+                113,
+                null,
+                0,
+                null
+              ],
+              [
+                6,
+                5,
+                null,
+                8,
+                7,
+                null,
+                null,
+                96,
+                null,
+                0
+              ],
+              [
+                5,
+                7,
+                null,
+                9,
+                8,
+                null,
+                5,
+                8,
+                74,
+                0
+              ],
+              [
+                11,
+                null,
+                null,
+                5,
+                null,
+                null,
+                null,
+                0,
+                0,
+                65
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1765,
+            "patients": 623,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7565648445873526,
+            "macro_f1": 0.7467330720787312,
+            "per_disease_recall": {
+              "DENGUE": 0.8880208333333335,
+              "INFLUENZA": 0.7432950191570892,
+              "HYPERTENSION": 0.8059523809523814,
+              "TYPE2_DIABETES": 0.7904761904761908,
+              "ASTHMA": 0.7473118279569887,
+              "ANEMIA": 0.701977401129943,
+              "GASTROENTERITIS": 0.6979166666666661,
+              "HYPOTHYROIDISM": 0.678819444444444,
+              "OSTEOARTHRITIS": 0.6951219512195118,
+              "MALARIA": 0.6363636363636361
+            },
+            "per_disease_counts": {
+              "DENGUE": 267,
+              "INFLUENZA": 240,
+              "HYPERTENSION": 199,
+              "TYPE2_DIABETES": 204,
+              "ASTHMA": 176,
+              "ANEMIA": 163,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 136,
+              "OSTEOARTHRITIS": 121,
+              "MALARIA": 88
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 87,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 70,
+              "ASTHMA": 62,
+              "ANEMIA": 59,
+              "GASTROENTERITIS": 56,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 33
+            },
+            "confusion_matrix": [
+              [
+                243,
+                5,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                16,
+                184,
+                8,
+                null,
+                11,
+                10,
+                0,
+                6,
+                null,
+                null
+              ],
+              [
+                6,
+                0,
+                164,
+                7,
+                6,
+                null,
+                5,
+                null,
+                6,
+                0
+              ],
+              [
+                9,
+                6,
+                null,
+                167,
+                null,
+                null,
+                null,
+                9,
+                null,
+                0
+              ],
+              [
+                12,
+                6,
+                8,
+                null,
+                137,
+                6,
+                null,
+                0,
+                null,
+                0
+              ],
+              [
+                8,
+                7,
+                6,
+                null,
+                null,
+                119,
+                9,
+                null,
+                null,
+                6
+              ],
+              [
+                5,
+                6,
+                null,
+                8,
+                5,
+                null,
+                119,
+                6,
+                null,
+                null
+              ],
+              [
+                10,
+                null,
+                5,
+                null,
+                6,
+                null,
+                5,
+                95,
+                10,
+                0
+              ],
+              [
+                9,
+                6,
+                null,
+                5,
+                null,
+                0,
+                0,
+                13,
+                83,
+                0
+              ],
+              [
+                9,
+                8,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                58
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1752,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          },
+          {
+            "accuracy": 0.7270230439442658,
+            "macro_f1": 0.7105861864450608,
+            "per_disease_recall": {
+              "DENGUE": 0.8593750000000006,
+              "INFLUENZA": 0.7855778414517683,
+              "HYPERTENSION": 0.8112305854241341,
+              "TYPE2_DIABETES": 0.7852112676056345,
+              "ASTHMA": 0.684139784946236,
+              "ANEMIA": 0.6422413793103443,
+              "GASTROENTERITIS": 0.6418128654970755,
+              "HYPOTHYROIDISM": 0.5850694444444442,
+              "OSTEOARTHRITIS": 0.6707317073170724,
+              "MALARIA": 0.5312500000000006
+            },
+            "per_disease_counts": {
+              "DENGUE": 262,
+              "INFLUENZA": 236,
+              "HYPERTENSION": 211,
+              "TYPE2_DIABETES": 214,
+              "ASTHMA": 183,
+              "ANEMIA": 170,
+              "GASTROENTERITIS": 158,
+              "HYPOTHYROIDISM": 137,
+              "OSTEOARTHRITIS": 115,
+              "MALARIA": 93
+            },
+            "per_disease_patients": {
+              "DENGUE": 96,
+              "INFLUENZA": 88,
+              "HYPERTENSION": 70,
+              "TYPE2_DIABETES": 71,
+              "ASTHMA": 62,
+              "ANEMIA": 58,
+              "GASTROENTERITIS": 57,
+              "HYPOTHYROIDISM": 48,
+              "OSTEOARTHRITIS": 41,
+              "MALARIA": 32
+            },
+            "confusion_matrix": [
+              [
+                227,
+                7,
+                null,
+                null,
+                null,
+                7,
+                null,
+                5,
+                null,
+                5
+              ],
+              [
+                25,
+                190,
+                null,
+                0,
+                null,
+                6,
+                6,
+                null,
+                null,
+                null
+              ],
+              [
+                5,
+                7,
+                177,
+                5,
+                5,
+                5,
+                null,
+                null,
+                null,
+                0
+              ],
+              [
+                5,
+                null,
+                7,
+                172,
+                null,
+                null,
+                0,
+                12,
+                10,
+                null
+              ],
+              [
+                6,
+                14,
+                11,
+                null,
+                129,
+                9,
+                7,
+                null,
+                null,
+                0
+              ],
+              [
+                18,
+                null,
+                11,
+                null,
+                10,
+                112,
+                7,
+                null,
+                null,
+                0
+              ],
+              [
+                7,
+                11,
+                null,
+                14,
+                null,
+                null,
+                111,
+                null,
+                null,
+                0
+              ],
+              [
+                10,
+                10,
+                null,
+                9,
+                null,
+                5,
+                5,
+                81,
+                10,
+                null
+              ],
+              [
+                10,
+                5,
+                null,
+                null,
+                null,
+                5,
+                6,
+                5,
+                76,
+                0
+              ],
+              [
+                14,
+                null,
+                null,
+                null,
+                6,
+                0,
+                9,
+                null,
+                0,
+                54
+              ]
+            ],
+            "confusion_labels": [
+              "DENGUE",
+              "INFLUENZA",
+              "HYPERTENSION",
+              "TYPE2_DIABETES",
+              "ASTHMA",
+              "ANEMIA",
+              "GASTROENTERITIS",
+              "HYPOTHYROIDISM",
+              "OSTEOARTHRITIS",
+              "MALARIA"
+            ],
+            "examples": 1779,
+            "patients": 622,
+            "confusion_matrix_suppressed": true
+          }
+        ]
+      },
+      "holdout": {
+        "accuracy": 0.7446512623020967,
+        "macro_f1": 0.7287597505828349,
+        "per_disease_recall": {
+          "DENGUE": 0.8712121212121215,
+          "INFLUENZA": 0.7706422018348633,
+          "HYPERTENSION": 0.7907196969696976,
+          "TYPE2_DIABETES": 0.8248106060606062,
+          "ASTHMA": 0.7662337662337676,
+          "ANEMIA": 0.6609589041095891,
+          "GASTROENTERITIS": 0.6971830985915493,
+          "HYPOTHYROIDISM": 0.5751366120218573,
+          "OSTEOARTHRITIS": 0.6748366013071884,
+          "MALARIA": 0.5562499999999997
+        },
+        "per_disease_counts": {
+          "DENGUE": 335,
+          "INFLUENZA": 289,
+          "HYPERTENSION": 248,
+          "TYPE2_DIABETES": 254,
+          "ASTHMA": 226,
+          "ANEMIA": 214,
+          "GASTROENTERITIS": 201,
+          "HYPOTHYROIDISM": 174,
+          "OSTEOARTHRITIS": 148,
+          "MALARIA": 119
+        },
+        "per_disease_patients": {
+          "DENGUE": 121,
+          "INFLUENZA": 109,
+          "HYPERTENSION": 88,
+          "TYPE2_DIABETES": 88,
+          "ASTHMA": 77,
+          "ANEMIA": 73,
+          "GASTROENTERITIS": 71,
+          "HYPOTHYROIDISM": 61,
+          "OSTEOARTHRITIS": 51,
+          "MALARIA": 40
+        },
+        "confusion_matrix": [
+          [
+            295,
+            7,
+            6,
+            null,
+            6,
+            0,
+            null,
+            null,
+            null,
+            10
+          ],
+          [
+            19,
+            229,
+            10,
+            null,
+            7,
+            null,
+            13,
+            null,
+            null,
+            null
+          ],
+          [
+            13,
+            7,
+            200,
+            7,
+            7,
+            null,
+            null,
+            null,
+            5,
+            0
+          ],
+          [
+            null,
+            8,
+            null,
+            212,
+            10,
+            null,
+            5,
+            7,
+            null,
+            0
+          ],
+          [
+            10,
+            10,
+            7,
+            5,
+            177,
+            5,
+            null,
+            null,
+            null,
+            5
+          ],
+          [
+            9,
+            11,
+            null,
+            10,
+            14,
+            145,
+            7,
+            7,
+            null,
+            6
+          ],
+          [
+            9,
+            6,
+            5,
+            7,
+            8,
+            5,
+            153,
+            null,
+            null,
+            null
+          ],
+          [
+            15,
+            14,
+            7,
+            8,
+            9,
+            null,
+            11,
+            102,
+            6,
+            0
+          ],
+          [
+            8,
+            10,
+            null,
+            13,
+            0,
+            0,
+            5,
+            7,
+            102,
+            0
+          ],
+          [
+            15,
+            6,
+            null,
+            8,
+            5,
+            null,
+            null,
+            null,
+            5,
+            72
+          ]
+        ],
+        "confusion_labels": [
+          "DENGUE",
+          "INFLUENZA",
+          "HYPERTENSION",
+          "TYPE2_DIABETES",
+          "ASTHMA",
+          "ANEMIA",
+          "GASTROENTERITIS",
+          "HYPOTHYROIDISM",
+          "OSTEOARTHRITIS",
+          "MALARIA"
+        ],
+        "examples": 2208,
+        "patients": 779,
+        "confusion_matrix_suppressed": true
+      }
+    }
+  ],
+  "selection": {
+    "model_id": "random_forest",
+    "model_name": "Random Forest",
+    "name": "Random Forest",
+    "prediction_enabled": true,
+    "message": "Simulation checks passed; these results are not clinical validation.",
+    "gate_checks": {
+      "holdout_macro_f1_at_least_0_70": true,
+      "holdout_accuracy_at_least_0_75": true
+    },
+    "criterion": "Highest mean five-fold patient-stratified cross-validation macro F1.",
+    "gate_policy": "Fixed before evaluation: final-test macro F1 >= 0.70 and accuracy >= 0.75. Passing is not clinical validation."
+  },
+  "split": {
+    "method": "Stratified 80/20 split of patients, then five shared stratified patient folds on the training patients.",
+    "training_patients": 3113,
+    "holdout_patients": 779,
+    "training_examples": 8789,
+    "holdout_examples": 2208,
+    "folds": 5,
+    "patient_overlap": 0,
+    "stratification": "Patient's most frequent primary disease; tied labels sort by disease code. Every visit stays with its patient.",
+    "selection_rule": "Highest mean five-fold cross-validation macro F1; fixed model order breaks exact ties.",
+    "holdout_policy": "Evaluate the final test set after selection. Do not change algorithms or parameters using these results.",
+    "metric_weighting": "Equal total weight per patient, shared by all algorithms. Confusion matrices contain raw visit counts."
+  },
+  "feature_importance": [
+    {
+      "feature": "glucose",
+      "label": "Blood sugar",
+      "importance": 0.11132073419372053,
+      "standard_deviation": 0.0038163605725231734
+    },
+    {
+      "feature": "hemoglobin",
+      "label": "Hemoglobin",
+      "importance": 0.08813168409145962,
+      "standard_deviation": 0.004427041877444606
+    },
+    {
+      "feature": "temperature",
+      "label": "Temperature",
+      "importance": 0.06729573214894997,
+      "standard_deviation": 0.006809691760949692
+    },
+    {
+      "feature": "vomiting",
+      "label": "Vomiting",
+      "importance": 0.05084204453807787,
+      "standard_deviation": 0.0006299067549625645
+    },
+    {
+      "feature": "spo2",
+      "label": "Blood oxygen level",
+      "importance": 0.03964043543981407,
+      "standard_deviation": 0.001778294225943947
+    },
+    {
+      "feature": "platelets",
+      "label": "Platelet count",
+      "importance": 0.034883813036621435,
+      "standard_deviation": 0.0030721375187921026
+    },
+    {
+      "feature": "systolic",
+      "label": "Upper blood pressure reading",
+      "importance": 0.034477943333574644,
+      "standard_deviation": 0.0011775487452844698
+    },
+    {
+      "feature": "joint_pain",
+      "label": "Joint pain",
+      "importance": 0.034287407524784465,
+      "standard_deviation": 0.001467156991760932
+    },
+    {
+      "feature": "station_id",
+      "label": "Station area",
+      "importance": 0.029537717379474304,
+      "standard_deviation": 0.0042181316180213415
+    },
+    {
+      "feature": "cough",
+      "label": "Cough",
+      "importance": 0.022516553651447335,
+      "standard_deviation": 0.0023889878671055583
+    },
+    {
+      "feature": "diastolic",
+      "label": "Lower blood pressure reading",
+      "importance": 0.019703234332726766,
+      "standard_deviation": 0.004963424814018135
+    },
+    {
+      "feature": "pulse",
+      "label": "Heart rate",
+      "importance": 0.019268821168032673,
+      "standard_deviation": 0.004086103235881658
+    },
+    {
+      "feature": "age",
+      "label": "Age",
+      "importance": 0.014368733724043126,
+      "standard_deviation": 0.005284409164252061
+    },
+    {
+      "feature": "fever",
+      "label": "Fever",
+      "importance": 0.012369247219126836,
+      "standard_deviation": 0.0011216713699638927
+    },
+    {
+      "feature": "breathlessness",
+      "label": "Breathlessness",
+      "importance": 0.00908953381088969,
+      "standard_deviation": 0.0021759224097370237
+    },
+    {
+      "feature": "headache",
+      "label": "Headache",
+      "importance": 0.008907665334284035,
+      "standard_deviation": 0.0008937410804863089
+    },
+    {
+      "feature": "month",
+      "label": "Visit month",
+      "importance": 0.006849349001295413,
+      "standard_deviation": 0.00034912990842791405
+    },
+    {
+      "feature": "fatigue",
+      "label": "Fatigue",
+      "importance": 0.005986060714715746,
+      "standard_deviation": 0.00215203274677913
+    },
+    {
+      "feature": "rash",
+      "label": "Rash",
+      "importance": 0.0053968376784870875,
+      "standard_deviation": 0.00196160988682897
+    },
+    {
+      "feature": "gender",
+      "label": "Recorded gender",
+      "importance": 0.0019578024289651497,
+      "standard_deviation": 0.0033837150110323905
+    }
+  ],
+  "training_dates": {
+    "from": "2024-10-31T10:00:00+00:00",
+    "through": "2026-09-30T10:03:00+00:00"
+  },
+  "limitations": [
+    "These are simulated patients and labels; test scores do not establish clinical accuracy.",
+    "The model chooses one primary disease from ten known classes and cannot detect an unlisted disease.",
+    "Patients may have more than one disease, but this task predicts only the primary label for each visit.",
+    "All visits from one patient stay in one partition. Metrics give each patient equal total weight; models fit the same visit rows.",
+    "Splits are stratified using each patient's most frequent disease label; ties use disease-code order. This label is used only for splitting.",
+    "This is a patient-separated retrospective comparison, not an evaluation on future dates or new station areas.",
+    "Only measurements available at the visit enter training; missing data are imputed using training-fold statistics.",
+    "Location and season reflect simulated patterns and can change in a real population.",
+    "Feature importance explains model behavior, not medical causes or treatment advice.",
+    "Counts of one to four are hidden. This display safeguard is not formal anonymization across repeated queries."
+  ],
+  "feature_importance_method": "Three permutation repeats on final-test data after selection; change in patient-weighted macro F1. No feature selection or tuning uses these results."
+}

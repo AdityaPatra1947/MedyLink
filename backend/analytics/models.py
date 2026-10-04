@@ -183,6 +183,7 @@ class MLRun(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     batch = models.ForeignKey(DatasetBatch, on_delete=models.PROTECT, related_name="ml_runs")
     actor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    task = models.CharField(max_length=24, default="blood_pressure", choices=[("blood_pressure", "Next-visit blood pressure"), ("disease", "Primary disease")])
     status = models.CharField(max_length=20, default="queued")
     filters = models.JSONField(default=dict)
     source_summary = models.JSONField(default=dict)
@@ -200,12 +201,13 @@ class MLRun(models.Model):
                 name="analytics_ml_valid_status",
             ),
             models.UniqueConstraint(
-                fields=["batch"], condition=Q(status__in=["queued", "running"]),
+                fields=["batch", "task"], condition=Q(status__in=["queued", "running"]),
                 name="analytics_ml_single_flight",
             ),
             models.UniqueConstraint(
-                fields=["batch"], condition=Q(is_active_model=True),
+                fields=["batch", "task"], condition=Q(is_active_model=True),
                 name="analytics_ml_one_active_model",
             ),
+            models.CheckConstraint(condition=Q(task__in=["blood_pressure", "disease"]), name="analytics_ml_valid_task"),
         ]
         ordering: ClassVar[list] = ["-created_at", "-id"]

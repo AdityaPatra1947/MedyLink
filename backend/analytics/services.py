@@ -11,6 +11,7 @@ import numpy as np
 import sklearn
 from accounts.models import SecurityEvent
 from django.db import transaction
+from django.db.models import Count, Max, Min
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import ValidationError
 from sklearn.cluster import DBSCAN
@@ -60,9 +61,27 @@ def versions():
     }
 
 
+def live_dataset_metadata(batch):
+    """Read append-aware coverage without rewriting the original import manifest."""
+    observations = batch.observations.aggregate(
+        count=Count("id"), last_id=Max("id"), first=Min("observed_at"), last=Max("observed_at"),
+    )
+    first = observations["first"].date() if observations["first"] else batch.observation_start
+    last = observations["last"].date() if observations["last"] else batch.as_of
+    return {
+        "patient_count": batch.areas.count(),
+        # Keep empty selections within the original published window valid.
+        "observation_start": min(batch.observation_start, first),
+        "as_of": max(batch.as_of, last),
+        "observation_count": observations["count"],
+        "last_observation_id": observations["last_id"],
+    }
+
+
 def resolve_filters(data):
     batch = get_object_or_404(DatasetBatch, key=data["dataset_id"], synthetic=True)
-    if data["date_to"] > batch.as_of or data["date_from"] < batch.observation_start:
+    metadata = live_dataset_metadata(batch)
+    if data["date_to"] > metadata["as_of"] or data["date_from"] < metadata["observation_start"]:
         raise ValidationError(
             {"date_from": "Choose dates within this dataset's observation period."}
         )
@@ -558,20 +577,22 @@ def run_payload(run, reused=False):
 
 def execute_run(batch, actor, kind, filters, parameters, request_id=""):
     library_versions = versions()
-    canonical = {
-        "manifest": batch.manifest_hash,
-        "input_hashes": batch.input_hashes,
-        "kind": kind,
-        "filters": filters,
-        "parameters": parameters,
-        "versions": library_versions,
-    }
-    cache_key = hashlib.sha256(
-        json.dumps(canonical, sort_keys=True, separators=(",", ":")).encode()
-    ).hexdigest()
     # Serialize fits per batch so simultaneous requests cannot fit the same run twice.
     with transaction.atomic():
         DatasetBatch.objects.select_for_update().get(pk=batch.pk)
+        metadata = live_dataset_metadata(batch)
+        canonical = {
+            "manifest": batch.manifest_hash,
+            "input_hashes": batch.input_hashes,
+            "append_revision": [metadata["observation_count"], metadata["last_observation_id"]],
+            "kind": kind,
+            "filters": filters,
+            "parameters": parameters,
+            "versions": library_versions,
+        }
+        cache_key = hashlib.sha256(
+            json.dumps(canonical, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
         existing = (
             AnalyticsRun.objects.filter(cache_key=cache_key)
             .select_related("batch")
