@@ -1,16 +1,21 @@
-"""Disease filters, snapshot boundaries, and independent model-task storage."""
+"""Disease filters, snapshot boundaries, and retired-task isolation."""
 
+import json
 from datetime import date, datetime, timezone
+from io import StringIO
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 from accounts.models import User
 from clinic.models import LabResult, MedicalRecord, Patient
+from django.core.management import call_command
+from django.core.management.base import CommandError
 from django.test import TestCase, override_settings
+from rest_framework.exceptions import ValidationError
 from rest_framework.test import APIClient
 
 from .ml_dataset import build_dataset
-from .ml_services import artifact_dir, enqueue_training, execute_training
+from .ml_services import artifact_dir, enqueue_training, execute_training, run_payload, submit_training
 from .models import DatasetBatch, MLRun, PatientAreaObservation, StationArea
 
 
@@ -102,7 +107,7 @@ class DiseaseMLTests(TestCase):
         self.assertEqual(len(generated), 1)
         self.assertIsNone(generated[0]["glucose"])
 
-    def test_task_runs_are_independent_and_failure_preserves_other_task(self):
+    def test_disease_training_preserves_historical_task_records(self):
         bp = MLRun.objects.create(batch=self.batch, actor=self.admin, task="blood_pressure", status="completed", is_active_model=True)
         disease = MLRun.objects.create(batch=self.batch, actor=self.admin, task="disease", status="completed", is_active_model=True)
         run, reused = enqueue_training(self.batch, self.admin, self.filters, task="disease", asynchronous=False)
@@ -135,5 +140,71 @@ class DiseaseMLTests(TestCase):
         self.assertNotIn("task", run.filters)
         result = self.client.get("/api/v1/admin/analytics/ml/runs/", {"dataset_id": self.batch.key, "task": "disease"})
         self.assertEqual(len(result.data["runs"]), 1)
-        self.assertEqual(self.client.get("/api/v1/admin/analytics/ml/runs/", {"dataset_id": self.batch.key}).data["runs"], [])
+        self.assertEqual(self.client.get("/api/v1/admin/analytics/ml/runs/", {"dataset_id": self.batch.key}).data["runs"], result.data["runs"])
         self.assertEqual(self.client.post("/api/v1/admin/analytics/ml/runs/", {**self.filters, "task": "invalid"}, format="json").status_code, 400)
+
+    def test_new_runs_default_to_disease_and_reject_retired_training_task(self):
+        self.assertEqual(MLRun(batch=self.batch, actor=self.admin).task, "disease")
+        with patch("analytics.ml_services.submit_training") as submit:
+            for method in (self.client.get, self.client.post):
+                response = method("/api/v1/admin/analytics/ml/runs/", {"dataset_id": self.batch.key, "task": "blood_pressure"}, format="json")
+                self.assertEqual(response.status_code, 400)
+            submit.assert_not_called()
+        with self.assertRaises(ValidationError):
+            enqueue_training(self.batch, self.admin, self.filters, task="blood_pressure", asynchronous=False)
+        self.assertEqual(MLRun.objects.count(), 0)
+        response = self.client.post("/api/v1/admin/analytics/ml/runs/", self.filters, format="json")
+        self.assertEqual(response.status_code, 202, response.data)
+        self.assertEqual(response.data["task"], "disease")
+
+    def test_historical_pressure_runs_are_not_exposed_or_loaded_by_insights(self):
+        old = MLRun.objects.create(batch=self.batch, actor=self.admin, task="blood_pressure", status="completed", is_active_model=True, report={"retired_result": "preserved"})
+        with patch("analytics.ml_services.disease_pipeline") as learner:
+            body = self.insights()
+            learner.assert_not_called()
+        self.assertIsNone(body["disease"]["model"])
+        self.assertIsNone(body["disease"]["training"])
+        for removed in ("model", "training", "prediction"):
+            self.assertNotIn(removed, body)
+        self.assertIsNone(run_payload(old))
+        listing = self.client.get("/api/v1/admin/analytics/ml/runs/", {"dataset_id": self.batch.key})
+        self.assertEqual(listing.data, {"latest": None, "active": None, "runs": []})
+        self.assertEqual(self.client.get(f"/api/v1/admin/analytics/ml/runs/{old.pk}/").status_code, 404)
+        old.refresh_from_db()
+        self.assertEqual(old.report, {"retired_result": "preserved"})
+
+    def test_retired_queued_run_cannot_load_data_or_start_worker(self):
+        old = MLRun.objects.create(batch=self.batch, actor=self.admin, task="blood_pressure")
+        # Direct worker calls share TestCase's transaction; connection cleanup
+        # belongs to the real worker thread and would close this PostgreSQL connection.
+        with (
+            patch("analytics.ml_services.close_old_connections"),
+            patch("analytics.ml_services.build_dataset") as dataset,
+            patch("analytics.ml_services.ThreadPoolExecutor") as executor,
+        ):
+            for start in (submit_training, execute_training):
+                with self.subTest(start=start.__name__), self.assertRaises(ValidationError):
+                    start(old.pk)
+            dataset.assert_not_called()
+            executor.assert_not_called()
+        old.refresh_from_db()
+        self.assertEqual(old.status, "queued")
+        self.assertIsNone(old.started_at)
+
+    def test_retired_queue_rows_do_not_consume_disease_training_capacity(self):
+        other = DatasetBatch.objects.create(key="retired_queue", seed=42, synthetic=True, generator_version="test", as_of=self.batch.as_of, observation_start=self.batch.observation_start, manifest_hash="c" * 64, dataset_hash="d" * 64, patient_count=0, observation_count=0)
+        for batch in (self.batch, other):
+            MLRun.objects.create(batch=batch, actor=self.admin, task="blood_pressure")
+        run, reused = enqueue_training(self.batch, self.admin, self.filters, asynchronous=False)
+        self.assertFalse(reused)
+        self.assertEqual(run.task, "disease")
+
+    def test_training_command_defaults_to_disease_and_rejects_pressure(self):
+        output = StringIO()
+        call_command("run_ml_training", "--dataset-id", self.batch.key, "--dry-run", stdout=output)
+        result = json.loads(output.getvalue())
+        self.assertEqual(result["task"], "disease")
+        self.assertIn("disease_source", result)
+        with self.assertRaises(CommandError):
+            call_command("run_ml_training", "--task", "blood_pressure", "--dry-run", stdout=StringIO())
+        self.assertEqual(MLRun.objects.count(), 0)

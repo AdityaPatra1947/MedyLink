@@ -43,8 +43,8 @@ def disease_pipeline():
 
 def disease_rows(data, *, historical=False):
     rows = data["history" if historical else "cohort"]
-    # Preserve complete BP chronologies but restrict the disease task to the
-    # selected visit inputs. The disease pipeline validates targets and timing.
+    # Train only on the selected historical visit snapshots. The disease
+    # pipeline validates their targets and measurement availability.
     return [row for row in rows if not historical or row.get("eligible_index", True)]
 
 
@@ -85,7 +85,8 @@ def public_json(value):
 
 
 def run_payload(run):
-    if run is None:
+    # Retired task rows remain in storage for audit, never in the current API.
+    if run is None or run.task != "disease":
         return None
     messages = {
         "queued": "Waiting to train with the selected data.",
@@ -106,18 +107,18 @@ def run_payload(run):
     })
 
 
-def enqueue_training(batch, actor, filters, *, asynchronous=True, request_id="", task="blood_pressure"):
-    if task not in {"blood_pressure", "disease"}:
-        raise ValidationError("Choose a supported learning task.")
+def enqueue_training(batch, actor, filters, *, asynchronous=True, request_id="", task="disease"):
+    if task != "disease":
+        raise ValidationError("Only disease model training is available.")
     with transaction.atomic():
         DatasetBatch.objects.select_for_update().get(pk=batch.pk)
         # An interrupted local process must not leave training blocked forever.
         cutoff = timezone.now() - timedelta(minutes=30)
-        MLRun.objects.filter(batch=batch, status__in=["queued", "running"], created_at__lt=cutoff).update(status="failed", error="The previous training process was interrupted. Please retrain.", finished_at=timezone.now())
+        MLRun.objects.filter(batch=batch, task="disease", status__in=["queued", "running"], created_at__lt=cutoff).update(status="failed", error="The previous training process was interrupted. Please retrain.", finished_at=timezone.now())
         pending = MLRun.objects.filter(batch=batch, task=task, status__in=["queued", "running"]).first()
         if pending:
             return pending, True
-        if MLRun.objects.filter(status__in=["queued", "running"]).count() >= 2:
+        if MLRun.objects.filter(task="disease", status__in=["queued", "running"]).count() >= 2:
             raise ValidationError("The local training worker is busy. Wait for a current run to finish.")
         run = MLRun.objects.create(batch=batch, actor=actor, task=task, filters=filters)
         SecurityEvent.objects.create(user=actor, event="analytics.ml.queued", request_id=request_id[:64], metadata={"run_id": str(run.id), "task": task, "synthetic": True})
@@ -127,6 +128,8 @@ def enqueue_training(batch, actor, filters, *, asynchronous=True, request_id="",
 
 
 def submit_training(run_id):
+    if not MLRun.objects.filter(pk=run_id, task="disease").exists():
+        raise ValidationError("Only disease model training is available.")
     global _executor
     with _executor_lock:
         if _executor is None:
@@ -137,6 +140,8 @@ def submit_training(run_id):
 def execute_training(run_id):
     """Claim once, fit outside transactions, publish only a complete artifact."""
     close_old_connections()
+    if not MLRun.objects.filter(pk=run_id, task="disease").exists():
+        raise ValidationError("Only disease model training is available.")
     try:
         with transaction.atomic():
             run = MLRun.objects.select_for_update().select_related("batch").get(pk=run_id)
@@ -145,9 +150,7 @@ def execute_training(run_id):
             run.status, run.started_at = "running", timezone.now()
             run.save(update_fields=["status", "started_at"])
         data = build_dataset(run.batch, run.filters)
-        learner = disease_pipeline() if run.task == "disease" else pipeline()
-        rows = disease_rows(data, historical=True) if run.task == "disease" else data["history"]
-        report = public_json(learner.train_and_evaluate(rows, artifact_dir(run)))
+        report = public_json(disease_pipeline().train_and_evaluate(disease_rows(data, historical=True), artifact_dir(run)))
         status = "completed" if report.get("status") == "completed" else "insufficient_data"
         if status == "completed" and not (artifact_dir(run) / "model_bundle.joblib").is_file():
             raise RuntimeError("Training did not produce a complete model artifact.")
@@ -191,14 +194,6 @@ def current_hotspots(rows):
 
 def insights(batch, filters):
     data = build_dataset(batch, filters)
-    active = MLRun.objects.filter(batch=batch, task="blood_pressure", is_active_model=True, status="completed").select_related("batch").first()
-    training = MLRun.objects.filter(batch=batch, task="blood_pressure", status__in=["queued", "running"]).select_related("batch").first()
-    prediction = {"status": "unavailable", "reason": "Train the models to see an aggregate next-visit blood-pressure prediction."}
-    if active:
-        try:
-            prediction = pipeline().predict_summary(data["cohort"], artifact_dir(active))
-        except Exception:  # noqa: BLE001 - private artifact failures remain aggregate-only.
-            prediction = {"status": "unavailable", "reason": "The saved model is unavailable in this environment. Retrain to restore predictions."}
     groups = pipeline().cluster_patient_groups(data["cohort"])
     disease_active = MLRun.objects.filter(batch=batch, task="disease", is_active_model=True, status="completed").select_related("batch").first()
     disease_training = MLRun.objects.filter(batch=batch, task="disease").select_related("batch").first()
@@ -210,8 +205,7 @@ def insights(batch, filters):
             disease_prediction = {"prediction_enabled": False, "counts": [], "reason": "The saved disease model is unavailable here. Retrain to restore it."}
     return public_json({
         "synthetic": True, "filters": filters, "source": data["source"], "summary": summarize_cohort(data["cohort"]),
-        "prediction": prediction, "patient_groups": groups, "hotspots": current_hotspots(data["cohort"]),
-        "model": run_payload(active), "training": run_payload(training),
+        "patient_groups": groups, "hotspots": current_hotspots(data["cohort"]),
         "disease": {"model": run_payload(disease_active), "training": run_payload(disease_training), "prediction": disease_prediction, "source": disease_source(data)},
         "suppression_threshold": 5,
         "notes": [DISCLAIMER, "All history is selected when dates are empty. Dates and other filters change the cohort; saved model comparison results retain their own training period.", "Counts below five are hidden. Overlapping filters still require careful interpretation.", "Disease labels are a limited mapping of recorded diagnoses and conditions, not predictions. Unknown text is not converted to a guessed disease."],

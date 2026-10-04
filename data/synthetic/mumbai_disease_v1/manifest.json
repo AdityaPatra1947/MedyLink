@@ -1,0 +1,53 @@
+{
+  "account_policy": {
+    "is_active": false,
+    "login_credentials_included": false,
+    "password": "unusable"
+  },
+  "base": {
+    "bytes": 4520804,
+    "dataset_id": "mumbai_stations_v1",
+    "path": "data/synthetic/mumbai_stations_v1/dataset.json",
+    "sha256": "78d3e1a85d3f48356164974a5b8870c507144269e2f8f2310d1257fdb4b63f19"
+  },
+  "counts": {
+    "base_patients": 1000,
+    "combined_patients": 4000,
+    "derived_disease_observations": 10325,
+    "derived_labs": 25596,
+    "patients": 3000,
+    "stations": 34,
+    "visits": 8987
+  },
+  "files": {
+    "patients.jsonl": {
+      "bytes": 849693,
+      "sha256": "14b2c997f57f5bc2def1e6e6e9010c97516c4ab256265c4e5af0537ce3cf7bcc"
+    },
+    "visits.jsonl": {
+      "bytes": 6046701,
+      "sha256": "48238f5513e145b0d7532c2dcdcf4a3e5c5ac4feb3ddd21dec740e38c07a5d83"
+    }
+  },
+  "fixture_id": "mumbai_disease_v1",
+  "generator_version": "disease_v1",
+  "history_end": "2026-09-30",
+  "history_start": "2024-10-31",
+  "primary_disease_patients": {
+    "ANEMIA": 298,
+    "ASTHMA": 301,
+    "DENGUE": 414,
+    "GASTROENTERITIS": 270,
+    "HYPERTENSION": 352,
+    "HYPOTHYROIDISM": 244,
+    "INFLUENZA": 383,
+    "MALARIA": 159,
+    "OSTEOARTHRITIS": 221,
+    "TYPE2_DIABETES": 358
+  },
+  "schema_version": 1,
+  "seed": 42,
+  "source": "Offline deterministic generator; public base-fixture station anchors. No database export.",
+  "station_provenance": "data/reference/STATION_SOURCES.md",
+  "synthetic": true
+}

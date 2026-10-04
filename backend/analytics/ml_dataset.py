@@ -317,8 +317,8 @@ def build_dataset(batch, filters):
             row = snapshot(event, historical)
             matches_disease = selected_codes is None or bool(selected_codes.intersection(row["disease_codes"]))
             if historical:
-                # Pair the full chronology first. The next visit may have a
-                # different diagnosis; filtering first would skip that outcome.
+                # Keep the private historical snapshots with explicit filter
+                # eligibility; disease training consumes only matching visits.
                 row["eligible_index"] = bool(matches_disease)
                 result.append(row)
             elif matches_disease:
@@ -344,7 +344,7 @@ def build_dataset(batch, filters):
         "historically_unavailable_reports": safe_count(sum((timestamp(row["extraction"].get("measured_at")) or row["created_at"]) < row["created_at"] for row in selected_extracted)),
         "corrections_deduplicated": safe_count(len(records) - len(roots)),
         "history_start": min(days) if days else None, "history_end": max(days) if days else None,
-        "cutoff": cutoff.isoformat(), "source_scope": "Clinical rows belonging to the selected patient cohort and measured or recorded within the selected dates. The training sequence keeps intervening visits so that next visit means the next actual recorded visit.",
+        "cutoff": cutoff.isoformat(), "source_scope": "Clinical rows belonging to the selected patient cohort and measured or recorded within the selected dates. Disease training uses matching visit snapshots with measurements available at that visit.",
         "excluded": {"unmapped_patients": safe_count(0 if include_unmapped else len(unmapped)), "other_dataset_patients": safe_count(other_batch_count), "missing_geography": safe_count(sum(not area_by_id.get(pid) or area_by_id[pid].latitude is None or area_by_id[pid].longitude is None for pid in selected_ids))},
         "unmapped_patients_included": safe_count(len(unmapped) if include_unmapped else 0),
         "historical_adherence_note": "Historical training uses report-backed dose diaries only. Editable patient logs have no edit timestamp, so their earlier values cannot be reconstructed safely.",

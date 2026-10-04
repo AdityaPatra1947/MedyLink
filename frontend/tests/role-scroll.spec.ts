@@ -2,8 +2,8 @@ import { test, expect, type Page, type Route } from "@playwright/test";
 import type { Application, Role, User } from "../lib/types";
 
 type WorkspaceRole = "doctor" | "pharmacist" | "admin";
-const orders: Record<WorkspaceRole, string[]> = { doctor: ["patients", "request", "profile", "verification", "security"], pharmacist: ["prescriptions", "dispensing", "verification", "security"], admin: ["analytics", "doctors", "pharmacists", "audit", "security"] };
-const labels: Record<WorkspaceRole, string[]> = { doctor: ["My patients", "Find patient", "My profile", "My verification", "Security settings"], pharmacist: ["Find prescriptions", "Dispensing history", "Shop & verification", "Security settings"], admin: ["Population analytics", "Doctor approvals", "Pharmacist approvals", "Security audit", "Security settings"] };
+const orders: Record<WorkspaceRole, string[]> = { doctor: ["patients", "request", "profile", "verification", "security"], pharmacist: ["prescriptions", "dispensing", "verification", "security"], admin: ["ml", "doctors", "pharmacists", "audit", "security"] };
+const labels: Record<WorkspaceRole, string[]> = { doctor: ["My patients", "Find patient", "My profile", "My verification", "Security settings"], pharmacist: ["Find prescriptions", "Dispensing history", "Shop & verification", "Security settings"], admin: ["ML insights", "Doctor approvals", "Pharmacist approvals", "Security audit", "Security settings"] };
 const fixturePatient = { id: "synthetic-patient", name: "Synthetic Patient", account_id: "P-TEST01", health_id: "AT-TEST", date_of_birth: "1990-01-01", gender: "other", phone: "", address: "", blood_group: "B+", emergency_contact: "", allergy_status: "unknown" };
 function fixtureApplication(role: "doctor" | "pharmacist", pending = false): Application {
   return { id: `synthetic-${role}-application`, provider_id: `synthetic-${role}`, role, name: `Synthetic ${role}`, provider_email: `${role}@example.test`, email_verified: true, version: 1, status: pending ? "pending" : "approved", reason: "Synthetic browser fixture", valid_until: "2099-01-01T00:00:00Z", is_current: true, registration_number: "TEST-123", registering_body: "Synthetic Register", specialty: "Synthetic Specialty", qualification: "Synthetic Degree", clinic_name: "Synthetic Clinic", years_experience: 2, opening_hours: "09:00–17:00", practice_address: "Synthetic address", shop_name: "Synthetic Pharmacy", shop_license: "TEST-SHOP", shop_license_expires: "2099-01-01", contact_phone: "9000000000", documents: [{ id: `synthetic-${role}-credential`, name: "synthetic.pdf", kind: "credential", status: "validated" }], created_at: "2026-09-01T00:00:00Z", reviews: [], history: [] };
@@ -43,7 +43,7 @@ async function mockWorkspace(page: Page, role: WorkspaceRole) {
     if (method === "GET" && path === "/api/v1/doctor/patients/") return json(route, { results: [fixturePatient], next: null });
     if (method === "GET" && path === "/api/v1/pharmacy/dispensing/") return json(route, { results: [], next: null });
     if (method === "GET" && path === "/api/v1/admin/audit/") return json(route, { results: [], next: null });
-    if (method === "GET" && path === "/api/v1/admin/analytics/catalog/") return json(route, { datasets: [], stations: [], defaults: {} });
+    if (method === "GET" && path === "/api/v1/admin/analytics/ml/catalog/") return json(route, { synthetic: true, datasets: [], stations: [], diseases: [], lines: [], defaults: {}, suppression_threshold: 5 });
     if (method === "GET" && path === "/api/v1/admin/provider-applications/") {
       const application = applications[url.searchParams.get("role") === "doctor" ? "doctor" : "pharmacist"];
       return json(route, { results: [application], next: null, count: 1 });
@@ -88,12 +88,11 @@ for (const role of ["doctor", "pharmacist", "admin"] as const) {
     await page.goto(role === "admin" ? "/admin/doctors" : "/");
     await expect(page.locator("[data-workspace-section]")).toHaveCount(orders[role].length);
     expect(await page.locator("[data-workspace-section]").evaluateAll(elements => elements.map(element => element.getAttribute("data-workspace-section")))).toEqual(orders[role]);
-    const sidebarLabels = role === "admin" ? [labels.admin[0], "ML insights", ...labels.admin.slice(1)] : labels[role];
-    await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link")).toHaveText(sidebarLabels);
+    await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link")).toHaveText(labels[role]);
     for (const id of orders[role]) {
       await nav(page, role, id).click();
       await atSection(page, role, id);
-      await expect(page).toHaveURL(new RegExp(`#${role}-${id}$`));
+      await expect(page).toHaveURL(new RegExp(role === "admin" ? `/admin/${id}$` : `#${role}-${id}$`));
     }
     const target = orders[role][1];
     await section(page, role, target).evaluate(element => {
@@ -102,6 +101,7 @@ for (const role of ["doctor", "pharmacist", "admin"] as const) {
       window.scrollTo({ top: element.getBoundingClientRect().top + scrollY - headerBottom - 20, behavior: "instant" });
     });
     await atSection(page, role, target);
+    if (role === "admin") await expect(page).toHaveURL(new RegExp(`/admin/${target}$`));
     await nav(page, role, orders[role][0]).click();
     await atSection(page, role, orders[role][0]);
     await page.screenshot({ path: `../.local/${role}-scroll-${testInfo.project.name}.png` });
@@ -170,7 +170,7 @@ test("pharmacist: the merged patient lookup and verification draft persist acros
   await expectClean(page, state);
 });
 
-test("admin: both approval drafts stay independent and legacy section routes still work", async ({ page }) => {
+test("admin: approval drafts survive ML navigation, browser history, and section URL reloads", async ({ page }) => {
   const state = await mockWorkspace(page, "admin");
   await page.goto("/admin/pharmacists");
   await atSection(page, "admin", "pharmacists");
@@ -179,6 +179,13 @@ test("admin: both approval drafts stay independent and legacy section routes sti
     await section(page, "admin", id).getByRole("button", { name: "Review application", exact: true }).click();
     await section(page, "admin", id).getByLabel("Approval reason", { exact: false }).fill(`Unsaved ${id} decision`);
   }
+  await nav(page, "admin", "ml").click();
+  await atSection(page, "admin", "ml");
+  await page.goBack();
+  await atSection(page, "admin", "doctors");
+  await expect(section(page, "admin", "doctors").getByLabel("Approval reason", { exact: false })).toHaveValue("Unsaved doctors decision");
+  await page.goForward();
+  await atSection(page, "admin", "ml");
   for (const id of ["pharmacists", "doctors"]) {
     await nav(page, "admin", id).click();
     await expect(section(page, "admin", id).getByLabel("Approval reason", { exact: false })).toHaveValue(`Unsaved ${id} decision`);
@@ -187,6 +194,7 @@ test("admin: both approval drafts stay independent and legacy section routes sti
   expect(evidenceIds).toHaveLength(2);
   expect(new Set(evidenceIds).size).toBe(2);
   await nav(page, "admin", "audit").click();
+  await expect(page).toHaveURL(/\/admin\/audit$/);
   await page.reload();
   await atSection(page, "admin", "audit");
   await expectClean(page, state);

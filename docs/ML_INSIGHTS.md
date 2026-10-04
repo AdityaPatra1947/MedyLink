@@ -1,249 +1,177 @@
-# ML insights: run guide and viva notes
+# ML insights run guide and viva notes
 
-The additive **Disease prediction** task is documented in
-[Disease task setup and evaluation](../ml/DISEASE_TASK.md). It compares Logistic
-Regression, Decision Tree, Random Forest and KNN, and has separate model storage
-from the blood-pressure task described below. The new condition search supports
-multiple diseases across the exploration view; saved model evaluations retain
-their training selection.
-
-The ML work is an administrator-only extension. Existing patient and doctor
-dashboards, authentication, provider approval, and clinical access rules are
-unchanged. The current implementation operates on the explicitly synthetic
-demonstration dataset and current clinical records in that environment.
+The administrator ML workspace contains **disease prediction**, similar-measurement
+groups and geographic groups. The blood-pressure prediction task and its training
+have been removed. Clinical BP readings, patient trend charts, health-score
+calculations and BP inputs to the disease task remain available.
 
 ## Open the application
 
-From the project directory:
+For a new checkout, first complete the [fresh 4,000-patient import](../README.md#fresh-4000-patient-demo).
+The repository contains both the original 1,000 patients and the published
+3,000-patient expansion; model bundles are generated locally and are not in Git.
+
+From the repository root, with the dedicated synthetic environment configured:
 
 ```powershell
 npm run synthetic:manage -- migrate --noinput
 npm run dev:synthetic
 ```
 
-Open `http://localhost:3001/admin/ml` and use an existing synthetic administrator
-account. Patient, doctor and pharmacist accounts cannot use the ML APIs. The
-normal application database remains separate; this is not permission to merge
-real patient records into the synthetic demonstration.
+Open `http://localhost:3001/admin/ml` using an active, verified administrator.
 
-## Date and population filters
+This is the first section after admin sign-in. Scroll down for doctor approvals, pharmacist approvals, audit, and account security, or use the sidebar. Each section has a direct URL (for example, `/admin/doctors`); back, forward, and refresh restore that section. The previous `/admin/analytics` page now opens ML insights.
+Other roles cannot use the ML APIs. The normal application database remains
+separate. The feature is restricted to explicitly synthetic datasets.
 
-- **All history** means no start/end restriction. It is not limited to a project
-  deadline or a fixed calendar week.
-- A custom range selects clinical measurements using their dates; condition,
-  railway-line and station-area filters narrow the cohort.
-- Filtered summaries, measurement groups, geographic groups and aggregate model
-  estimates reflect that selection. The model comparison retains the data window
-  and evaluation of its saved training run.
-- **Retrain with new data** creates a new comparison using the selected data. A
-  narrow window may not contain enough consecutive visits or both outcomes.
-- Viewing an old range is a **retrospective view with the saved model**, not an
-  out-of-time backtest. The model may have been trained with later records.
-- A disease filter selects the earlier visit. Its target is still the next
-  actual visit, even if that visit records a different condition.
+## What disease prediction does
 
-The application reads the current clinical tables, including supported extracted
-reports, instead of relying solely on the original imported analytics snapshot.
-It does not edit those records. Structured report data is used only when present;
-there is no generic OCR or free-text medical understanding.
+The system learns from visits with a known primary disease and estimates one of
+ten conditions from visit-time measurements and symptom flags. The conditions
+are Dengue, Influenza, Hypertension, Type 2 diabetes, Asthma, Anemia,
+Gastroenteritis, Hypothyroidism, Osteoarthritis and Malaria.
 
-## Training from the terminal
+Inputs are age, gender, station, month, temperature, BP, blood sugar, hemoglobin,
+oxygen saturation, pulse, platelets and eight symptoms. Diagnosis text,
+prescriptions, clinician identity and information entered after the visit are
+excluded from the feature matrix. The known primary disease is the training
+answer, never an input. This predicts a category at a visit, not a future BP
+reading or a fixed-time disease forecast.
 
-Read coverage without training or creating an ML run:
+## Filters and counts
+
+- **All history** uses every eligible recorded date, not a deadline or a fixed week.
+- Search partial condition names, select several conditions and apply filters.
+  Conditions combine with OR; dates, railway line and station also apply.
+- Counts, charts, station-condition cells, groups and aggregate predictions use
+  the selected cohort. Clear conditions followed by Apply restores all diseases.
+- A recorded-diagnosis filter selects the patients/visits to examine. The model
+  may estimate a different disease for those records. Prediction counts are not
+  additional confirmed diagnoses.
+- Saved model scores, per-disease test recall and feature bars belong to the saved
+  training run. Changing exploration filters does not recalculate these scores.
+- Historical views use the saved model and are not out-of-time backtests.
+- Counts from one to four are hidden. Empty or insufficient groups are shown
+  without invented values.
+
+The snapshot service reads current consultations, labs and supported extracted
+reports with their dates and availability checks. General medical OCR and
+free-text understanding are not implemented.
+
+## Train from the terminal or dashboard
 
 ```powershell
-node scripts/synthetic.mjs manage run_ml_training --dry-run
+# Inspect coverage without creating a run.
+npm run synthetic:manage -- run_ml_training --dry-run
+
+# Compare and save the four disease models using all eligible history.
+npm run synthetic:manage -- run_ml_training --sync
+
+# Optional selected date range.
+npm run synthetic:manage -- run_ml_training --sync --date-from 2025-01-01 --date-to 2026-09-30
 ```
 
-Train all eligible history synchronously:
+Disease is the default and only supported task; `--task disease` is optional.
+The **Retrain disease models** button applies the same filters in the local
+background worker. A narrow selection may lack enough patients from all ten
+diseases; insufficient or failed runs preserve the previous completed model.
+Training does not change clinical records.
 
-```powershell
-node scripts/synthetic.mjs manage run_ml_training --sync
-```
-
-Train a selected range:
-
-```powershell
-node scripts/synthetic.mjs manage run_ml_training --sync --date-from 2025-01-01 --date-to 2026-10-03
-```
-
-Additional optional filters are `--disease-code`, `--line`, and `--station-id`.
-`--admin-email` selects an existing active verified administrator as the recorded
-actor. The web button performs the equivalent operation in a local background
-worker. It reports queued/running/completed/failed/insufficient states and prevents
-duplicate simultaneous training for the same dataset. Failed or insufficient
-runs preserve the previous completed model. An interrupted local worker can be
-retried after its stale-job timeout.
-
-Artifacts are private under `.local/ml/<database identity>/<run UUID>/`, or the
-operator-supplied `ML_ARTIFACT_ROOT`. A run contains `model_bundle.joblib` and
-`evaluation.json`; raw clinical records are not exported there. Never load a
-joblib/pickle file from an untrusted upload. Only server-created run paths are
-used by the API.
-
-## What is predicted
-
-The binary target is whether the **immediately next recorded consultation** has
-systolic BP at least 140 mmHg or diastolic BP at least 90 mmHg. It is a recorded
-measurement category, not a diagnosis of hypertension and not a fixed 30-day
-forecast. The interval between recorded visits varies.
-
-Inputs use the earlier observation: age, systolic and diastolic readings, pulse,
-temperature, BMI when available, glucose and its measurement context, recorded
-condition count, available adherence observations, and recorded gender. Names, login
-details, patient IDs and doctor identity do not enter the feature matrix.
-
-The dataset preparation validates values, resolves linked corrections and report
-duplicates, and respects measurement/availability dates. Missing or ambiguous
-intervening readings are not skipped to find a more convenient future target.
-The hand-coded patient health score is not used as a medical ground-truth label.
-
-Historical adherence uses only immutable extracted-report observations that were
-available by that visit. Mutable medicine logs have no version history, so they
-are excluded from historical training. Current summaries can still use current
-logs through the selected cutoff; a backfilled report cannot become an earlier
-training input.
+Artifacts stay private under `.local/ml/<database identity>/<run UUID>/` or
+`ML_ARTIFACT_ROOT`. Each completed run contains an aggregate evaluation and its
+model bundle. Only trusted, server-created joblib artifacts may be loaded.
+Legacy BP run records remain audit history, but BP task requests are rejected,
+legacy run detail is unavailable and queued legacy runs cannot execute.
 
 ## Topics used
 
-| Simple explanation | ML topic | Role in this project |
+| Plain explanation | ML topic | Use |
 | --- | --- | --- |
-| Combine earlier measurements into a two-category estimate | Logistic Regression | Interpretable classification baseline |
-| Ask a sequence of learned questions | Decision Tree | Nonlinear, readable decision boundaries |
-| Combine many randomized trees | Random Forest | Reduce sensitivity to a single tree |
-| Add trees that improve earlier errors | Gradient Boosting | Sequential classification ensemble |
-| Group similar health measurements | K-Means | Aggregate patient-profile groups |
-| Find geographically concentrated observations | DBSCAN with haversine distance | Synthetic recorded-case groups |
-| Display many measurements in two dimensions | PCA | Aggregate group-centre visualization only |
-| Test on different patients | Grouped cross-validation and holdout evaluation | Avoid repeated-patient leakage |
-| Measure correct flags, missed readings and overall results | Accuracy, precision, recall, F1, macro-F1, confusion matrix | Shared model comparison |
-| Check which inputs affect measured performance | Permutation feature importance | Explain the selected model, without claiming causation |
+| Find a simple scoring pattern | Logistic Regression | Disease classifier |
+| Ask learned yes/no questions | Decision Tree | Disease classifier |
+| Combine many trees | Random Forest | Disease classifier |
+| Compare the most similar past examples | KNN | Disease classifier |
+| Group similar measurements | K-Means | Aggregate patient-profile groups |
+| Group nearby recorded cases | DBSCAN using haversine distance | Geographic concentrations |
+| Display many measurements on two axes | PCA | Aggregate group-centre chart |
+| Test using different patients | Stratified patient-level holdout and cross-validation | Avoid repeated-patient leakage |
+| Measure correct and missed disease categories | Accuracy, macro-F1, recall and confusion matrix | Fair comparison |
+| Shuffle one input and measure the score drop | Permutation importance | Explain model dependence |
 
-Linear Regression, KNN, Naive Bayes and hierarchical clustering were not added
-simply to increase the algorithm count. No SVM, NLP, neural network, association
-rule or time-series forecasting feature was introduced.
+Gradient Boosting was used only by the removed BP task and is no longer trained.
+There is no added Linear Regression, Naive Bayes, hierarchical clustering, NLP,
+neural-network, association-rule or time-series forecasting feature. Monthly
+charts summarize recorded data; the health score and adherence are calculations.
 
-## Evaluation and automatic selection
+## Evaluation and selected model
 
-Four algorithms receive the same eligible examples, one fixed approximately 20%
-patient-group holdout, and three shared grouped cross-validation folds in the
-remaining data. All visits from one patient remain together. Each patient has
-equal total evaluation weight so lengthy histories do not dominate. Model fitting
-also balances the two outcome classes using weights computed only from each
-training fold. This fixed policy addresses class imbalance without using test
-labels to tune the model; baselines and evaluation weights are unchanged.
+Each patient belongs to either the 80% development set or the 20% final test set.
+Five shared stratified CV folds inside development compare the four algorithms.
+Preprocessing is fitted within each fold. Patient weighting prevents long
+histories dominating evaluation. Choose the highest CV macro-F1, then inspect
+the held-out result; do not choose the winner using final-test accuracy.
 
-Median imputation, missingness indicators, scaling and category encoding are
-fitted inside each training fold. The best method is chosen by mean validation
-macro-F1, with positive-class recall breaking ties. Test results are recorded
-after selection and are never used to choose a different algorithm.
+The [saved disease report](../ml/reports/disease_evaluation.json) from 4 October
+2026 used **3,892 patients and 10,997 visits**: 3,113 development patients and 779
+test patients, with no patient overlap. Random Forest was selected, with **79.2%
+test accuracy and 77.7% macro-F1**. Both demonstration thresholds passed: at least
+75% accuracy and 70% macro-F1. This is measured synthetic performance, not a
+clinical reliability percentage.
 
-Two baselines use the same examples: always predict the training majority class,
-and carry forward the current BP category. Accuracy alone can be misleading
-because below-threshold readings are much more common in this dataset.
+That saved result comes from the existing demonstration database. Published
+fixtures reproduce a generated baseline and exclude later uploads or manual
+edits, so fresh imports retrain their own model and may produce different
+coverage and scores.
 
-- **Accuracy:** fraction of predictions that are correct.
-- **Precision:** among elevated flags, the fraction that are truly elevated.
-- **Recall:** among elevated outcomes, the fraction successfully flagged.
-- **F1:** harmonic mean of precision and recall for elevated readings.
-- **Macro-F1:** average F1 across both categories; the selection metric.
-- **Confusion matrix:** rows are actual outcomes; columns are predictions.
+Accuracy is the share of correct categories. Recall for a disease measures how
+many actual cases the model found. Macro-F1 balances precision and recall across
+all ten disease categories. Confusion-matrix cells count raw visits, whereas
+reported percentages use equal total patient weights.
 
-Percentage metrics are patient-weighted. The confusion matrix reports raw
-visit-pair counts and therefore need not reproduce the weighted percentages.
-An F1 score is not presented as a clinical reliability percentage.
+Feature-importance points measure the decline in test macro-F1 after shuffling
+one input. For example, an 11.13-point blood-sugar drop indicates reliance by this
+saved model. It is not a diabetes probability or proof of causation.
 
-The fixed demonstration gate requires the selected model to exceed both
-baselines by 0.01 macro-F1 in cross-validation and holdout, achieve holdout recall
-of at least 0.50, and include at least ten independent holdout patients with
-positive outcomes (and at least ten positive examples). A failed gate
-keeps the comparison visible with **Not reliable enough for predictions**.
-Passing this gate is not clinical validation.
+## Grouping, privacy and limitations
 
-## Privacy and limitations
+The **Explore Mumbai** section uses an interactive Leaflet/OpenStreetMap map of
+the existing 34 public Mumbai-area station anchors. Select a station to inspect
+its filtered patient count and recorded conditions, or switch to nearby groups
+to explore the existing DBSCAN aggregates. Station colors identify rail corridors;
+they are not disease severity labels. Group and station lists provide the same
+information below the map, including when the background map cannot load.
 
-The admin receives aggregate results, not individual patients, source notes or
-private report files. Private pseudonymous keys are only for chronology and split
-membership. Small groups are suppressed. Overlapping aggregate queries can still
-permit inference; this is a synthetic demonstration, not a formal anonymization
-system for real clinical deployment.
+Only public station anchors and already-suppressed aggregate group locations
+are plotted. Map images load from `https://tile.openstreetmap.org` with visible
+OpenStreetMap attribution and normal browser caching; internet access is needed
+for the background tiles. Tile requests contain map coordinates, not patient
+records, condition counts or authentication tokens. The map uses no geocoding
+service or API key, and does not change training or the underlying database.
 
-The existing data was generated by a simulation. Some measurements depend on
-generated condition labels, while many next readings are independent draws. A
-model can learn the generator rather than medicine, and may not beat the baseline.
-There are no validated readmission, mortality or severity outcomes. Sparse and
-irregular visits do not support claims of fixed-horizon clinical forecasting.
+K-Means describes similar standardized measurements; PCA displays aggregate
+group centres. DBSCAN finds concentrated simulated cases, not transmission or
+outbreaks. No private patient list, report text or individual coordinates are
+returned. Small-count suppression does not guarantee anonymity under overlapping
+queries. This release is limited to synthetic data.
 
-K-Means groups indicate similar standardized measurements. DBSCAN groups indicate
-nearby recorded cases; they do not establish population incidence, transmission
-or outbreaks. Feature importance describes model behaviour, not medical causes.
+The generator plants seasonality, symptom and measurement patterns with noise
+and missing values. A model can learn generator assumptions rather than medicine.
+External clinical validation, calibration and governed real data are future work.
+The local training executor is not a durable production job queue.
 
 **Predictions support decisions and are not a diagnosis.**
 
-## References
+## Source and verification
 
-- [WHO: Hypertension](https://www.who.int/news-room/fact-sheets/detail/hypertension)
-- [scikit-learn: Common pitfalls and data leakage](https://scikit-learn.org/stable/common_pitfalls.html)
-- [scikit-learn: Grouped cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html)
-- [scikit-learn: Clustering](https://scikit-learn.org/stable/modules/clustering.html)
-- [scikit-learn: Permutation importance](https://scikit-learn.org/stable/modules/permutation_importance.html)
-
-The PDF learning guide is generated from the completed evaluation, so its model
-comparison contains measured results rather than example percentages.
-
-## Measured demonstration result (3 October 2026)
-
-The first completed version 1.0.1 run used 1,205 eligible consecutive-visit pairs
-from 998 patients. The independent holdout contained 199 patients and 241 pairs.
-Random Forest was selected by cross-validation macro-F1 (0.5205). Its holdout
-accuracy was 69.85%, recall 35.71%, and macro-F1 0.5512. It did not pass the fixed
-quality gate; the comparison and grouping remain available, with predictions
-disabled. No algorithm was selected using its holdout score.
-
-All 1,205 historical examples lack trustworthy earlier adherence observations;
-the pipeline treats this as missing, not perfect adherence. Sixty later-uploaded
-monthly reports contribute to current summaries but cannot be backfilled into
-historical model inputs. Missing historical BP observations block 63 adjacent
-pairs. Dates in the overview can extend beyond the eligible training period.
-
-The aggregate reproducible evaluation is saved in `ml/reports/evaluation.json`.
-Private fitted models stay in `.local/ml/`; they are not public downloads.
-Rebuild the learning PDF with:
+- [Disease setup, generator and evaluation](../ml/DISEASE_TASK.md)
+- [Package contracts and offline commands](../ml/README.md)
+- Disease pipeline: `ml/disease_pipeline.py`; aggregate grouping: `ml/pipeline.py`
+- Backend: `backend/analytics/ml_dataset.py`, `ml_services.py`, `ml_views.py`
+- Frontend: `frontend/components/admin-ml.tsx`, `admin-disease.tsx`
 
 ```powershell
-.venv/Scripts/python.exe -m ml.build_guide
-# To use a later completed run:
-.venv/Scripts/python.exe -m ml.build_guide --report .local/ml/<database>/<run>/evaluation.json
+.venv/Scripts/python.exe -B -m unittest ml.test_pipeline ml.test_disease_pipeline ml.test_train -v
+npm run test:backend -- analytics
+npm run check
+npm --prefix frontend run test:e2e -- tests/admin-ml.spec.ts
 ```
-
-## Files added or changed
-
-- ML package: `ml/pipeline.py`, `ml/train.py`, `ml/test_pipeline.py`,
-  `ml/__init__.py`, `ml/README.md`, `ml/build_guide.py`, `ml/reports/evaluation.json`.
-- Backend additions: `backend/analytics/ml_dataset.py`, `ml_serializers.py`,
-  `ml_services.py`, `ml_views.py`, `test_ml.py`,
-  `management/commands/run_ml_training.py`, `migrations/0002_mlrun.py`.
-- Backend integration: `backend/analytics/models.py` and `urls.py`.
-- Frontend additions: `frontend/components/admin-ml.tsx`, `admin-ml.module.css`,
-  `frontend/lib/ml-types.ts`, `frontend/tests/admin-ml.spec.ts`.
-- Admin-only navigation integration: `frontend/components/app.tsx` and
-  `admin-page.tsx`. `frontend/tests/role-scroll.spec.ts` includes the new sidebar
-  entry in its expectation; existing section navigation is unchanged.
-- Documentation: this guide and `output/pdf/MedyLink_ML_Explained.pdf`.
-
-## Verification
-
-- The full 191-test Django suite passed against isolated PostgreSQL. The SQLite
-  run also passed, with nine database-specific tests skipped.
-- Thirteen focused ML tests cover chronology barriers, patient-separated splits,
-  training-only preprocessing/weights, baselines, suppression and quality gates.
-- Desktop/mobile ML browser checks cover filters, role restrictions, retraining,
-  failures, small groups and empty data. All 64 existing patient/provider/admin
-  dashboard regression cases passed; five loading timeouts passed on retry with
-  one browser worker and a longer time budget.
-- Live synthetic checks completed background training, verified direct/pooled
-  model persistence, all-history/custom/empty/condition filtering, CSRF denial,
-  non-admin denial, and responsive rendering without JavaScript errors.
-- The seven-page PDF was rendered and visually checked page by page. Database
-  and file fingerprints confirm existing user/clinical data and protected
-  patient/doctor/authentication files were preserved.

@@ -14,7 +14,7 @@ from analytics.ml_services import (
 
 
 class Command(BaseCommand):
-    help = "Train current mapped clinical data. --dry-run reads aggregate coverage only; --sync trains and records an MLRun."
+    help = "Train disease models with current mapped clinical data. --dry-run reads aggregate coverage only; --sync trains and records an MLRun."
 
     def add_arguments(self, parser):
         parser.add_argument("--dataset-id", default="mumbai_stations_v1")
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         parser.add_argument("--disease-code", default="")
         parser.add_argument("--disease-codes", default="", help="Comma-separated disease codes (OR selection).")
         parser.add_argument("--disease-search", default="", help="Partial disease name; narrows any chosen codes.")
-        parser.add_argument("--task", choices=["blood_pressure", "disease"], default="blood_pressure")
+        parser.add_argument("--task", choices=["disease"], default="disease")
         parser.add_argument("--line", default="")
         parser.add_argument("--station-id", default="")
         parser.add_argument("--admin-email")
@@ -32,13 +32,15 @@ class Command(BaseCommand):
         mode.add_argument("--sync", action="store_true")
 
     def handle(self, *args, **options):
+        if options["task"] != "disease":
+            raise CommandError("Only disease model training is available.")
         serializer = MLFilters(data={key: options[key] for key in ("dataset_id", "date_from", "date_to", "disease_code", "disease_codes", "disease_search", "line", "station_id")})
         if not serializer.is_valid():
             raise CommandError("Invalid training filters.")
         batch, filters = resolve_ml_filters(serializer.validated_data)
         if options["dry_run"]:
             data = build_dataset(batch, filters)
-            self.stdout.write(json.dumps({"dry_run": True, "task": options["task"], "source": data["source"], **({"disease_source": disease_source(data)} if options["task"] == "disease" else {})}, indent=2))
+            self.stdout.write(json.dumps({"dry_run": True, "task": options["task"], "source": data["source"], "disease_source": disease_source(data)}, indent=2))
             return
         admins = User.objects.filter(role="admin", is_active=True, email_verified_at__isnull=False)
         if options.get("admin_email"):

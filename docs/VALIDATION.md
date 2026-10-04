@@ -1,6 +1,29 @@
 # Validation record
 
-Latest checks completed on 29 September 2026 for the patient and doctor dashboard, authenticator removal and compact account ID updates.
+Latest release checks completed on **4 October 2026** for the portable 4,000-patient dataset and the disease-model admin workspace. Earlier verification records follow below.
+
+## Portable dataset and admin ML release, 4 October 2026
+
+| Check | Result |
+| --- | --- |
+| Backend | **242 tests passed** against isolated PostgreSQL 18.4, with zero skips, including concurrency, authorization, fixture validation and import integrity |
+| Standalone ML | **31 tests passed** across the aggregate pipeline, disease pipeline and training command |
+| Credential helper | **7 tests passed**; passwords remain local and are excluded from the published fixtures |
+| Frontend | TypeScript, ESLint and the production build passed; **12 server proxy tests** passed |
+| Admin browser regressions | **102 desktop/mobile Playwright checks passed** for admin entry, ML, geography, approvals and role navigation, using mocked API and map-tile responses |
+| Fresh PostgreSQL import | Original 1,000-patient fixture plus the published 3,000-patient expansion produced **4,000 patients, 11,195 consultations, 26,917 lab results and 12,719 disease observations** |
+| Preservation and repeat import | Original account and clinical rows were unchanged by the expansion; importing the expansion again added no records; all 3,000 extra accounts remained inactive with unusable passwords |
+| Training and admin response | Disease training completed from the fresh import; the admin insights endpoint returned HTTP 200, the full 4,000-patient source cohort and enabled predictions after its quality gate passed |
+| Schema | Django reported no missing migrations |
+| Publication | Public text and PDF files passed a scan for local credential values, private keys and private artifact paths; original fixture bytes were preserved |
+
+The full import rehearsal used a disposable loopback PostgreSQL database and fresh local credentials. It did not change either application database. Its PostgreSQL instance was stopped after verification. Model artifacts, credentials and detailed rehearsal output remain in ignored local storage.
+
+The published files reproduce the generated baseline, not later edits or uploaded reports from an existing demonstration database. Browser regression tests used simulated responses; the separate import rehearsal verified the real database, training pipeline and admin API together. Setup: [README](../README.md#fresh-4000-patient-demo) and [synthetic import guide](ADMIN_ANALYTICS.md#fresh-installation).
+
+## Account and care workflow release, 29 September 2026
+
+These checks covered the patient and doctor dashboard, authenticator removal and compact account ID updates.
 
 | Check | Result |
 | --- | --- |

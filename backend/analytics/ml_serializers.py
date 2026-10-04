@@ -25,4 +25,4 @@ class MLFilters(serializers.Serializer):
 
 
 class MLTrainingFilters(MLFilters):
-    task = serializers.ChoiceField(choices=["blood_pressure", "disease"], default="blood_pressure")
+    task = serializers.ChoiceField(choices=["disease"], default="disease")

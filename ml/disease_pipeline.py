@@ -1,7 +1,7 @@
 """Patient-separated disease classification for authorized synthetic snapshots.
 
-This additive experiment does not read Django models or modify the existing BP
-task. The caller owns authorization, snapshot provenance and private storage.
+This experiment does not read Django models. The caller owns authorization,
+snapshot provenance and private storage.
 Only features explicitly listed below enter the model; patient keys are used
 only to keep every visit from one person in the same partition.
 """

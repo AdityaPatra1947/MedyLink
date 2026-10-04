@@ -113,7 +113,7 @@ class MLTests(TestCase):
         self.assertIsNone(data["history"][0]["adherence"])
         self.assertEqual(data["cohort"][0]["adherence"], 75)
 
-    def test_disease_filter_marks_index_but_keeps_intervening_visit_target(self):
+    def test_disease_filter_trains_only_matching_visit_snapshots(self):
         self.record(1, "120/75", "Asthma")
         self.record(2, "160/95", "Influenza")
         self.record(3, "125/76", "Asthma")
@@ -121,9 +121,10 @@ class MLTests(TestCase):
         self.assertEqual(len(data["history"]), 3)
         self.assertEqual([row["eligible_index"] for row in data["history"]], [True, False, True])
         self.assertEqual(len(data["cohort"]), 2)
-        from .ml_services import pipeline
-        _, y, _, _ = pipeline().prepare_pairs(data["history"])
-        self.assertEqual(y.tolist(), [1])
+        from .ml_services import disease_rows
+        selected = disease_rows(data, historical=True)
+        self.assertEqual([row["systolic"] for row in selected], [120, 125])
+        self.assertTrue(all(row["primary_disease"] == "ASTHMA" for row in selected))
 
     def test_late_uploaded_report_is_excluded_historically_and_deduplicated_currently(self):
         original = self.record(1, "120/75")
@@ -224,6 +225,9 @@ class MLTests(TestCase):
             self.assertNotIn(forbidden, body)
         self.assertIsNone(response.data["summary"]["patients"])
         self.assertTrue(response.data["synthetic"])
+        self.assertIn("disease", response.data)
+        for removed in ("model", "training", "prediction"):
+            self.assertNotIn(removed, response.data)
 
     def test_single_flight_and_failed_job_keep_previous_model(self):
         previous = MLRun.objects.create(batch=self.batch, actor=self.admin, status="completed", is_active_model=True, report={"selection": {"prediction_enabled": False}})
@@ -232,7 +236,7 @@ class MLTests(TestCase):
         self.assertFalse(reused)
         self.assertTrue(second_reused)
         self.assertEqual(same.pk, run.pk)
-        with patch("analytics.ml_services.close_old_connections"), patch("analytics.ml_services.pipeline", side_effect=RuntimeError("PRIVATE failure detail")):
+        with patch("analytics.ml_services.close_old_connections"), patch("analytics.ml_services.disease_pipeline", side_effect=RuntimeError("PRIVATE failure detail")):
             failed = execute_training(run.id)
         previous.refresh_from_db()
         self.assertTrue(previous.is_active_model)
@@ -248,7 +252,7 @@ class MLTests(TestCase):
                 directory.mkdir(parents=True)
                 (directory / "model_bundle.joblib").write_bytes(b"test-only-placeholder")
                 return {"status": "completed", "selection": {"prediction_enabled": True}}
-            with patch("analytics.ml_services.close_old_connections"), patch("analytics.ml_services.pipeline") as mocked:
+            with patch("analytics.ml_services.close_old_connections"), patch("analytics.ml_services.disease_pipeline") as mocked:
                 mocked.return_value.train_and_evaluate.side_effect = train
                 result = execute_training(run.id)
         previous.refresh_from_db()
@@ -259,7 +263,7 @@ class MLTests(TestCase):
     def test_insufficient_job_does_not_replace_successful_model(self):
         previous = MLRun.objects.create(batch=self.batch, actor=self.admin, status="completed", is_active_model=True)
         run, _ = enqueue_training(self.batch, self.admin, self.filters, asynchronous=False)
-        with patch("analytics.ml_services.close_old_connections"), patch("analytics.ml_services.pipeline") as mocked:
+        with patch("analytics.ml_services.close_old_connections"), patch("analytics.ml_services.disease_pipeline") as mocked:
             mocked.return_value.train_and_evaluate.return_value = {"status": "insufficient_data", "reason": "Not enough observations."}
             result = execute_training(run.id)
         previous.refresh_from_db()
@@ -271,13 +275,13 @@ class MLTests(TestCase):
         self.record(1)
         self.record(2)
         MLRun.objects.create(batch=self.batch, actor=self.admin, status="completed", is_active_model=True)
-        with patch("analytics.ml_services.pipeline") as mocked, patch("analytics.ml_services.current_hotspots") as hotspots:
-            mocked.return_value.predict_summary.return_value = {"status": "completed", "counts": None}
+        with patch("analytics.ml_services.pipeline") as mocked, patch("analytics.ml_services.disease_pipeline") as learner, patch("analytics.ml_services.current_hotspots") as hotspots:
+            learner.return_value.predict_summary.return_value = {"prediction_enabled": True, "counts": []}
             mocked.return_value.cluster_patient_groups.return_value = {"status": "insufficient_data", "groups": []}
             hotspots.return_value = {"clusters": [], "counts": {}, "notes": []}
             response = self.client.get(PREFIX + "insights/", {"dataset_id": self.batch.key, "date_from": "2025-02-01", "date_to": "2025-02-28"})
         self.assertEqual(response.status_code, 200, response.data)
-        for call in (mocked.return_value.predict_summary.call_args, mocked.return_value.cluster_patient_groups.call_args, hotspots.call_args):
+        for call in (learner.return_value.predict_summary.call_args, mocked.return_value.cluster_patient_groups.call_args, hotspots.call_args):
             self.assertEqual(len(call.args[0]), 1)
             self.assertEqual(call.args[0][0]["observed_at"][:7], "2025-02")
 

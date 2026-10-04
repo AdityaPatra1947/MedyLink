@@ -180,13 +180,14 @@ def _historical_bulk_create(model, objects):
     model.objects.bulk_update(objects, ["created_at"], batch_size=500)
 
 
-def append_synthetic_patients(count=3000, seed=42, batch_key=BATCH_KEY):
+def append_synthetic_patients(count=3000, seed=42, batch_key=BATCH_KEY, *, fixture=None):
     """Guarded database entry point; repeated seed/count is a no-op, not a reset."""
     from accounts.models import SecurityEvent, User
     from clinic.management.commands.import_synthetic_dataset import Command as Importer
     from clinic.models import LabResult, MedicalRecord, Patient, ProviderApplication
     from django.core.management.base import CommandError
     from django.db import transaction
+    from django.db.models import Q
 
     from .importing import DISEASE_LABELS
     from .models import (
@@ -205,11 +206,20 @@ def append_synthetic_patients(count=3000, seed=42, batch_key=BATCH_KEY):
         stations = list(batch.stations.order_by("key"))
         if len(stations) != 34:
             raise CommandError("The existing synthetic batch must contain the same 34 Mumbai stations.")
-        try:
-            generated = generate_patients(count, seed, [{"key": row.key, "name": row.name, "latitude": row.latitude, "longitude": row.longitude} for row in stations])
-        except ValueError as exc:
-            raise CommandError(str(exc)) from exc
-        existing = set(batch.areas.filter(source_key__startswith=f"{VERSION}:{seed}:").values_list("source_key", flat=True))
+        if fixture is not None:
+            from .synthetic_fixture import validate_existing, validate_target
+
+            validate_target(fixture, batch, stations)
+            generated = fixture["patients"]
+        else:
+            try:
+                generated = generate_patients(count, seed, [{"key": row.key, "name": row.name, "latitude": row.latitude, "longitude": row.longitude} for row in stations])
+            except ValueError as exc:
+                raise CommandError(str(exc)) from exc
+        existing_areas = dict(batch.areas.filter(source_key__startswith=f"{VERSION}:{seed}:").values_list("source_key", "patient_id"))
+        existing = set(existing_areas)
+        if fixture is not None:
+            validate_existing(fixture, batch, existing_areas)
         pending = [row for row in generated if row["source_key"] not in existing]
         summary = {"synthetic": True, "generator": VERSION, "seed": seed, "requested": count, "created_patients": len(pending), "existing_patients": count - len(pending), "created_visits": 0, "created_labs": 0}
         if not pending:
@@ -243,6 +253,13 @@ def append_synthetic_patients(count=3000, seed=42, batch_key=BATCH_KEY):
                 age = stamp.year - patients[-1].date_of_birth.year - ((stamp.month, stamp.day) < (patients[-1].date_of_birth.month, patients[-1].date_of_birth.day))
                 for code in labels:
                     observations.append(DiseaseObservation(batch=batch, patient_id=row["id"], area=area, disease_id=code, observed_at=stamp, episode_key=visit["id"], import_key=f"{VERSION}:{visit['id']}:{code}", age_band=f"{age // 10 * 10}s", medical_record_id=visit["id"]))
+        if fixture is not None:
+            if (User.objects.filter(Q(pk__in=[row.pk for row in users]) | Q(email__in=[row.email for row in users]) | Q(account_id__in=[row.account_id for row in users])).exists()
+                    or Patient.objects.filter(Q(pk__in=[row.pk for row in patients]) | Q(health_id__in=[row.health_id for row in patients]) | Q(card_locator__in=[row.card_locator for row in patients])).exists()
+                    or MedicalRecord.objects.filter(pk__in=[row.pk for row in records]).exists()
+                    or LabResult.objects.filter(pk__in=[row.pk for row in labs]).exists()
+                    or batch.observations.filter(import_key__in=[row.import_key for row in observations]).exists()):
+                raise CommandError("Expansion identities conflict with existing records; no records were changed.")
         User.objects.bulk_create(users, batch_size=500)
         _historical_bulk_create(Patient, patients)
         PatientAreaObservation.objects.bulk_create(areas, batch_size=500)
@@ -252,5 +269,6 @@ def append_synthetic_patients(count=3000, seed=42, batch_key=BATCH_KEY):
         DiseaseCode.objects.bulk_create([DiseaseCode(code=code, label=DISEASE_LABELS[code]) for code in WEIGHTS if code not in existing_codes])
         DiseaseObservation.objects.bulk_create(observations, batch_size=500)
         summary.update(created_visits=len(records), created_labs=len(labs))
-        SecurityEvent.objects.create(event="synthetic_disease_generation", metadata={**summary, "dataset_id": batch.key, "history_start": START.isoformat(), "history_end": END.isoformat()})
+        provenance = {"fixture_id": fixture["manifest"]["fixture_id"], "fixture_manifest_sha256": fixture["manifest_hash"]} if fixture is not None else {}
+        SecurityEvent.objects.create(event="synthetic_disease_generation", metadata={**summary, **provenance, "dataset_id": batch.key, "history_start": START.isoformat(), "history_end": END.isoformat()})
         return summary

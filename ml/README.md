@@ -1,164 +1,95 @@
 # MedyLink synthetic ML experiments
 
-This package extends the existing Django analytics service. It never reads the
-database, changes clinical records, or decides who may view them. The backend
-must supply authorized synthetic snapshots and keep model artifacts private.
-Predictions support discussion and are **not a diagnosis or a clinically
-validated risk estimate**.
+This package extends the administrator analytics service. It receives authorized,
+explicitly synthetic snapshots from Django; it never queries the database or
+changes clinical records or access rules. Predictions support decisions and are
+**not a diagnosis or a clinically validated risk estimate**.
 
-## Running it
+## Supported features
 
-The integrated admin page starts training through the backend's job route. The
-server extracts the selected date/area cohort, records the dataset fingerprint,
-and writes each run to its own private directory. Existing patients, doctors and
-pharmacists keep their access rules.
+- **Disease prediction:** Logistic Regression, Decision Tree, Random Forest and
+  KNN classify the primary disease recorded at a visit, among ten supported diseases.
+- **Similar measurement groups:** K-Means describes aggregate patient profiles.
+- **Group-centre chart:** PCA projects aggregate K-Means centres into two dimensions.
+- **Geographic groups:** the backend's DBSCAN service groups nearby simulated cases.
 
-For a technical exercise, export an authorized synthetic snapshot list using the
-backend extraction service, keep it under ignored `.local/`, then run from the
-repository root:
+Future blood-pressure prediction and its training are removed. BP remains an
+ordinary clinical measurement and an input to disease classification/grouping.
+Historical BP run rows and private artifacts are retained only as inert history;
+the API and command line cannot train, serve or activate them.
+
+## Run disease training
+
+With the synthetic environment configured and its base dataset imported:
+
+```powershell
+npm run synthetic:manage -- run_ml_training --dry-run
+npm run synthetic:manage -- run_ml_training --sync
+```
+
+The administrator's **Retrain disease models** button uses the same task.
+`--task disease` is optional; disease is the only accepted task. A failed or
+insufficient run preserves the previous completed disease model.
+
+For an offline exercise, export an authorized snapshot list under ignored
+`.local/`, then run from the repository root:
 
 ```powershell
 .venv/Scripts/python.exe -m ml.train --input .local/ml/visits.json --output .local/ml/manual-run-001
-.venv/Scripts/python.exe -B -m unittest ml.test_pipeline -v
+.venv/Scripts/python.exe -B -m unittest ml.test_pipeline ml.test_disease_pipeline ml.test_train -v
 ```
 
-The CLI does not connect to a database. It rejects an existing nonempty output
-directory. `evaluation.json` contains aggregate results; `model_bundle.joblib`
-contains the fitted pipelines and their report. No bundle is created when the
-data is insufficient. Never serve either path as an unrestricted static file.
-Only load joblib files created by this application: loading an untrusted pickle
-or joblib file can execute code. The installed backend requirements already
-include scikit-learn, NumPy, joblib and threadpoolctl.
-
-## What the models do
-
-The target is whether the **next recorded visit** has systolic BP at least
-140 mmHg or diastolic BP at least 90 mmHg. This is a measurement threshold, not a
-hypertension diagnosis. Visits occur at varying intervals, so the system does
-not call this a 30-day risk forecast.
-
-| Model | Plain-English explanation | Why compare it? |
-| --- | --- | --- |
-| Logistic regression | Combines measurements using a simple weighted rule learned from examples. | An interpretable linear baseline. |
-| Decision tree | Learns a short sequence of measurement-based questions. | Can capture thresholds and simple interactions. |
-| Random forest | Combines many varied decision trees. | Tests whether averaging trees improves stability. |
-| Gradient boosting | Adds small trees that correct earlier errors. | Tests a different way to combine nonlinear rules. |
-
-The comparison also includes two simple alternatives: always choose the most
-common outcome in training, and repeat the patient's current BP category. A
-complicated model is not automatically better than these baselines.
+The CLI rejects an existing nonempty output directory. Private run directories
+contain `evaluation.json` and, after successful training, `model_bundle.joblib`.
+Never serve these as unrestricted static files or load joblib/pickle files from
+untrusted sources. The backend requirements provide scikit-learn, NumPy, joblib
+and threadpoolctl.
 
 ## Reproducible comparison
 
-- The four algorithms use the **same frozen patient groups and folds**. About
-  20% of patients are held out. All visits from a patient stay in one split.
-- The remaining patients use three grouped cross-validation folds. Imputation,
-  missingness indicators, scaling and categorical encoding are fitted within
-  each training fold. Model settings and the random seed are fixed in code.
-- Training begins with equal total weight per patient, then balances total
-  positive/negative weight using only that training fold's labels. This fixed
-  policy handles the uncommon elevated-reading outcome for all four models.
-  Evaluation keeps patient weights and does not rebalance outcome classes.
-- Choose the model with highest mean validation **macro F1**; positive-class
-  recall breaks ties. The held-out results do not choose the winner.
-- After selection, show held-out accuracy, precision, recall, positive-class
-  F1, macro F1 and the confusion matrix for all models and both baselines.
-  Metrics use patient weights; the confusion matrix contains raw visit-pair
-  counts and is labelled accordingly.
-- Shuffling one held-out feature five times measures its contribution to the
-  selected model. This explanation is computed **after selection** and never
-  used to refit or select the model. Zero/negative contribution is displayed
-  honestly. Correlated measurements share information; importance is not cause.
+All four classifiers use the same stratified 80/20 **patient-level** split and
+five cross-validation folds within training. Every visit from a patient stays
+in the same partition. Imputation, scaling and encoding are fitted inside each
+training fold. Evaluation weights each patient equally even with repeat visits.
 
-Accuracy can look impressive when elevated readings are uncommon. Macro F1
-gives both categories equal importance; recall shows how many elevated next
-readings were found, while precision shows how many flagged readings were
-actually elevated. None of these metrics is a calibrated probability that an
-individual patient will become ill.
+Select the highest mean CV macro-F1, then evaluate on the held-out patients.
+Report accuracy, macro-F1, per-disease recall and a raw-visit confusion matrix.
+The final test does not choose the winner. Aggregate predictions require test
+macro-F1 of at least 0.70 and accuracy of at least 0.75. This simulation gate is
+not clinical approval.
 
-## Fixed demonstration gate
+Features include age, gender, station, month, vitals, blood tests and eight
+symptom flags. Inputs recorded after the visit are excluded. Diagnosis text,
+medications, names, IDs and doctor identities are not predictors. Primary disease
+is the target, never an input. See [the disease task guide](DISEASE_TASK.md)
+for field names, missingness, minimum counts, filtering and the saved evaluation.
 
-Predictions remain unavailable unless the selected model beats **both** simple
-baselines by at least 0.01 macro F1 in validation and held-out evaluation, finds
-at least half the held-out elevated readings, and has at least ten independent
-patients with positive held-out outcomes. This gate was fixed before evaluation. It is an educational
-check, not a clinical acceptance criterion. A failed gate still shows the
-complete model comparison; the application must not invent reassuring scores.
+## Public module contracts
 
-Training requires at least 100 visit pairs, 50 patients and ten distinct
-patients with each outcome. The current synthetic generator can produce weak
-predictive signal, so poor results are a valid project finding.
+- `ml.disease_pipeline.train_and_evaluate(rows, private_run_dir)` trains and
+  reports the disease comparison. The package-level `ml.train_and_evaluate`
+  export also points to this disease task.
+- `ml.disease_pipeline.predict_summary(rows, private_run_dir)` returns aggregate
+  disease counts when the saved model passes its gate; `ml.predict_summary`
+  exposes the same function.
+- `ml.pipeline.cluster_patient_groups(rows, n_groups=3)` returns K-Means/PCA
+  aggregates independently of disease model training.
 
-## Similar-patient groups
+K-Means uses the latest eligible observation per patient and cohort-median
+imputation for numeric grouping. Output contains counts, average measurements and
+centres, never individual members or patient points. PCA axes are not a health
+score. Missing locations are excluded from geographic grouping rather than guessed.
 
-K-Means groups the latest eligible observation per patient using standardized
-numeric measurements. Missing numeric values use cohort medians only for
-grouping. Public output includes group counts, average measurements and
-aggregate centres; it does not include members or patient points. PCA provides
-two summary axes for displaying those group centres, not a health score.
-Groups describe similarity, not shared diagnoses or treatment needs. Existing
-geographic DBSCAN remains a separate backend service.
+## Interpretation and limitations
 
-## Backend input contract
+Condition filters select recorded diagnoses; the saved disease model may estimate
+other labels within that cohort. Saved comparison scores and feature importance
+retain their training selection until retraining. An old date range viewed with a
+saved model is a retrospective display, not an out-of-time backtest.
 
-Each list entry is an already validated historical snapshot:
-
-```json
-{
-  "patient_key": "internal-pseudonymous-key",
-  "observed_at": "2026-01-01T09:00:00Z",
-  "available_at": "2026-01-01T09:00:00Z",
-  "eligible_index": true,
-  "age": 46,
-  "gender": "female",
-  "systolic": 132,
-  "diastolic": 84,
-  "pulse": 76,
-  "temperature": 36.8,
-  "bmi": 26.2,
-  "glucose": 108,
-  "glucose_context": "fasting",
-  "condition_count": 1,
-  "adherence": null,
-  "disease_codes": ["HYPERTENSION"]
-}
-```
-
-`patient_key` is used only for joins, ordering and grouping. Demographic names,
-contact details, doctor identity, station, diagnosis text and condition codes
-are not prediction features. Numeric prior condition count is allowed only
-when known at that visit. Glucose context is explicit; random readings are
-not silently treated as fasting values. Null numeric inputs stay missing until
-fold-specific imputation. Missing/bad BP cannot define the target.
-
-For disease filters, send the **complete chronological sequence** in the date
-window and mark qualifying input rows with `eligible_index`. Build adjacent
-pairs first, then filter the index visit; the next visit can have a different
-diagnosis. Missing BP, ambiguous timestamps and retrospectively backfilled rows
-remain barriers, so the algorithm cannot jump past an intervening visit and
-mislabel a later one as the next visit. Both visits must be inside the selected
-date window. The backend must ensure prior lab/condition/adherence fields were
-known at the input observation, and must not substitute later corrections.
-
-`train_and_evaluate(history_rows, private_run_dir)` returns the public report.
-`predict_summary(current_rows, private_run_dir)` uses the selected model only
-when its gate passed and returns aggregate counts. For historical views these
-are explicitly retrospective synthetic estimates, not live forecasts.
-`cluster_patient_groups(current_rows, n_groups=3)` returns aggregate K-Means
-groups independently of predictive model quality.
-
-Small counts of one to four are hidden, including confusion matrices with such
-cells. This is a display safeguard, not a formal anonymization guarantee under
-repeated overlapping queries. This release remains synthetic-only.
-
-## Limitations for the viva
-
-The dataset contains generated labels and simulated measurements, uneven visit
-intervals, limited independent patients, incomplete fields and deliberately
-planted geographic patterns. Correlations reflect generator assumptions.
-Patient-group holdout tests generalization to unseen simulated patients; it
-does not establish clinical validity, future temporal robustness or transfer
-to a different hospital. Readmission/severity outcomes are not recorded, and
-five longer patient histories do not justify population-level forecasting.
-Future work needs independently governed datasets, a clinically reviewed target,
-external and temporal validation, adequate subgroup coverage and calibration.
+Counts of one to four are hidden, including small confusion-matrix cells. This
+is a display safeguard, not formal anonymization under overlapping queries.
+Generator assumptions and simulated labels limit generalization. Patient-level
+holdout does not establish medical accuracy, future robustness or suitability
+for another hospital. Independently governed data and clinical validation remain
+future work.

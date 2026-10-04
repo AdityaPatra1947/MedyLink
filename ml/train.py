@@ -1,10 +1,10 @@
-"""Train from a private, authorized JSON snapshot export; never queries a database."""
+"""Train disease classifiers from a private synthetic export; never queries a database."""
 
 import argparse
 import json
 from pathlib import Path
 
-from .pipeline import DEFAULT_SEED, train_and_evaluate
+from .disease_pipeline import DEFAULT_SEED, train_and_evaluate
 
 
 def main():
@@ -12,6 +12,7 @@ def main():
     parser.add_argument("--input", type=Path, required=True, help="Private JSON list of approved synthetic visit snapshots.")
     parser.add_argument("--output", type=Path, required=True, help="New private artifact directory, outside the web root.")
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument("--task", choices=["disease"], default="disease", help="Disease classification is the supported training task.")
     args = parser.parse_args()
     if args.input.stat().st_size > 50 * 1024 * 1024:
         parser.error("The private export exceeds 50 MiB.")

@@ -11,7 +11,7 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
     const section = document.getElementById(`${role}-${id}`);
     if (!section) return;
     destination.current = id;
-    setActive(id);
+    setActive(section.closest("[data-workspace-section]")?.getAttribute("data-workspace-section") || id);
     if (focus) document.getElementById(`${role}-${id}-title`)?.focus({ preventScroll: true });
     const top = Math.max(0, window.scrollY + section.getBoundingClientRect().top - offset.current);
     window.scrollTo({ top, behavior: smooth && !window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "smooth" : "instant" });
@@ -19,8 +19,9 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
 
   const navigate = useCallback((id: string) => {
     if (!enabled || !sections.includes(id)) return;
-    const hash = `#${role}-${id}`;
-    if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+    const href = role === "admin" ? `/admin/${id}` : `#${role}-${id}`;
+    const current = role === "admin" ? window.location.pathname + window.location.hash : window.location.hash;
+    if (current !== href) window.history.pushState(null, "", href);
     scrollToSection(id, true, true);
   }, [enabled, role, sections, scrollToSection]);
 
@@ -32,6 +33,22 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
     const elements = sections.map(id => document.getElementById(`${role}-${id}`)).filter((element): element is HTMLElement => !!element);
     if (!shell || !elements.length) return;
     let frame = 0;
+    const previousScrollRestoration = window.history.scrollRestoration;
+    if (role === "admin") window.history.scrollRestoration = "manual";
+
+    function nestedAdminAnchor() {
+      if (role !== "admin" || !window.location.hash.startsWith("#admin-")) return null;
+      const anchor = document.getElementById(window.location.hash.slice(1));
+      return anchor && !anchor.hasAttribute("data-workspace-section") ? anchor : null;
+    }
+
+    function syncAdminURL(id: string) {
+      if (role !== "admin") return;
+      // Keep in-section links (such as credential evidence) usable as anchors.
+      const anchorSection = nestedAdminAnchor()?.closest("[data-workspace-section]")?.getAttribute("data-workspace-section");
+      const href = `/admin/${anchorSection || id}${anchorSection ? window.location.hash : ""}`;
+      if (window.location.pathname + window.location.hash !== href) window.history.replaceState(null, "", href);
+    }
 
     function updateOffset() {
       const mobileNav = window.matchMedia("(max-width: 640px)").matches ? sidebar?.getBoundingClientRect().height || 0 : 0;
@@ -42,6 +59,9 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
 
     function updateActive() {
       frame = 0;
+      // A sidebar jump can cross several sections. Keep its URL and highlight
+      // stable until the user resumes scrolling or interacting with the page.
+      if (role === "admin" && destination.current) return;
       const line = offset.current + 8;
       let current = sections[0];
       for (const element of elements) {
@@ -49,6 +69,7 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
       }
       if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3) current = sections[sections.length - 1];
       setActive(current);
+      syncAdminURL(current);
     }
 
     function scheduleActive() {
@@ -57,17 +78,33 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
 
     function releaseDestination() {
       destination.current = null;
+      // User interaction ends an anchor jump. A queued scroll frame must not
+      // remove a newly clicked fragment before the browser reaches its target.
+      if (nestedAdminAnchor()) window.history.replaceState(null, "", window.location.pathname);
       scheduleActive();
     }
 
-    function restoreHash() {
+    function restoreLocation() {
       const prefix = `#${role}-`;
       const id = window.location.hash.startsWith(prefix) ? window.location.hash.slice(prefix.length) : "";
       if (sections.includes(id)) {
         updateOffset();
+        syncAdminURL(id);
         scrollToSection(id, false, false);
+      } else if (nestedAdminAnchor()) {
+        updateOffset();
+        syncAdminURL(id);
+        scrollToSection(id, false, false);
+      } else if (role === "admin" && (!window.location.hash || id === "analytics")) {
+        const pathSection = window.location.pathname.split("/")[2];
+        const target = sections.includes(pathSection) ? pathSection : sections[0];
+        updateOffset();
+        syncAdminURL(target);
+        scrollToSection(target, false, false);
       } else if (!window.location.hash) {
         scrollToSection(initialSection, false, false);
+      } else {
+        releaseDestination();
       }
     }
 
@@ -82,7 +119,7 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
     if (sidebar) observer.observe(sidebar);
     if (topbar) observer.observe(topbar);
     updateOffset();
-    if (window.location.hash) restoreHash();
+    if (role === "admin" || window.location.hash) restoreLocation();
     else if (initialSection !== sections[0]) scrollToSection(initialSection, false, false);
     else scheduleActive();
     window.addEventListener("scroll", scheduleActive, { passive: true });
@@ -91,27 +128,29 @@ export function useWorkspaceNavigation(enabled: boolean, role: string, sections:
     window.addEventListener("touchstart", releaseDestination, { passive: true });
     window.addEventListener("pointerdown", releaseDestination, { passive: true });
     window.addEventListener("keydown", releaseDestination);
-    window.addEventListener("hashchange", restoreHash);
-    window.addEventListener("popstate", restoreHash);
+    window.addEventListener("hashchange", restoreLocation);
+    window.addEventListener("popstate", restoreLocation);
     return () => {
       observer.disconnect();
       cancelAnimationFrame(frame);
       destination.current = null;
+      if (role === "admin") window.history.scrollRestoration = previousScrollRestoration;
       window.removeEventListener("scroll", scheduleActive);
       window.removeEventListener("resize", scheduleActive);
       window.removeEventListener("wheel", releaseDestination);
       window.removeEventListener("touchstart", releaseDestination);
       window.removeEventListener("pointerdown", releaseDestination);
       window.removeEventListener("keydown", releaseDestination);
-      window.removeEventListener("hashchange", restoreHash);
-      window.removeEventListener("popstate", restoreHash);
+      window.removeEventListener("hashchange", restoreLocation);
+      window.removeEventListener("popstate", restoreLocation);
     };
   }, [enabled, role, sections, initialSection, scrollToSection]);
 
   useEffect(() => {
     if (!enabled) return;
     const nav = document.querySelector<HTMLElement>(".workspace-shell .nav-items");
-    const link = nav?.querySelector<HTMLElement>(`a[href="#${role}-${active}"]`);
+    const href = role === "admin" ? `/admin/${active}` : `#${role}-${active}`;
+    const link = nav?.querySelector<HTMLElement>(`a[href="${href}"]`);
     if (!nav || !link) return;
     const navRect = nav.getBoundingClientRect(), linkRect = link.getBoundingClientRect();
     if (nav.scrollWidth > nav.clientWidth && (linkRect.left < navRect.left || linkRect.right > navRect.right)) {

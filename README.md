@@ -43,7 +43,7 @@ Provider access requires current approval and is recorded. The current care work
 
 ## Quick start
 
-You need **Node.js 22+**, **Python 3.12+**, Git and a Neon PostgreSQL database. Run commands from the cloned repository directory. A fresh checkout contains no working account passwords, database credentials or SMTP secrets.
+You need **Node.js 22+**, **Python 3.12+**, Git and a Neon PostgreSQL database. Run commands from the cloned repository directory. A fresh checkout includes the fictional patient fixtures, but no working account passwords, database credentials, private uploads or trained model bundles. SMTP is optional for local development; no external ML API key or GPU is required.
 
 ```sh
 git clone https://github.com/AdityaPatra1947/MedyLink.git
@@ -70,6 +70,8 @@ node scripts/init-env.mjs
 ```
 
 Setup creates `backend/.env` with new random development signing secrets and keeps any existing environment file. It does not create a database or import patient records.
+
+To run only the 4,000-patient demonstration, continue with [Fresh 4,000-patient demo](#fresh-4000-patient-demo) after installing dependencies. The next three steps configure the regular application separately.
 
 ### 2. Configure the database
 
@@ -111,7 +113,9 @@ On macOS/Linux, use `.venv/bin/python` instead. See [email setup](docs/GMAIL_SET
 
 ## Separate synthetic demonstration
 
-The demonstration contains **1,000 fictional adult patients across 34 Mumbai station areas**, generated clinical observations and fictional professionals. Public station references are real; people, nearby coordinates and clinical observations are simulated. Placeholder prescriptions are workflow examples, not treatment recommendations.
+The repository includes **all 4,000 fictional patient records across 34 Mumbai station areas** in two fixtures: the original 1,000-patient care-workflow fixture in `data/synthetic/mumbai_stations_v1/`, and 3,000 additional disease-training patients in `data/synthetic/mumbai_disease_v1/`. The expansion includes their simulated visits, measurements and labs. Public station references are real; people, nearby coordinates and clinical observations are simulated. Placeholder prescriptions are workflow examples, not treatment recommendations.
+
+These files reproduce a generated baseline. They are not a snapshot of a running database: later consultations, uploaded reports, photos, manual edits, account changes and saved training runs require a private database/files backup or access to the existing database.
 
 | Environment | Frontend | API | Accounts and data |
 | --- | --- | --- | --- |
@@ -120,41 +124,108 @@ The demonstration contains **1,000 fictional adult patients across 34 Mumbai sta
 
 **Accounts are separate.** A login created or imported in one database does not automatically work in the other. Separate cookie names, signing keys, private storage and Next.js build directories allow both apps to run together. Demo emails are kept in memory rather than delivered.
 
-First generate your own private account credentials for the published fixture:
+### Fresh 4,000-patient demo
+
+Complete dependency installation above, then create local passwords. On Windows:
 
 ```powershell
 .venv/Scripts/python.exe scripts/init-synthetic-credentials.py
 ```
 
-Use `.venv/bin/python` on macOS/Linux. The helper writes fresh random passwords under ignored `.local/synthetic/mumbai_stations_v1/credentials.json`, never overwrites an existing file and never changes a database. Keep this file with the database into which you import those accounts.
-
-Follow [the synthetic setup guide](docs/ADMIN_ANALYTICS.md#fresh-installation) to create an empty dedicated Neon database, configure `.local/synthetic/.env`, and import the clinical and analytics fixtures. Synthetic imports must not target your normal application database. After setup:
+On macOS/Linux:
 
 ```sh
+.venv/bin/python scripts/init-synthetic-credentials.py
+```
+
+The helper creates `.local/synthetic/mumbai_stations_v1/credentials.json` for the original **1,013 accounts**: 1,000 patients, nine doctors, three pharmacists and one administrator. It never replaces an existing file or changes database passwords. The extra 3,000 patients have **inactive accounts with unusable passwords**, for ML data only; they cannot sign in.
+
+Create an **empty** Neon PostgreSQL database named `synthetic_mumbai` on a dedicated development branch. Create `.local/synthetic/.env` locally, replacing every placeholder:
+
+```dotenv
+SYNTHETIC_DATABASE_URL=postgresql://ROLE:PASSWORD@DIRECT_HOST/synthetic_mumbai?sslmode=require
+DJANGO_DEBUG=true
+DJANGO_SECRET_KEY=REPLACE_WITH_A_NEW_LONG_RANDOM_SECRET
+JWT_SIGNING_KEY=REPLACE_WITH_ANOTHER_LONG_RANDOM_SECRET
+REDIS_URL=
+FRONTEND_ORIGIN=http://localhost:3001
+CSRF_TRUSTED_ORIGINS=http://localhost:3001,http://127.0.0.1:3001
+```
+
+Generate each signing secret independently by running this twice and pasting each result into the private file:
+
+```sh
+node -e "console.log(require('node:crypto').randomBytes(48).toString('hex'))"
+```
+
+The database name must start with `synthetic_`, and the URL must use TLS. Optionally add `SYNTHETIC_POOLED_DATABASE_URL` for the same database's pooled endpoint; web requests use it while management commands retain the direct endpoint. This environment never falls back to your regular application's database. Synthetic email is kept in memory, so SMTP is not required.
+
+Run this complete import and training sequence from the repository root on either operating system:
+
+```sh
+# Validate published fixtures without connecting to a database.
+node scripts/manage.mjs import_synthetic_dataset
+node scripts/manage.mjs import_synthetic_expansion
+
+# Import the original 1,000 patients and their analytics, then the other 3,000.
+npm run synthetic:manage -- migrate --noinput
+npm run synthetic:manage -- import_synthetic_dataset --apply
+npm run synthetic:manage -- import_synthetic_analytics --apply
+npm run synthetic:manage -- import_synthetic_expansion --apply
+
+# Train the local models, then start the demonstration.
+npm run synthetic:manage -- run_ml_training --task disease --sync
 npm run dev:synthetic
 ```
 
-Sign in on port **3001** using the locally generated demo administrator credentials. Open `/admin/analytics` for geographic analysis or `/admin/ml` for model comparison. The optional [monthly-report demonstration](docs/PATIENT_REPORT_DEMO.md) has additional fixture prerequisites; normal migrations do not install it.
+On a clean database, this imports **4,000 patients, 11,195 consultations, 26,917 lab results and 12,719 disease observations**. The complete import, repeat expansion import, model training and admin insights response were verified against an isolated PostgreSQL database. Pulling the repository downloads the fixture files; it does not run these imports automatically.
+
+The original clinical import refuses an existing user table or import mapping. Use this sequence for a fresh target; keep the generated `.local/synthetic/mumbai_stations_v1/import-map.json` with its matching database. For detailed validation and import behavior, see [the synthetic setup guide](docs/ADMIN_ANALYTICS.md#fresh-installation).
+
+Sign in at **http://localhost:3001/login** using the `ADMIN001` account from your private credentials file. The admin workspace opens at `/admin/ml`, with geographic analysis and model comparison followed by doctor approvals, pharmacist approvals, audit, and security in one scrolling page. Sidebar links scroll to each section and update its URL; `/admin/analytics` is a legacy link that now opens ML insights. The optional [monthly-report demonstration](docs/PATIENT_REPORT_DEMO.md) has additional fixture prerequisites; normal migrations do not install it.
+
+### Continue the existing demo on another device
+
+After dependency installation, privately transfer the following files and keep the same synthetic database connection:
+
+| Ignored path | What it preserves |
+| --- | --- |
+| `.local/synthetic/.env` | Existing dedicated database connection and environment settings |
+| `.local/synthetic/mumbai_stations_v1/credentials.json` | Passwords matching the original imported accounts |
+| `.local/synthetic/mumbai_stations_v1/import-map.json` | Original fixture-to-database mapping |
+| `.local/synthetic/private-media/` | Existing uploaded PDFs, photos and other private files |
+| `.local/ml/` (or custom `ML_ARTIFACT_ROOT`) | Saved model bundles and private evaluation artifacts |
+
+The cloud database preserves records and saved-run metadata; a Git pull does not copy them. Do not generate replacement credentials or repeat the base import against that populated database. Start the existing environment with:
+
+```sh
+npm run synthetic:manage -- migrate --noinput
+npm run dev:synthetic
+```
+
+If model files are unavailable, run `npm run synthetic:manage -- run_ml_training --task disease --sync` to recreate them. Model directories are scoped to the database endpoint/name and saved run; a different database should retrain. Existing report database rows do not recreate missing upload files, so preserve private storage. For a separate copy of all later edits, restore a private database backup together with its matching media and mappings.
+
+Keep credentials, environment files, uploads, database backups and model bundles out of Git. Reinstall `.venv` and `node_modules` on the new device instead of copying them. The interactive map needs internet for OpenStreetMap tiles; no map API key is required.
 
 ## Machine learning
 
-The admin workspace has two educational prediction tasks: **primary disease classification** from measurements and symptoms at a visit, and **next-visit blood pressure** from eligible earlier observations. Neither provides a clinical diagnosis. Names, contact details and doctor identities are excluded from both feature matrices.
+The admin workspace predicts the **primary disease** from measurements and symptoms recorded at a visit. This educational task does not provide a clinical diagnosis. Names, contact details and doctor identities are excluded from the feature matrix. Blood-pressure readings remain clinical measurements and disease-model inputs; predicting future blood pressure and its training have been removed.
 
 Disease prediction compares **Logistic Regression, Decision Tree, Random Forest and KNN** using a stratified 80/20 patient split and five patient-level cross-validation folds. The best CV macro-F1 model can produce aggregate predictions only when final-test macro-F1 is at least 70% and accuracy is at least 75%. The page includes a searchable multi-disease filter, station-condition counts, accuracy bars, top-five feature contributions and independent retraining. [Run the disease task and synthetic generator](ml/DISEASE_TASK.md).
 
-The existing blood-pressure task and aggregate clustering use the following techniques:
+Disease classification and aggregate clustering use the following techniques:
 
 | Technique | Purpose |
 | --- | --- |
 | Logistic Regression | A simple weighted classification baseline |
 | Decision Tree | A sequence of learned measurement-based questions |
 | Random Forest | An ensemble of randomized decision trees |
-| Gradient Boosting | Sequential trees that improve on earlier errors |
+| KNN | Classification using the most similar training examples |
 | K-Means | Aggregate groups with similar standardized measurements |
 | DBSCAN | Geographic groups of synthetic recorded cases |
 | PCA | Two-dimensional display of aggregate measurement-group centres |
 
-The four classifiers share patient-separated train/test groups and cross-validation folds. Preprocessing is fitted within training folds. The winner is selected by validation macro-F1; held-out accuracy, precision, recall, F1 and confusion matrices are then reported alongside two simple baselines. A fixed quality gate suppresses predictions when the selected model is not strong enough. The included evaluation did **not** pass that gate; the comparison and grouping remain available.
+The four classifiers share patient-separated train/test groups and five cross-validation folds. Preprocessing is fitted within training folds. The winner is selected by validation macro-F1; held-out accuracy, macro-F1, per-disease recall and confusion matrices are then reported. A fixed quality gate suppresses predictions when the selected model is not strong enough. The included disease evaluation selected Random Forest with **79.2% test accuracy** and **77.7% macro-F1**, passing the simulation gate. That saved run used the existing demonstration database; a fresh baseline import or later clinical edits can produce different coverage and scores. These results do not establish clinical accuracy.
 
 The administrator can select all history or a date range and retrain with that data. Results are aggregate and small groups are suppressed. This release is restricted to explicitly synthetic datasets; it is not a validated anonymization system for real clinical deployment.
 
@@ -165,14 +236,10 @@ With the synthetic database configured and imported:
 npm run synthetic:manage -- run_ml_training --dry-run
 
 # Train and save a new private run using all eligible history.
-npm run synthetic:manage -- run_ml_training --sync
-
-# Append 3,000 seeded patients once, then train the separate disease task.
-npm run synthetic:manage -- generate_synthetic_data --count 3000 --seed 42
 npm run synthetic:manage -- run_ml_training --task disease --sync
 ```
 
-Saved models stay under ignored `.local/ml/`. Read [the ML run guide and viva notes](docs/ML_INSIGHTS.md), [pipeline details](ml/README.md), [aggregate evaluation](ml/reports/evaluation.json) and [the illustrated PDF guide](output/pdf/MedyLink_ML_Explained.pdf).
+Disease is the default and only supported training task. Saved models stay under ignored `.local/ml/`. Read [the ML run guide and viva notes](docs/ML_INSIGHTS.md), [pipeline details](ml/README.md), [aggregate evaluation](ml/reports/disease_evaluation.json) and [the illustrated PDF guide](output/pdf/MedyLink_ML_Explained.pdf).
 
 **Predictions support decisions and are not a diagnosis.** Synthetic evaluation results do not establish clinical accuracy, real outbreaks or treatment safety.
 
@@ -191,7 +258,7 @@ Saved models stay under ignored `.local/ml/`. Read [the ML run guide and viva no
 
 Playwright is configured for Google Chrome; install Chrome before browser tests. The base URL defaults to port 3000 and can be overridden with `PLAYWRIGHT_BASE_URL`. Some workflow checks require prepared local fixtures; see [validation notes](docs/VALIDATION.md).
 
-Run standalone ML tests on Windows with `.venv/Scripts/python.exe -B -m unittest ml.test_pipeline -v`, or use `.venv/bin/python` on macOS/Linux. Test the credential helper with the same Python executable and `-m unittest discover -s scripts -p test_init_synthetic_credentials.py -v`.
+Run standalone ML tests on Windows with `.venv/Scripts/python.exe -B -m unittest ml.test_pipeline ml.test_disease_pipeline ml.test_train -v`, or use `.venv/bin/python` on macOS/Linux. Test the credential helper with the same Python executable and `-m unittest discover -s scripts -p test_init_synthetic_credentials.py -v`.
 
 Backend tests use isolated in-memory SQLite by default, with database-specific checks skipped. For the isolated PostgreSQL suite, including concurrency checks:
 

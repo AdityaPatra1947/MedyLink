@@ -8,7 +8,7 @@ export function proxy(request: NextRequest) {
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ""}`,
     development ? "style-src 'self' 'unsafe-inline'" : `style-src 'self' 'nonce-${nonce}'`,
     "style-src-attr 'unsafe-inline'",
-    "img-src 'self' data: blob:",
+    "img-src 'self' data: blob: https://tile.openstreetmap.org",
     "font-src 'self'",
     `connect-src 'self'${development ? " ws: wss:" : ""}`,
     "media-src 'self' blob:",

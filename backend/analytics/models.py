@@ -183,7 +183,8 @@ class MLRun(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     batch = models.ForeignKey(DatasetBatch, on_delete=models.PROTECT, related_name="ml_runs")
     actor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    task = models.CharField(max_length=24, default="blood_pressure", choices=[("blood_pressure", "Next-visit blood pressure"), ("disease", "Primary disease")])
+    # Older task values remain valid in storage for audit; new runs are disease-only.
+    task = models.CharField(max_length=24, default="disease", choices=[("disease", "Primary disease")])
     status = models.CharField(max_length=20, default="queued")
     filters = models.JSONField(default=dict)
     source_summary = models.JSONField(default=dict)

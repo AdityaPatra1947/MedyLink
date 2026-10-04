@@ -42,14 +42,7 @@
 .skeletonGrid i{width:70%}.skeletonGrid b{height:30px;width:46%}.skeletonGrid span{width:90%}
 @keyframes loadingPulse{50%{opacity:.4}}
 .twoColumns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
-.prediction{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
-.prediction>div{padding:18px;border-radius:10px;border:1px solid #dce8df;background:#f2f8f3}
-.prediction>div:first-child{background:#fdf6e9;border-color:#eddfbe}
-.prediction strong{font-size:28px;display:block;line-height:1.25;margin:8px 0 4px}
-.prediction span{font-size:11px;line-height:1.65;color:#657362}
-.prediction h3{font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px}
-.prediction i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7aa887}
-.prediction>div:first-child i{background:#c18a34}
+
 .notice{padding:13px 15px;border:1px solid #e7dfc4;border-radius:9px;background:#fbf8ed;color:#7c6f46;display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.8}
 .notice svg{flex-shrink:0;margin-top:3px}
 .error{padding:14px 16px;border:1px solid #e9c7bd;border-radius:9px;background:#fff6f0;color:#954f3b;display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.8}
@@ -59,18 +52,14 @@
 .empty{padding:24px 15px;text-align:center;background:#f8faf5;border:1px dashed #d9e4d8;border-radius:10px;display:grid;gap:8px;justify-items:center}
 .empty h3{font-size:14px;color:#53725d}
 .empty p{font-size:12px;color:#7a8b7b;line-height:1.8;max-width:540px}
-.winner{background:#eef6ed;border:1px solid #d5e7d3;padding:17px;border-radius:10px;margin-bottom:19px;display:flex;align-items:flex-start;gap:12px}
-.winner svg{color:#527b59;flex-shrink:0}
-.winner h3{font-size:14px;margin-bottom:5px}
-.winner p{font-size:11px;color:#6c8269;line-height:1.8}
+
 .tableWrap{max-width:100%;overflow-x:auto;scrollbar-width:thin}
 .table{width:100%;border-collapse:collapse;font-size:11px}
 .table th{background:#f6f9f2;color:#6d856e;font-size:10px;line-height:1.55;text-align:left;padding:12px 10px;white-space:normal}
 .table td{padding:13px 10px;line-height:1.75;vertical-align:top;border-bottom:1px solid #edf1e9}
 .table td:first-child{font-weight:600;color:#3e624d;min-width:145px}
 .table small{display:block;color:#7b8c7b;font-size:10px;font-weight:400;max-width:200px}
-.selected{background:#f4f9f0}
-.badge{display:inline-flex;padding:2px 6px;background:#e7f1e3;border:1px solid #d5e5cf;border-radius:5px;font-size:9px;color:#466f4d;line-height:1.8;margin-top:5px}
+
 .details{margin-top:18px;border-top:1px solid #e9eee5;padding-top:13px}
 .details summary{cursor:pointer;color:#4d7358;font-size:11px;font-weight:600}
 .details p{font-size:11px;color:#72836f;line-height:1.8;margin-top:10px}
@@ -100,9 +89,7 @@
 .legend i{width:8px;height:8px;border-radius:50%;background:#4f9274}
 .legend span:last-child i{background:#b5c5aa}
 .footer{font-size:10px;color:#89957e;line-height:1.9;overflow-wrap:anywhere}
-.range{font-size:11px;color:#6a806e;line-height:1.8;border-left:3px solid #aec7aa;padding-left:11px;margin:15px 0}
-.range strong{color:#45694d}
-.bpSection{border:1px solid var(--line);border-radius:12px;background:#f9fbf6;padding:17px;min-width:0}.bpSection>summary{cursor:pointer;font-size:14px;font-weight:650;color:#406c52;padding:3px}.bpContents{display:grid;gap:16px;margin-top:17px;min-width:0}
+
 .diseaseFilter{position:relative;min-width:0}
 .filterLabel{font-size:12px;font-weight:600;color:#526e65;display:block;margin-bottom:8px;line-height:20px}
 .filterToggle{width:100%;height:44px;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border:1px solid #d8e3dd;border-radius:8px;background:#fbfcfa;color:var(--ink);font-size:13px;line-height:1.5;cursor:pointer;transition:border-color .15s,background .15s}
@@ -128,5 +115,5 @@
 .stationCounts{margin-top:22px}.stationCounts h3{font-size:14px;margin-bottom:12px}
 @media(max-width:1200px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}.twoColumns{gap:16px}.stat{padding:17px}.panel,.filterPanel{padding:22px}.table th,.table td{padding:12px 9px}}
 @media(max-width:850px){.twoColumns{grid-template-columns:1fr}.readiness,.skeletonGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.panelHead{flex-wrap:wrap}.filterFooter{align-items:flex-start;flex-direction:column;gap:14px}.filterFooter .actions{align-self:flex-end}}
-@media(max-width:640px){.workspace{gap:20px}.panel,.filterPanel{padding:18px;border-radius:13px}.filterHeading{gap:10px;align-items:flex-start;margin-bottom:20px}.sectionIcon{display:none}.filterTitle h2{font-size:16px}.filterTitle p{font-size:11px;max-width:160px}.tag{font-size:10px;padding:5px 7px}.filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}.diseaseFilter{grid-column:1/-1}.filters input,.filters select{padding:10px 8px;font-size:12px}.filterOptions{width:100%;max-width:none}.filterFooter{padding-top:16px}.actions{width:100%;justify-content:flex-end}.actions :global(.button){flex:1;justify-content:center}.selectionHeading>span{font-size:10px}.readiness{gap:10px}.stat{padding:14px;border-radius:12px}.statLabel{font-size:11px;align-items:flex-start;gap:6px}.statIcon{width:26px;height:26px;border-radius:7px}.statIcon svg{width:14px;height:14px}.stat strong{font-size:27px;margin-top:10px}.stat small{font-size:10px}.panelHead{margin-bottom:18px}.panelHead h2{font-size:17px}.prediction{gap:10px}.prediction>div{padding:14px}.prediction h3{font-size:11px}.table{min-width:530px}.stationCounts .table{min-width:440px}.bpSection{padding:16px}.skeletonGrid>div{padding:16px}}
+@media(max-width:640px){.workspace{gap:20px}.panel,.filterPanel{padding:18px;border-radius:13px}.filterHeading{gap:10px;align-items:flex-start;margin-bottom:20px}.sectionIcon{display:none}.filterTitle h2{font-size:16px}.filterTitle p{font-size:11px;max-width:160px}.tag{font-size:10px;padding:5px 7px}.filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}.diseaseFilter{grid-column:1/-1}.filters input,.filters select{padding:10px 8px;font-size:12px}.filterOptions{width:100%;max-width:none}.filterFooter{padding-top:16px}.actions{width:100%;justify-content:flex-end}.actions :global(.button){flex:1;justify-content:center}.selectionHeading>span{font-size:10px}.readiness{gap:10px}.stat{padding:14px;border-radius:12px}.statLabel{font-size:11px;align-items:flex-start;gap:6px}.statIcon{width:26px;height:26px;border-radius:7px}.statIcon svg{width:14px;height:14px}.stat strong{font-size:27px;margin-top:10px}.stat small{font-size:10px}.panelHead{margin-bottom:18px}.panelHead h2{font-size:17px}.table{min-width:530px}.stationCounts .table{min-width:440px}.skeletonGrid>div{padding:16px}}
 @media(prefers-reduced-motion:reduce){.skeletonGrid i,.skeletonGrid b,.skeletonGrid span{animation:none}.filters input,.filters select,.dataset select,.filterToggle,.filterToggle svg{transition:none}}

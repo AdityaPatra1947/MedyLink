@@ -1,0 +1,34 @@
+.wrapper{min-width:0;isolation:isolate}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.layers{display:flex;padding:3px;border:1px solid #dce7df;border-radius:9px;background:#f3f7f3;gap:3px}
+.layers button,.viewControls button{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:11px;line-height:1.4;min-height:34px;padding:8px 10px;border-radius:6px;border:1px solid transparent;color:#5c7569;background:transparent;font-weight:600;white-space:nowrap;cursor:pointer}
+.layers button[aria-pressed="true"]{background:#fff;border-color:#d6e3da;color:#17684f;box-shadow:0 1px 3px #2043320b}
+.layers button:hover,.viewControls button:hover{background:#e8f1ea;color:#205d47}
+.layers button:focus-visible,.viewControls button:focus-visible{outline:2px solid #26785c;outline-offset:3px}
+.viewControls{display:flex;gap:5px}
+.viewControls button{border-color:#dce6de;background:#fff;font-weight:500}
+.viewControls button:disabled{opacity:.5;cursor:default}
+.frame{position:relative;border:1px solid #d9e4dd;border-radius:11px;overflow:hidden;background:#e9eeea}
+.map{width:100%;height:440px;z-index:0;font-family:Arial,Helvetica,sans-serif;background:#e9eeea}
+.map:focus-visible{outline:3px solid #347e64;outline-offset:-3px}
+.map :global(.leaflet-control-zoom){border:1px solid #cedbd2;box-shadow:0 2px 8px #24493715;border-radius:7px;overflow:hidden}
+.map :global(.leaflet-control-zoom a){color:#325d4b;background:#fff;border-color:#e2eae4;width:33px;height:33px;line-height:33px;font-size:21px;text-decoration:none}
+.map :global(.leaflet-control-zoom a:hover){background:#edf5ef}
+.map :global(.leaflet-control-zoom a:focus-visible){outline:3px solid #26785c;outline-offset:-3px}
+.marker{display:grid;place-items:center;background:transparent;border:0;cursor:pointer;border-radius:50%;outline:none}
+.markerCircle{display:flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 5px;border:2px solid #fff;border-radius:50%;background:var(--marker-color,#19816c);color:#fff;font-size:10px;line-height:1;font-weight:700;box-shadow:0 2px 5px #24493755;font-variant-numeric:tabular-nums;white-space:nowrap;transition:box-shadow .15s,transform .15s}
+.marker:hover .markerCircle{transform:scale(1.08);box-shadow:0 2px 9px #183b3670}
+.marker:focus-visible{outline:3px solid #183f3b;outline-offset:2px;background:#fff9}
+.selectedMarker .markerCircle{outline:3px solid #183f3b;outline-offset:2px;box-shadow:0 0 0 6px #fff;transform:scale(1.05)}
+.groupMarker .markerCircle{min-width:35px;height:35px;border-radius:9px;font-size:11px}
+.tooltip{font-size:11px!important;line-height:1.5!important;color:#183f3b!important;border:1px solid #d2e0d7!important;border-radius:7px!important;box-shadow:0 3px 12px #23473818!important;padding:7px 10px!important;width:max-content;max-width:250px;white-space:normal!important}
+.overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:32px;color:#5a7968;background:#f0f5eff0;font-size:12px;line-height:1.8}
+.overlay p{max-width:310px}
+.attribution{position:absolute;right:0;bottom:0;z-index:3;background:#fffffff2;padding:3px 7px;border-top-left-radius:5px;font-size:10px;line-height:1.45;color:#506d5e}
+.attribution a{color:#17684f;text-decoration:underline;text-underline-offset:2px}
+.instructions{font-size:10px;line-height:1.75;color:#708474;margin-top:9px}
+.tileStatus{display:flex;align-items:flex-start;gap:7px;padding:8px 10px;margin-top:9px;border:1px solid #e8dec3;border-radius:7px;background:#faf7ec;color:#79693c;font-size:11px;line-height:1.6}
+.tileStatus svg{margin-top:2px;flex-shrink:0}
+.emptyStatus{font-size:11px;color:#657d6d;padding:9px 0 0;line-height:1.6}
+@media(max-width:640px){.toolbar{gap:8px}.layers button{font-size:10px;padding:8px}.viewControls button{padding:8px}.viewControls button span{display:none}.map{height:365px}.attribution{font-size:9px}.instructions{font-size:10px;line-height:1.7}}
+@media(prefers-reduced-motion:reduce){.markerCircle{transition:none}}

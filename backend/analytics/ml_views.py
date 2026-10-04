@@ -64,5 +64,5 @@ class MLRunView(AdminAnalyticsView):
     def get(self, request, pk):
         if request.query_params:
             raise ValidationError("Run status does not accept filters.")
-        run = get_object_or_404(MLRun.objects.select_related("batch"), pk=pk, batch__synthetic=True)
+        run = get_object_or_404(MLRun.objects.select_related("batch"), pk=pk, task="disease", batch__synthetic=True)
         return Response(run_payload(run))

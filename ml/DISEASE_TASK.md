@@ -1,7 +1,7 @@
 # Disease prediction experiment
 
-This additive task lives in `ml/disease_pipeline.py`. It leaves the existing
-next-visit blood-pressure task in `ml/pipeline.py` unchanged. Inputs must be
+The prediction task lives in `ml/disease_pipeline.py`. `ml/pipeline.py` contains
+the independent K-Means/PCA grouping helpers. Inputs must be
 authorized, explicitly synthetic snapshots; the module never queries a database.
 
 ## Run in the existing demo
@@ -11,7 +11,7 @@ configuration without changing your normal database or printing credentials:
 
 ```powershell
 npm run synthetic:manage -- migrate --noinput
-npm run synthetic:manage -- generate_synthetic_data --count 3000 --seed 42
+npm run synthetic:manage -- import_synthetic_expansion --apply
 npm run synthetic:manage -- run_ml_training --task disease --dry-run
 npm run synthetic:manage -- run_ml_training --task disease --sync
 npm run dev:synthetic
@@ -22,9 +22,17 @@ environment configured** (`DJANGO_SETTINGS_MODULE=config.synthetic_settings`
 and `SYNTHETIC_DATABASE_URL` set), are:
 
 ```sh
-python manage.py generate_synthetic_data --count 3000 --seed 42
+python manage.py import_synthetic_expansion --apply
 python manage.py run_ml_training --task disease --sync
 ```
+
+The original 1,000-patient clinical and analytics imports must already exist.
+For an empty database, follow the complete [fresh 4,000-patient setup](../README.md#fresh-4000-patient-demo).
+The expansion imports the published `mumbai_disease_v1` JSONL files; repeating
+the same expansion adds no records. Its 3,000 patient accounts remain inactive
+with unusable passwords. The developer command
+`generate_synthetic_data --count 3000 --seed 42` is an alternative way to produce
+that seeded population, not an extra step after importing it.
 
 Open `http://localhost:3001/admin/ml`. The Disease prediction card compares four
 methods, displays the saved development/test patient counts and explains the
@@ -40,9 +48,11 @@ comparison and importance keep their original training selection until another
 training run. A narrow selection without all ten classes cannot train a complete
 ten-disease model; that failed/insufficient run preserves the previous model.
 
-The existing BP task and its models remain under **Blood pressure prediction
-and training**. `--task blood_pressure` is still the default command behavior.
-Both tasks share MLRun storage but have independent active models.
+Disease is the default and only supported training task. Blood-pressure
+prediction, its training commands and its admin controls have been removed.
+Historical BP run rows remain inert audit history; they cannot be requested or
+used for predictions. Recorded BP readings still support clinical charts,
+disease classification and similarity grouping.
 
 ## Verified demonstration: 4 October 2026
 
@@ -56,6 +66,12 @@ eligible visits from 3,892 patients**: 3,113 for training/CV and 779 for the fin
 test, with zero patient overlap. It excluded 258 input observations without a
 supported, unambiguous primary label. Some original patients therefore do not
 contribute to this classification task.
+
+This saved result describes the existing demonstration database. The public
+fixtures reproduce the generated baseline, not later report uploads or manual
+edits; a fresh import must train its own model and may have different coverage
+and scores. Database records and private `.local/ml/` bundles are needed to
+preserve an existing run on another device.
 
 | Method | CV macro F1 | Final accuracy | Final macro F1 |
 | --- | ---: | ---: | ---: |
@@ -238,5 +254,5 @@ Admin UI, styles and checks:
 - `README.md`
 - `docs/ML_INSIGHTS.md`
 
-Patient and doctor dashboards and the existing blood-pressure learning module
-were not rewritten.
+Patient and doctor dashboards are unchanged. Removal of the separate
+blood-pressure prediction task does not remove their recorded measurements.

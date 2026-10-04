@@ -32,7 +32,7 @@ async function mockApplication(page: Page, initial: Application, failFirstApprov
     if (method === "GET" && path === "/api/v1/auth/csrf/") return json(route, { csrfToken: "synthetic-csrf" });
     if (method === "GET" && path === "/api/v1/auth/sessions/") return json(route, { results: [] });
     if (method === "GET" && path === "/api/v1/admin/audit/") return json(route, { results: [] });
-    if (method === "GET" && path === "/api/v1/admin/analytics/catalog/") return json(route, { datasets: [], stations: [], defaults: {} });
+    if (method === "GET" && path === "/api/v1/admin/analytics/ml/catalog/") return json(route, { synthetic: true, datasets: [], stations: [], diseases: [], lines: [], defaults: {}, suppression_threshold: 5 });
     if (method === "GET" && path === "/api/v1/admin/provider-applications/") {
       const matches = new URL(request.url()).searchParams.get("role") === current.role;
       return json(route, { results: matches ? [current] : [], next: null, previous: null, count: matches ? 1 : 0 });
