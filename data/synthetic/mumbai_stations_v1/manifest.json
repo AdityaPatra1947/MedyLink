@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "generator_version": "1.0.0",
+  "dataset_id": "mumbai_stations_v1",
+  "synthetic": true,
+  "seed": 20260929,
+  "as_of": "2026-09-29",
+  "patient_count": 1000,
+  "observation_start": "2025-09-30",
+  "geography_scope": "Selected Mumbai Metropolitan Region station catchments: Central, Western, Harbour",
+  "contact_policy": "Reserved .test emails; phone fields empty; no household addresses",
+  "clinical_policy": "Invented labels and overlapping observations, no clinical validation; prescription placeholders only",
+  "classification": "SYNTHETIC DEMO ONLY - NOT OBSERVED PATIENT DATA",
+  "reference_metadata": {
+    "schema_version": "1.0",
+    "reference_date": "2026-09-29",
+    "description": "Curated real station-area anchors for a synthetic Mumbai Metropolitan Region patient dataset; no patient or residential coordinates.",
+    "selected_station_count": 34,
+    "source_point_feature_count": 106,
+    "selected_source_feature_count": 35,
+    "source_dataset_name": "Mumbai Suburban Network 2025",
+    "source_resource_name": "Suburban Line Stations",
+    "source_url": "https://data.opencity.in/dataset/mumbai-suburban-network-2025/resource/142fbd25-9ceb-41b2-900d-72479cdc179e",
+    "source_download_url": "https://data.opencity.in/dataset/50851056-1954-459f-a747-09366dcd416d/resource/142fbd25-9ceb-41b2-900d-72479cdc179e/download/5baa7e83-2855-4d17-86a9-9954b044ec08.kml",
+    "source_metadata_url": "https://data.opencity.in/api/3/action/resource_show?id=142fbd25-9ceb-41b2-900d-72479cdc179e",
+    "source_resource_id": "142fbd25-9ceb-41b2-900d-72479cdc179e",
+    "source_organization_as_attributed": "BMC",
+    "source_credit": "OpenCity.in",
+    "source_license_id": "Public Domain",
+    "source_last_modified": "2025-11-25T15:23:31.863053",
+    "source_format": "KML",
+    "raw_source_sha256": "5e7ee5a97bcc5db017fe11f246521c32cc0c21ed309a616c95c84875b61ff30a",
+    "raw_source_bytes": 55061,
+    "coordinate_system": "WGS84 geographic coordinates in decimal degrees, extracted from KML Point coordinates.",
+    "coordinate_transform": "KML longitude,latitude reordered to named longitude/latitude fields; retained to six decimal places. Dadar uses an explicit mean of its two source points.",
+    "coordinate_precision_note": "Decimal precision preserves the source anchor; it is not a guarantee of surveyed positional accuracy or a household location.",
+    "line_membership_scope": [
+      "Central",
+      "Western",
+      "Harbour"
+    ],
+    "line_membership_method": "Curated corridor memberships cross-checked against official route references. KML N_REGION is a single source category and is not copied as a complete membership list.",
+    "line_membership_note": "Trans-Harbour, Uran, Metro and non-suburban services are outside this classification. Interchange memberships overlap; sum of per-line counts can exceed unique station or patient counts.",
+    "city_label_note": "Broad city/urban-region labels for this synthetic dataset, not municipal boundary claims. Navi Mumbai includes the Panvel station area; Kalyan and Dombivli share Kalyan-Dombivli.",
+    "official_line_sources": [
+      {
+        "id": "central_system_map_2019",
+        "url": "https://cr.indianrailways.gov.in/cris/uploads/files/1561376559029-all_div_merged.pdf",
+        "description": "Central Railway Mumbai Division system map, page 1, effective 2019-04-01; station topology and interchange cross-check, not current timetable."
+      },
+      {
+        "id": "western_timetable_2023",
+        "url": "https://wr.indianrailways.gov.in/cris/uploads/files/1680671491866-DN%20AC%20TIME%20TABLE%2005.04.2023.pdf",
+        "description": "Western Railway official suburban station sequence, dated 2023-04-05; includes Churchgate, Dadar, Bandra, Andheri, Goregaon and Borivali."
+      },
+      {
+        "id": "pib_harbour_operation_2018",
+        "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1537441&lang=2&reg=48",
+        "description": "Ministry of Railways/PIB 2018-07-03 release refers to Harbour lines at Andheri-Vile Parle and Goregaon-CSMT service."
+      },
+      {
+        "id": "pib_projects_2026",
+        "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2245194&lang=2&reg=48",
+        "description": "Ministry of Railways/PIB 2026-03-25 project list includes the sanctioned Goregaon-Borivali Harbour extension; this reference does not establish operation to Borivali."
+      }
+    ],
+    "limitations": [
+      "Selected station areas only; not an exhaustive station registry, current timetable or routing service.",
+      "The source catalog attributes the coordinate resource to BMC; this subset does not independently certify its survey accuracy.",
+      "Any generated patient points must be separately labelled synthetic and must not be described as observed residence, travel or disease exposure.",
+      "Stations were selected for geographic and line coverage, not in proportion to population, ridership or disease incidence."
+    ]
+  },
+  "generator_sha256": "c1dd8e76f6586012c90d3d81e082356cca0b8d6a197c0f6b7c026287766de436",
+  "station_reference_sha256": "d04a3c07d3dc41d8be1affe48b55d3ac4f5f54a292b5bbb7d180496d53fd1b35",
+  "files": {
+    "analytics_observations.jsonl": {
+      "sha256": "5bfb31099759f91ebaa28df1f401635bdf174564471abe8b4f6cc7f0dbf8d951",
+      "bytes": 1075145
+    },
+    "dataset.json": {
+      "sha256": "78d3e1a85d3f48356164974a5b8870c507144269e2f8f2310d1257fdb4b63f19",
+      "bytes": 4520804
+    },
+    "evaluation_only_ground_truth.json": {
+      "sha256": "a6e7c909a433ff01c2266d4a86a3cb4464fa8592de5bc5c4d7008309c7c204e5",
+      "bytes": 159060
+    },
+    "validation_report.json": {
+      "sha256": "54d45ef7c114dceda56e5051a85a3ac7ee4d25a667e8579a89b58ea5fd5958d9",
+      "bytes": 1991
+    }
+  },
+  "credentials": "Excluded from shareable files; stored under ignored .local/synthetic/<dataset_id>/credentials.json",
+  "generation_reproducibility": "Public dataset bytes repeat for the same generator/reference/seed/date; credentials are cryptographically random each run."
+}

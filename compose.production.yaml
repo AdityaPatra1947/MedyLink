@@ -1,0 +1,35 @@
+name: medylink
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --save "" --appendonly no
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file: backend/.env
+    environment:
+      DJANGO_DEBUG: "false"
+      REDIS_URL: redis://redis:6379/0
+      PRIVATE_MEDIA_ROOT: /app/private-media
+    volumes:
+      - evidence:/app/private-media
+    depends_on: [redis]
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        API_INTERNAL_URL: http://backend:8000
+    restart: unless-stopped
+    depends_on: [backend]
+  proxy:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/tls:/etc/nginx/tls:ro
+    depends_on: [frontend, backend]
+volumes:
+  evidence:
+    name: ${MEDYLINK_EVIDENCE_VOLUME:-arogyatrack-lite_evidence}

@@ -1,0 +1,87 @@
+# Clinic API contract
+
+All paths use `/api/v1/` and a trailing slash. UUID identifiers. Lists return `{results: [...], next: number|null}`, at most 50 rows per page; send `?page=2` for the next page. Server owns actor, status and source fields. Private responses use `Cache-Control: no-store, private`.
+
+Authentication uses verified email plus password. Current, unexpired professional approval is required for doctors and pharmacists; pharmacy shop licences must also remain valid. There is no patient approval or grant workflow. Historical AccessRequest and AccessGrant rows remain in the database for compatibility, but their routes and enforcement have been removed. Admin accounts cannot read clinical resources. Patients can access only their own data.
+
+## Patient identification and card
+
+Each user has a unique compact account_id (patient prefix P-, doctor D-, pharmacist PH-, administrator A- followed by six random characters). Patient cards display this compact ID prominently. UUID resource IDs and existing health_id/card_locator values remain unchanged. Exact lookup accepts the compact ID case-insensitively as well as existing health IDs and card locators. The account ID is an identifier, not a credential.
+
+* `GET/PATCH patients/me/` returns `{id,account_id,name,health_id,date_of_birth,gender,phone,address,blood_group,emergency_contact,allergy_status,photo_url}`. PATCH accepts profile fields except id/account_id/name/health_id/photo_url. Allergy status is `unknown|none_known|reported`.
+* `POST patients/me/photo/`: multipart `file`, JPEG/PNG up to 2 MiB. Image decoding and signature/extension validation are required. Returns the full profile (201). The photo URL is `patients/{id}/photo/`, accessible only to the patient or a currently approved doctor/pharmacist; it is not a public media URL. A replacement removes the previous file after database commit.
+* `GET patients/me/card/` and `POST patients/me/card/replace/` return `{patient_id,account_id,health_id,name,date_of_birth,blood_group,photo_url,locator,qr_data_url}`. Replacement rotates the opaque locator and keeps the health ID stable. `GET patients/me/card.pdf/` downloads a card with photo, identity, birth date, blood group and QR. QR opens the generic `/health-card/{locator}` page; records require an approved provider to sign in.
+* `POST provider/patients/lookup/` accepts `{identifier: account_id, health_id or card_locator}` and returns `{patient_id,patient:{id,account_id,name,health_id,date_of_birth,photo_url}}`. Only approved doctors/pharmacists may use it. Unknown identifiers return 404. It does not create a relationship or return clinical history.
+* `GET doctor/patients/` returns the requesting doctor's explicitly saved patient profiles, newest additions first with pagination. The migration preserves patients from the doctor's existing consultations/prescriptions. New lookups and new consultations do not implicitly add patients.
+* `POST doctor/patients/{patient_id}/` saves a patient to the requesting doctor's My patients list. First addition returns 201 `{patient:Profile,is_my_patient:true,created:true}`; a repeated addition returns 200 with `created:false`. Saving, listing, and all clinical reads require current professional approval. Saved relationships never bypass suspension, expired approval, email verification, or account activity checks. Other doctors' saved lists are private.
+* `GET/PATCH doctor/profile/` is available to a verified active doctor, including one awaiting approval. Response `{user:User,application:Application|null}` includes the immutable account ID/email and current professional details. PATCH accepts only `name` (nonblank, at most 150 characters) and `phone` (optional contact, at most 30 characters, blank allowed); all unknown or immutable fields are rejected. Professional credentials remain versioned through the provider application workflow. Session and password controls use the shared account security endpoints.
+
+## Patient dashboard and health tracking
+
+* `GET patients/me/dashboard/`: verified patient only; returns `counts`, `latest`, `trends`, `recent_notifications`, `adherence`, `lab_summary`, `health_score`, `health_score_reason`, `risk_level`, and `regional_alerts`. Values use the patient's stored observations. Health score/risk are unavailable until a valid reviewed policy and all required fresh inputs exist; no placeholder clinical values are generated.
+* `GET/PUT patients/me/adherence/`: own daily dose logs, limited to today and the preceding 29 UTC dates. PUT accepts `{date:YYYY-MM-DD,scheduled_doses:integer,taken_doses:integer}` and upserts that date. Both methods return `{results,summary:null|{percentage,scheduled_doses,taken_doses,days_logged,period_days:30}}`. Adherence is `100 × total taken / total scheduled` for logged days only, not pharmacy collection history. Dose counts are bounded and updates audited.
+* `GET/POST patients/me/labs/`: owning patient only. `GET/POST patients/{patient_id}/labs/`: currently approved doctor only. POST appends `{name,value,unit,reference_low?,reference_high?,measured_at,report_id?}`; the optional report must belong to the same patient. Results retain the server-recorded author and role. There are no laboratory update/delete operations. GET returns `{results,next,summary:{abnormal,total}}`; flags compare supplied bounds and remain unknown without them. Summary uses the latest result per case-insensitive test name and case-sensitive unit; abnormal is null if no results have reference bounds. Pharmacists/admins are denied.
+
+See [Patient health data](../../docs/PATIENT_HEALTH_DATA.md) for complete request/response shapes, constraints, score-policy configuration, and the optional regional-alert adapter.
+
+## Visits, records and private reports
+
+* `GET patients/{id}/clinical-summary/`: `{patient,is_my_patient,allergies,conditions,records,prescriptions}` for the owning patient or an approved doctor. Each embedded list shows up to 50 recent items; complete paginated history is available through the individual list endpoints.
+* `GET/POST patients/{id}/records/`; POST doctor-only `{complaint,diagnosis,notes,vitals:{...}}`. Records are `{id,patient_id,doctor_id,doctor_name,complaint,diagnosis,notes,vitals,created_at,correction_of,correction_reason}`. `GET patients/me/records/` returns all own records using pagination. `POST records/{id}/corrections/` uses the same fields plus mandatory `correction_reason`, and only the original author may create it. Original records remain unchanged. There are no PUT/PATCH/DELETE operations for consultations or reports; doctors can read entries from all doctors but cannot correct another doctor's entry, cancel another doctor's prescription, or attach a new report to another doctor's consultation.
+* `GET patients/me/visits/`: `{results:[{id,created_at,doctor:{id,name,qualification,specialty,clinic_name},record:Record,prescriptions:Prescription[],reports:Report[]}],next}`. Visits are ordered newest first. Corrections remain visible with correction metadata. Associated prescriptions/reports use the exact `record_id`; there is no inferred grouping. Doctor professional details reflect their latest submitted application.
+* `GET/POST patients/me/reports/` and `GET/POST patients/{id}/reports/`: owning patient or currently approved doctor only. Upload multipart `file` (PDF/JPEG/PNG, up to 10 MiB), optional `title` (up to 200 characters), and optional `record_id`. The record must belong to that patient; a doctor may link only a record they authored, while a patient may link any of their own visits. All uploads are private. Extension/signature checks are applied and images are decoded and validated.
+* Report response: `{id,patient_id,record_id:null|string,name,title,content_type,size_bytes,uploaded_by:{id,name,role},created_at,download_url}`. `GET reports/{id}/download/` enforces the same owner/approved-doctor access and uses attachment disposition. Pharmacists/admins cannot list, upload, or download reports. The paginated report library includes all uploads, including `record_id:null`, so standalone reports are not lost from history.
+* `GET/POST patients/{id}/allergies/` or `conditions/`: POST `{name,notes}`, response `{id,name,notes,source,author_id,author_name,created_at,resolved_at,resolution_reason}`. `POST .../{entry_id}/resolve/` accepts `{reason}` and requires the entry's author.
+
+## Prescriptions and dispensing
+
+* `GET patients/me/prescriptions/`, `GET patients/{id}/prescriptions/`: the patient, approved doctor, or approved pharmacist may read. `POST patients/{id}/prescriptions/` is doctor-only and accepts `{record_id?:UUID|null,valid_until:ISO datetime,notes,items:[{medicine,dosage,instructions,quantity:decimal string,unit}]}`. If supplied, record_id must identify the same patient's consultation authored by the prescriber.
+* Prescription response: `{id,patient:{id,account_id,name,health_id,date_of_birth},doctor_id,doctor_name,doctor_registration,record_id,created_at,valid_until,status,notes,items:[{id,medicine,dosage,instructions,quantity,unit,dispensed,remaining}],allergy_status,allergies:[...],cancelled_at,cancellation_reason}`. Pharmacy responses omit `record_id` and never include encounter diagnoses, notes, conditions, full patient contact details or reports. `notes` contains only prescription instructions, and the allergy list supports safe dispensing.
+* `GET prescriptions/{id}/`, `GET prescriptions/{id}/pdf/` use the same role restrictions. `POST prescriptions/{id}/cancel/` accepts `{reason}` and requires the issuing doctor.
+* `POST prescriptions/{id}/dispense/`: approved pharmacist only, header `Idempotency-Key` (UUID recommended), `{items:[{prescription_item_id,quantity:decimal string,unit}]}`. Response `{id,prescription_id,pharmacist_name,shop_name,patient_name,patient_health_id,created_at,items:[{medicine,quantity,unit}]}`. Retry of the same key/payload returns the existing event; mismatched payload returns 409. Positive quantities, exact prescribed units, item membership and remaining balance are checked atomically across pharmacies. Provider approval is checked again for idempotent replay.
+* `GET pharmacy/dispensing/` returns this pharmacist's immutable dispensing history. `GET patients/me/dispensing/` returns the patient's history. The legacy `GET pharmacy/shared-prescriptions/` URL now returns only prescriptions previously dispensed by that pharmacy; use exact patient lookup plus the patient prescription list for new dispensing.
+
+## Provider review and audit
+
+* `GET/POST provider/application/`: GET `{current:Application|null,history:Application[]}`; POST creates a new application version with professional/shop fields. `GET pharmacy/me/` is an alias.
+* `POST provider/application/documents/`: multipart `file`, kind `credential|photo` only, pending application required. Credentials accept PDF/JPEG/PNG up to 5 MiB, photos JPEG/PNG up to 2 MiB. Medical-report kind is rejected here. `GET provider-documents/{id}/download/` is provider-owner/admin only.
+* `GET admin/provider-applications/`, `GET admin/provider-applications/{id}/`; `POST admin/provider-applications/{id}/approve/` `{reason,evidence_reviewed,valid_until:ISO datetime}`, reject `{reason}`, and `POST admin/providers/{provider_uuid}/suspend/` `{reason}`. Approval requires validated credential evidence: `POST admin/provider-documents/{id}/validate/` `{safe:true,reason}`.
+* `GET patients/me/access-history/` returns safe patient audit metadata `{id,event,outcome,actor_name,created_at,request_id}`. `GET admin/audit/` exposes only safe event metadata, not clinical resources.
+
+## Registration and provider review details
+
+POST /api/v1/auth/register/ accepts flat multipart/form-data; patient requests also accept JSON. Successful registration returns the same generic HTTP 202 {"detail": "..."} whether a new account is created or the email is already registered. It never returns tokens, documents, a profile, or email secrets.
+
+All roles require name, email, password, matching password_confirm, a public role, consent=true, and privacy notice version 1.0 (the default). Phone is optional contact information and is not verified by SMS. Email verification remains required before sign-in.
+
+| Role | Required role fields | Optional role fields |
+|---|---|---|
+| Patient | date_of_birth for an adult aged 18 or older | gender, address, blood_group (defaults to unknown), emergency_contact |
+| Doctor | qualification, specialty, registration_number, registering_body, practice_address, credential_documents | clinic_name, years_experience (integer 0–80), photo |
+| Pharmacist | registration_number, registering_body, shop_name, practice_address, shop_license, shop_license_expires, credential_documents | opening_hours, photo (shop photo) |
+
+Gender values are empty, female, male, other, or prefer_not_to_say. Birth dates before 1900 or younger than 18 are rejected. A pharmacy license must not have expired. Text limits: name/qualification/specialty/registering body 150; phone 30; registration and shop-license identifiers 100; address/practice address 500; clinic/shop names 180; emergency contact 250; opening hours 300 characters.
+
+Send each credential file using the repeated credential_documents field: 1–5 PDF/JPEG/PNG files, each at most 5 MiB and at most 20 MiB combined. The optional photo accepts one JPEG/PNG of at most 2 MiB. Extensions and signatures are checked, and images are decoded and validated. Files remain private and quarantined for administrative validation. A photo has document kind=photo, is distinct from kind=credential, and never counts as credential evidence.
+
+Registration atomically creates the user plus patient profile or the pending provider application and its document records. Failed registration removes files written by that request. Provider resubmission accepts the same application fields at POST /provider/application/. Upload additional evidence with POST /provider/application/documents/, multipart file and optional kind (credential by default, or photo), using the same validation and per-application limits.
+
+GET /admin/provider-applications/ lists current submissions with 50 rows per page and next page number. Valid filters are role=doctor|pharmacist, status=pending|approved|rejected|suspended|expired, and search (maximum 100 characters, matching provider name/email, registration/body, or shop name/license). Omit unused filters. Approved filtering excludes expired approvals/licenses; expired filtering returns these separately.
+
+Application responses contain email, provider_email, email_verified, the full professional/shop fields, typed documents (id, name, kind, status, content_type, size_bytes), and review history. Private storage paths are never returned. Admin detail keeps this flat shape and adds history, containing up to 50 prior application versions. Patient access history stays separate.
+
+Approval requires an active account with verified email, at least one credential document, all credential documents validated, future approval validity, a review reason, and reviewed-evidence notes. Pharmacy approval cannot exceed license validity. A photo alone never qualifies. Approval/rejection/suspension notifications run after a successful database commit; delivery failure is logged without reversing the review. SMTP delivery uses the existing Django email configuration.
+
+## Six-digit email verification
+
+Registration now sends a six-digit code by email instead of a verification link. Enter the email address and code on the verification screen. No localhost URL or link needs to be opened. Codes expire after 10 minutes.
+
+POST /api/v1/auth/verify-email/ accepts JSON with email and code. Code must be a string of exactly six ASCII digits; keep leading zeros, for example {"email":"person@example.com","code":"003721"}. A successful response is HTTP 200 {"detail":"Email verified. You can now sign in."}. It does not create a login session.
+
+Unknown email, wrong code, expired code, used code, and exhausted attempts all return HTTP 400 with code invalid_verification_code and the same generic detail. Each active challenge permits at most five incorrect attempts, persisted even when verification returns HTTP 400. Invalid formatting is rejected separately as a field validation error.
+
+POST /api/v1/auth/resend-verification/ accepts {"email":"person@example.com"}. The response is generic HTTP 200 with detail and resend_after:60 for unknown, already verified, and cooldown-limited accounts as well. The server sends no more than one verification email per account every 60 seconds. Once a replacement is successfully sent, the prior code is invalid. An email-delivery failure rolls back issuance so the previous code and its original timestamps remain intact.
+
+Verification uses a keyed HMAC bound to the user and a random challenge nonce. The database never stores the plain six-digit code or a bare unsalted hash of it. Verification and resend operations serialize on the user row. Security audit events contain no submitted code.
+
+Old verification links and token-only verification requests are no longer accepted. An unverified user with an old link should request a new code using their email address. Existing verified users remain verified. Password reset continues to use its separate, single-use 30-minute link, and sign-in uses verified email plus password without an authenticator step.

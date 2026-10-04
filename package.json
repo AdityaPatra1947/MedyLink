@@ -1,0 +1,22 @@
+{
+  "name": "medylink",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:synthetic": "node scripts/synthetic.mjs dev",
+    "synthetic:manage": "node scripts/synthetic.mjs manage",
+    "setup": "powershell -ExecutionPolicy Bypass -File scripts/setup.ps1",
+    "migrate": "node scripts/manage.mjs migrate",
+    "admin": "node scripts/manage.mjs bootstrap_admin",
+    "test:backend": "node scripts/manage.mjs test --settings=config.test_settings",
+    "check": "npm --prefix frontend run typecheck && npm --prefix frontend run lint",
+    "build": "npm --prefix frontend run build"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@neon/config": "^1.8.2",
+    "@neon/env": "^1.4.7"
+  }
+}

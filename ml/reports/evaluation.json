@@ -1,0 +1,908 @@
+{
+  "data": {
+    "date_to": "2026-09-29T09:00:00+00:00",
+    "date_from": "2025-09-30T09:00:00+00:00",
+    "input_rows": 2268,
+    "class_counts": {
+      "elevated": 226,
+      "below_threshold": 979
+    },
+    "excluded_rows": {
+      "missing_or_invalid_bp": 60,
+      "ambiguous_simultaneous_rows": 0
+    },
+    "interval_days": {
+      "max": 350,
+      "min": 1,
+      "median": 21
+    },
+    "eligible_pairs": 1205,
+    "excluded_pairs": {
+      "missing_or_ambiguous_adjacent_bp": 63
+    },
+    "eligible_patients": 998,
+    "patients_per_class": {
+      "elevated": 207,
+      "below_threshold": 852
+    },
+    "missing_feature_counts": {
+      "age": 0,
+      "bmi": 0,
+      "pulse": 0,
+      "glucose": 160,
+      "systolic": 0,
+      "adherence": 1205,
+      "diastolic": 0,
+      "temperature": 0,
+      "condition_count": 0
+    },
+    "patients_without_pairs": 0,
+    "small_counts_suppressed": false
+  },
+  "seed": 20261003,
+  "split": {
+    "folds": 3,
+    "method": "Fixed 20% patient-group holdout and three shared patient-group cross-validation folds.",
+    "holdout_policy": "The holdout is evaluated once after model selection and never used for model or parameter selection.",
+    "selection_rule": "Highest mean cross-validation macro F1; recall breaks ties; model order breaks exact ties.",
+    "fitting_weights": "First assign equal total weight to each training patient, then equalize positive and negative total weight using training-fold labels only. Evaluation retains patient weights without class rebalance.",
+    "patient_overlap": 0,
+    "holdout_examples": 241,
+    "holdout_patients": 199,
+    "training_examples": 964,
+    "training_patients": 799,
+    "holdout_positive_examples": 45,
+    "holdout_positive_patients": 41
+  },
+  "models": [
+    {
+      "cv": {
+        "std": {
+          "f1": 0.029092,
+          "recall": 0.061576,
+          "accuracy": 0.00989,
+          "macro_f1": 0.016286,
+          "precision": 0.018733
+        },
+        "mean": {
+          "f1": 0.329554,
+          "recall": 0.565248,
+          "accuracy": 0.593851,
+          "macro_f1": 0.519056,
+          "precision": 0.232669
+        },
+        "folds": [
+          {
+            "f1": 0.348348,
+            "recall": 0.617021,
+            "accuracy": 0.592105,
+            "examples": 321,
+            "macro_f1": 0.525747,
+            "patients": 266,
+            "precision": 0.242678,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                146,
+                115
+              ],
+              [
+                21,
+                39
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.288462,
+            "recall": 0.478723,
+            "accuracy": 0.582707,
+            "examples": 321,
+            "macro_f1": 0.496624,
+            "patients": 266,
+            "precision": 0.206422,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                148,
+                113
+              ],
+              [
+                28,
+                32
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.351852,
+            "recall": 0.6,
+            "accuracy": 0.606742,
+            "examples": 322,
+            "macro_f1": 0.534797,
+            "patients": 267,
+            "precision": 0.248908,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                143,
+                118
+              ],
+              [
+                21,
+                40
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          }
+        ]
+      },
+      "id": "logistic_regression",
+      "name": "Logistic regression",
+      "holdout": {
+        "f1": 0.361345,
+        "recall": 0.614286,
+        "accuracy": 0.61809,
+        "examples": 241,
+        "macro_f1": 0.544472,
+        "patients": 199,
+        "precision": 0.255952,
+        "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+        "confusion_matrix": [
+          [
+            111,
+            85
+          ],
+          [
+            15,
+            30
+          ]
+        ],
+        "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+        "confusion_matrix_labels": [
+          "Below threshold",
+          "Elevated reading"
+        ]
+      }
+    },
+    {
+      "cv": {
+        "std": {
+          "f1": 0.034838,
+          "recall": 0.182691,
+          "accuracy": 0.133052,
+          "macro_f1": 0.056818,
+          "precision": 0.002695
+        },
+        "mean": {
+          "f1": 0.215638,
+          "recall": 0.353639,
+          "accuracy": 0.575643,
+          "macro_f1": 0.451571,
+          "precision": 0.169294
+        },
+        "folds": [
+          {
+            "f1": 0.260274,
+            "recall": 0.606383,
+            "accuracy": 0.390977,
+            "examples": 321,
+            "macro_f1": 0.371351,
+            "patients": 266,
+            "precision": 0.165698,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                94,
+                167
+              ],
+              [
+                24,
+                36
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.175258,
+            "recall": 0.180851,
+            "accuracy": 0.699248,
+            "examples": 321,
+            "macro_f1": 0.495675,
+            "patients": 266,
+            "precision": 0.17,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                212,
+                49
+              ],
+              [
+                48,
+                12
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.211382,
+            "recall": 0.273684,
+            "accuracy": 0.636704,
+            "examples": 322,
+            "macro_f1": 0.487686,
+            "patients": 267,
+            "precision": 0.172185,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                182,
+                79
+              ],
+              [
+                42,
+                19
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          }
+        ]
+      },
+      "id": "decision_tree",
+      "name": "Decision tree",
+      "holdout": {
+        "f1": 0.283019,
+        "recall": 0.428571,
+        "accuracy": 0.61809,
+        "examples": 241,
+        "macro_f1": 0.511372,
+        "patients": 199,
+        "precision": 0.211268,
+        "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+        "confusion_matrix": [
+          [
+            129,
+            67
+          ],
+          [
+            26,
+            19
+          ]
+        ],
+        "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+        "confusion_matrix_labels": [
+          "Below threshold",
+          "Elevated reading"
+        ]
+      }
+    },
+    {
+      "cv": {
+        "std": {
+          "f1": 0.049157,
+          "recall": 0.065431,
+          "accuracy": 0.011816,
+          "macro_f1": 0.026713,
+          "precision": 0.038257
+        },
+        "mean": {
+          "f1": 0.236837,
+          "recall": 0.275588,
+          "accuracy": 0.688374,
+          "macro_f1": 0.520469,
+          "precision": 0.208028
+        },
+        "folds": [
+          {
+            "f1": 0.295964,
+            "recall": 0.351064,
+            "accuracy": 0.704887,
+            "examples": 321,
+            "macro_f1": 0.554641,
+            "patients": 266,
+            "precision": 0.255814,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                199,
+                62
+              ],
+              [
+                36,
+                24
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.17561,
+            "recall": 0.191489,
+            "accuracy": 0.682331,
+            "examples": 321,
+            "macro_f1": 0.489435,
+            "patients": 266,
+            "precision": 0.162162,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                203,
+                58
+              ],
+              [
+                46,
+                14
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.238938,
+            "recall": 0.284211,
+            "accuracy": 0.677903,
+            "examples": 322,
+            "macro_f1": 0.517331,
+            "patients": 267,
+            "precision": 0.206107,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                194,
+                67
+              ],
+              [
+                42,
+                19
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          }
+        ]
+      },
+      "id": "random_forest",
+      "name": "Random forest",
+      "holdout": {
+        "f1": 0.294118,
+        "recall": 0.357143,
+        "accuracy": 0.698492,
+        "examples": 241,
+        "macro_f1": 0.551212,
+        "patients": 199,
+        "precision": 0.25,
+        "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+        "confusion_matrix": [
+          [
+            149,
+            47
+          ],
+          [
+            27,
+            18
+          ]
+        ],
+        "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+        "confusion_matrix_labels": [
+          "Below threshold",
+          "Elevated reading"
+        ]
+      }
+    },
+    {
+      "cv": {
+        "std": {
+          "f1": 0.069912,
+          "recall": 0.133251,
+          "accuracy": 0.003659,
+          "macro_f1": 0.030776,
+          "precision": 0.04476
+        },
+        "mean": {
+          "f1": 0.261672,
+          "recall": 0.392087,
+          "accuracy": 0.62077,
+          "macro_f1": 0.502734,
+          "precision": 0.197494
+        },
+        "folds": [
+          {
+            "f1": 0.328947,
+            "recall": 0.531915,
+            "accuracy": 0.616541,
+            "examples": 321,
+            "macro_f1": 0.530263,
+            "patients": 266,
+            "precision": 0.238095,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                164,
+                97
+              ],
+              [
+                27,
+                33
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.165289,
+            "recall": 0.212766,
+            "accuracy": 0.620301,
+            "examples": 321,
+            "macro_f1": 0.459774,
+            "patients": 266,
+            "precision": 0.135135,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                183,
+                78
+              ],
+              [
+                44,
+                16
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.29078,
+            "recall": 0.431579,
+            "accuracy": 0.625468,
+            "examples": 322,
+            "macro_f1": 0.518164,
+            "patients": 267,
+            "precision": 0.219251,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                168,
+                93
+              ],
+              [
+                32,
+                29
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          }
+        ]
+      },
+      "id": "gradient_boosting",
+      "name": "Gradient boosting",
+      "holdout": {
+        "f1": 0.281553,
+        "recall": 0.414286,
+        "accuracy": 0.628141,
+        "examples": 241,
+        "macro_f1": 0.515353,
+        "patients": 199,
+        "precision": 0.213235,
+        "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+        "confusion_matrix": [
+          [
+            127,
+            69
+          ],
+          [
+            25,
+            20
+          ]
+        ],
+        "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+        "confusion_matrix_labels": [
+          "Below threshold",
+          "Elevated reading"
+        ]
+      }
+    }
+  ],
+  "status": "completed",
+  "target": {
+    "id": "next_recorded_visit_elevated_bp",
+    "label": "Elevated blood pressure at the next recorded visit",
+    "horizon": "Next recorded visit; the interval varies by patient.",
+    "definition": "Next recorded systolic >= 140 mmHg or diastolic >= 90 mmHg.",
+    "disclaimer": "Synthetic research only. Predictions support discussion and are not a diagnosis or a clinically validated risk estimate.",
+    "negative_label": "Below this reading threshold",
+    "positive_label": "Elevated reading"
+  },
+  "version": "1.0.1",
+  "versions": {
+    "numpy": "2.5.3",
+    "python": "3.12.14",
+    "scikit_learn": "1.9.1"
+  },
+  "baselines": [
+    {
+      "cv": {
+        "std": {
+          "f1": 0,
+          "recall": 0,
+          "accuracy": 0.000571,
+          "macro_f1": 0.000172,
+          "precision": 0
+        },
+        "mean": {
+          "f1": 0,
+          "recall": 0,
+          "accuracy": 0.822904,
+          "macro_f1": 0.451425,
+          "precision": 0
+        },
+        "folds": [
+          {
+            "f1": 0,
+            "recall": 0,
+            "accuracy": 0.823308,
+            "examples": 321,
+            "macro_f1": 0.451546,
+            "patients": 266,
+            "precision": 0,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                261,
+                0
+              ],
+              [
+                60,
+                0
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0,
+            "recall": 0,
+            "accuracy": 0.823308,
+            "examples": 321,
+            "macro_f1": 0.451546,
+            "patients": 266,
+            "precision": 0,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                261,
+                0
+              ],
+              [
+                60,
+                0
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0,
+            "recall": 0,
+            "accuracy": 0.822097,
+            "examples": 322,
+            "macro_f1": 0.451182,
+            "patients": 267,
+            "precision": 0,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                261,
+                0
+              ],
+              [
+                61,
+                0
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          }
+        ]
+      },
+      "id": "majority",
+      "name": "Always choose the most common result",
+      "holdout": {
+        "f1": 0,
+        "recall": 0,
+        "accuracy": 0.824121,
+        "examples": 241,
+        "macro_f1": 0.451791,
+        "patients": 199,
+        "precision": 0,
+        "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+        "confusion_matrix": [
+          [
+            196,
+            0
+          ],
+          [
+            45,
+            0
+          ]
+        ],
+        "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+        "confusion_matrix_labels": [
+          "Below threshold",
+          "Elevated reading"
+        ]
+      }
+    },
+    {
+      "cv": {
+        "std": {
+          "f1": 0.035043,
+          "recall": 0.029459,
+          "accuracy": 0.015065,
+          "macro_f1": 0.022067,
+          "precision": 0.042852
+        },
+        "mean": {
+          "f1": 0.209081,
+          "recall": 0.194214,
+          "accuracy": 0.739022,
+          "macro_f1": 0.526397,
+          "precision": 0.226734
+        },
+        "folds": [
+          {
+            "f1": 0.171429,
+            "recall": 0.159574,
+            "accuracy": 0.727444,
+            "examples": 321,
+            "macro_f1": 0.504162,
+            "patients": 266,
+            "precision": 0.185185,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                221,
+                40
+              ],
+              [
+                49,
+                11
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.2,
+            "recall": 0.191489,
+            "accuracy": 0.729323,
+            "examples": 321,
+            "macro_f1": 0.518552,
+            "patients": 266,
+            "precision": 0.209302,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                219,
+                42
+              ],
+              [
+                48,
+                12
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          },
+          {
+            "f1": 0.255814,
+            "recall": 0.231579,
+            "accuracy": 0.7603,
+            "examples": 322,
+            "macro_f1": 0.556478,
+            "patients": 267,
+            "precision": 0.285714,
+            "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+            "confusion_matrix": [
+              [
+                225,
+                36
+              ],
+              [
+                46,
+                15
+              ]
+            ],
+            "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+            "confusion_matrix_labels": [
+              "Below threshold",
+              "Elevated reading"
+            ]
+          }
+        ]
+      },
+      "id": "carry_forward",
+      "name": "Repeat the current BP category",
+      "holdout": {
+        "f1": 0.255319,
+        "recall": 0.257143,
+        "accuracy": 0.736181,
+        "examples": 241,
+        "macro_f1": 0.547507,
+        "patients": 199,
+        "precision": 0.253521,
+        "weighting": "Equal total weight per patient; confusion matrix shows unweighted visit-pair counts.",
+        "confusion_matrix": [
+          [
+            162,
+            34
+          ],
+          [
+            32,
+            13
+          ]
+        ],
+        "confusion_matrix_axes": "Rows are actual outcomes; columns are model outputs. Raw visit-pair counts.",
+        "confusion_matrix_labels": [
+          "Below threshold",
+          "Elevated reading"
+        ]
+      }
+    }
+  ],
+  "selection": {
+    "message": "Not reliable enough for predictions; the comparison remains available for learning.",
+    "model_id": "random_forest",
+    "criterion": "Mean patient-group cross-validation macro F1, then positive-class recall.",
+    "model_name": "Random forest",
+    "gate_checks": {
+      "holdout_beats_baselines": false,
+      "holdout_recall_at_least_half": false,
+      "cross_validation_beats_baselines": false,
+      "at_least_ten_positive_holdout_examples": true,
+      "at_least_ten_positive_holdout_patients": true
+    },
+    "gate_policy": "Fixed before evaluation: beat both baselines by 0.01 macro F1 in development and holdout, recall >= 0.50 and at least 10 independent patients with positive holdout outcomes. A gate is not clinical validation.",
+    "prediction_enabled": false
+  },
+  "created_at": "2026-10-03T13:02:17.412281+00:00",
+  "limitations": [
+    "All results describe an artificial dataset; they do not establish clinical accuracy.",
+    "The target is a future recorded measurement, not a diagnosis of hypertension.",
+    "The next visit can be days or months later; this is not a fixed-horizon prediction.",
+    "Repeat visits from one patient stay in one split. Evaluation gives each patient equal total weight; training additionally balances outcome classes within each fold.",
+    "Missing observations are not normal results; preprocessing is fitted inside each training fold.",
+    "Generated measurements may not contain useful predictive signal; simple baselines can win.",
+    "Model scores and feature importance do not establish medical causes or treatment advice.",
+    "Counts of one to four are hidden. This display safeguard is not a formal anonymization guarantee across repeated queries."
+  ],
+  "training_dates": {
+    "from": "2025-09-30T09:00:00+00:00",
+    "through": "2026-09-29T09:00:00+00:00"
+  },
+  "feature_importance": [
+    {
+      "label": "Upper blood pressure reading",
+      "feature": "systolic",
+      "importance": 0.042121,
+      "standard_deviation": 0.033037
+    },
+    {
+      "label": "Recorded conditions",
+      "feature": "condition_count",
+      "importance": 0.035285,
+      "standard_deviation": 0.016323
+    },
+    {
+      "label": "Blood sugar reading",
+      "feature": "glucose",
+      "importance": 0.000627,
+      "standard_deviation": 0.033174
+    },
+    {
+      "label": "Temperature",
+      "feature": "temperature",
+      "importance": 0.000615,
+      "standard_deviation": 0.018626
+    },
+    {
+      "label": "Recorded medicine-taking",
+      "feature": "adherence",
+      "importance": 0,
+      "standard_deviation": 0
+    },
+    {
+      "label": "Recorded gender",
+      "feature": "gender",
+      "importance": -0.000358,
+      "standard_deviation": 0.007733
+    },
+    {
+      "label": "Body mass index",
+      "feature": "bmi",
+      "importance": -0.002887,
+      "standard_deviation": 0.013243
+    },
+    {
+      "label": "Lower blood pressure reading",
+      "feature": "diastolic",
+      "importance": -0.003401,
+      "standard_deviation": 0.012554
+    },
+    {
+      "label": "Blood sugar test type",
+      "feature": "glucose_context",
+      "importance": -0.006661,
+      "standard_deviation": 0.006604
+    },
+    {
+      "label": "Pulse",
+      "feature": "pulse",
+      "importance": -0.017209,
+      "standard_deviation": 0.01534
+    },
+    {
+      "label": "Age",
+      "feature": "age",
+      "importance": -0.026799,
+      "standard_deviation": 0.017563
+    }
+  ],
+  "feature_importance_method": "Five held-out permutation repeats after model selection. Importance is the change in patient-weighted macro F1 when a feature is shuffled; zero or negative changes show no demonstrated contribution. Correlated features share signal. This is not a medical cause or probability."
+}

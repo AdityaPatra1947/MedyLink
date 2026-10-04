@@ -1,0 +1,713 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "reference_date": "2026-09-29",
+    "description": "Curated real station-area anchors for a synthetic Mumbai Metropolitan Region patient dataset; no patient or residential coordinates.",
+    "selected_station_count": 34,
+    "source_point_feature_count": 106,
+    "selected_source_feature_count": 35,
+    "source_dataset_name": "Mumbai Suburban Network 2025",
+    "source_resource_name": "Suburban Line Stations",
+    "source_url": "https://data.opencity.in/dataset/mumbai-suburban-network-2025/resource/142fbd25-9ceb-41b2-900d-72479cdc179e",
+    "source_download_url": "https://data.opencity.in/dataset/50851056-1954-459f-a747-09366dcd416d/resource/142fbd25-9ceb-41b2-900d-72479cdc179e/download/5baa7e83-2855-4d17-86a9-9954b044ec08.kml",
+    "source_metadata_url": "https://data.opencity.in/api/3/action/resource_show?id=142fbd25-9ceb-41b2-900d-72479cdc179e",
+    "source_resource_id": "142fbd25-9ceb-41b2-900d-72479cdc179e",
+    "source_organization_as_attributed": "BMC",
+    "source_credit": "OpenCity.in",
+    "source_license_id": "Public Domain",
+    "source_last_modified": "2025-11-25T15:23:31.863053",
+    "source_format": "KML",
+    "raw_source_sha256": "5e7ee5a97bcc5db017fe11f246521c32cc0c21ed309a616c95c84875b61ff30a",
+    "raw_source_bytes": 55061,
+    "coordinate_system": "WGS84 geographic coordinates in decimal degrees, extracted from KML Point coordinates.",
+    "coordinate_transform": "KML longitude,latitude reordered to named longitude/latitude fields; retained to six decimal places. Dadar uses an explicit mean of its two source points.",
+    "coordinate_precision_note": "Decimal precision preserves the source anchor; it is not a guarantee of surveyed positional accuracy or a household location.",
+    "line_membership_scope": [
+      "Central",
+      "Western",
+      "Harbour"
+    ],
+    "line_membership_method": "Curated corridor memberships cross-checked against official route references. KML N_REGION is a single source category and is not copied as a complete membership list.",
+    "line_membership_note": "Trans-Harbour, Uran, Metro and non-suburban services are outside this classification. Interchange memberships overlap; sum of per-line counts can exceed unique station or patient counts.",
+    "city_label_note": "Broad city/urban-region labels for this synthetic dataset, not municipal boundary claims. Navi Mumbai includes the Panvel station area; Kalyan and Dombivli share Kalyan-Dombivli.",
+    "official_line_sources": [
+      {
+        "id": "central_system_map_2019",
+        "url": "https://cr.indianrailways.gov.in/cris/uploads/files/1561376559029-all_div_merged.pdf",
+        "description": "Central Railway Mumbai Division system map, page 1, effective 2019-04-01; station topology and interchange cross-check, not current timetable."
+      },
+      {
+        "id": "western_timetable_2023",
+        "url": "https://wr.indianrailways.gov.in/cris/uploads/files/1680671491866-DN%20AC%20TIME%20TABLE%2005.04.2023.pdf",
+        "description": "Western Railway official suburban station sequence, dated 2023-04-05; includes Churchgate, Dadar, Bandra, Andheri, Goregaon and Borivali."
+      },
+      {
+        "id": "pib_harbour_operation_2018",
+        "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1537441&lang=2&reg=48",
+        "description": "Ministry of Railways/PIB 2018-07-03 release refers to Harbour lines at Andheri-Vile Parle and Goregaon-CSMT service."
+      },
+      {
+        "id": "pib_projects_2026",
+        "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2245194&lang=2&reg=48",
+        "description": "Ministry of Railways/PIB 2026-03-25 project list includes the sanctioned Goregaon-Borivali Harbour extension; this reference does not establish operation to Borivali."
+      }
+    ],
+    "limitations": [
+      "Selected station areas only; not an exhaustive station registry, current timetable or routing service.",
+      "The source catalog attributes the coordinate resource to BMC; this subset does not independently certify its survey accuracy.",
+      "Any generated patient points must be separately labelled synthetic and must not be described as observed residence, travel or disease exposure.",
+      "Stations were selected for geographic and line coverage, not in proportion to population, ridership or disease incidence."
+    ]
+  },
+  "stations": [
+    {
+      "station_id": "CSMT",
+      "station_name": "CSMT",
+      "lines": [
+        "Central",
+        "Harbour"
+      ],
+      "latitude": 18.940272,
+      "longitude": 72.835706,
+      "source_feature_ids": [
+        "existing_suburban_stations.23"
+      ],
+      "source_name": "CSMT",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Chhatrapati Shivaji Maharaj Terminus",
+        "Chhatrapati Shivaji Terminus",
+        "CST",
+        "CSTM",
+        "Victoria Terminus",
+        "VT"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "SANDHURST_ROAD",
+      "station_name": "Sandhurst Road",
+      "lines": [
+        "Central",
+        "Harbour"
+      ],
+      "latitude": 18.960879,
+      "longitude": 72.839579,
+      "source_feature_ids": [
+        "existing_suburban_stations.25"
+      ],
+      "source_name": "Sandhurst Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "BYCULLA",
+      "station_name": "Byculla",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 18.976693,
+      "longitude": 72.832769,
+      "source_feature_ids": [
+        "existing_suburban_stations.26"
+      ],
+      "source_name": "Byculla",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "DADAR",
+      "station_name": "Dadar",
+      "lines": [
+        "Central",
+        "Western"
+      ],
+      "latitude": 19.018852,
+      "longitude": 72.843385,
+      "source_feature_ids": [
+        "existing_suburban_stations.9",
+        "existing_suburban_stations.30"
+      ],
+      "source_name": "Dadar",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Dadar Central",
+        "Dadar Western"
+      ],
+      "anchor_method": "arithmetic_mean_of_two_station_points",
+      "anchor_note": "One interchange area: mean of WESTERN feature .9 and CENTRAL feature .30; neither feature represents Harbour service."
+    },
+    {
+      "station_id": "MATUNGA",
+      "station_name": "Matunga",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.027496,
+      "longitude": 72.850208,
+      "source_feature_ids": [
+        "existing_suburban_stations.31"
+      ],
+      "source_name": "Matunga",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "SION",
+      "station_name": "Sion",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.04771,
+      "longitude": 72.864004,
+      "source_feature_ids": [
+        "existing_suburban_stations.32"
+      ],
+      "source_name": "Sion",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "KURLA",
+      "station_name": "Kurla",
+      "lines": [
+        "Central",
+        "Harbour"
+      ],
+      "latitude": 19.065477,
+      "longitude": 72.879354,
+      "source_feature_ids": [
+        "existing_suburban_stations.33"
+      ],
+      "source_name": "Kurla",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Kurla Junction"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "GHATKOPAR",
+      "station_name": "Ghatkopar",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.085989,
+      "longitude": 72.908466,
+      "source_feature_ids": [
+        "existing_suburban_stations.35"
+      ],
+      "source_name": "Ghatkopar",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "VIKHROLI",
+      "station_name": "Vikhroli",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.111918,
+      "longitude": 72.928145,
+      "source_feature_ids": [
+        "existing_suburban_stations.36"
+      ],
+      "source_name": "Vikhroli",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "BHANDUP",
+      "station_name": "Bhandup",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.142435,
+      "longitude": 72.937651,
+      "source_feature_ids": [
+        "existing_suburban_stations.38"
+      ],
+      "source_name": "Bhandup",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "MULUND",
+      "station_name": "Mulund",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.171866,
+      "longitude": 72.956553,
+      "source_feature_ids": [
+        "existing_suburban_stations.40"
+      ],
+      "source_name": "Mulund",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "THANE",
+      "station_name": "Thane",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.186115,
+      "longitude": 72.975934,
+      "source_feature_ids": [
+        "existing_suburban_stations.74"
+      ],
+      "source_name": "Thane",
+      "city": "Thane",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "DOMBIVLI",
+      "station_name": "Dombivli",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.218286,
+      "longitude": 73.086843,
+      "source_feature_ids": [
+        "existing_suburban_stations.79"
+      ],
+      "source_name": "Dombivili",
+      "city": "Kalyan-Dombivli",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Dombivili"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "KALYAN",
+      "station_name": "Kalyan",
+      "lines": [
+        "Central"
+      ],
+      "latitude": 19.235191,
+      "longitude": 73.129971,
+      "source_feature_ids": [
+        "existing_suburban_stations.81"
+      ],
+      "source_name": "Kalyan",
+      "city": "Kalyan-Dombivli",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Kalyan Junction"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "CHURCHGATE",
+      "station_name": "Churchgate",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 18.935296,
+      "longitude": 72.827192,
+      "source_feature_ids": [
+        "existing_suburban_stations.1"
+      ],
+      "source_name": "Churchgate",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "MARINE_LINES",
+      "station_name": "Marine Lines",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 18.945788,
+      "longitude": 72.823814,
+      "source_feature_ids": [
+        "existing_suburban_stations.2"
+      ],
+      "source_name": "Marine Lines",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "MUMBAI_CENTRAL",
+      "station_name": "Mumbai Central",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 18.969893,
+      "longitude": 72.818799,
+      "source_feature_ids": [
+        "existing_suburban_stations.5"
+      ],
+      "source_name": "Mumbai Central",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "LOWER_PAREL",
+      "station_name": "Lower Parel",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 18.995319,
+      "longitude": 72.830172,
+      "source_feature_ids": [
+        "existing_suburban_stations.7"
+      ],
+      "source_name": "Lower Parel",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "MAHIM",
+      "station_name": "Mahim",
+      "lines": [
+        "Western",
+        "Harbour"
+      ],
+      "latitude": 19.040717,
+      "longitude": 72.846918,
+      "source_feature_ids": [
+        "existing_suburban_stations.11"
+      ],
+      "source_name": "Mahim Junction",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Mahim Junction"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "BANDRA",
+      "station_name": "Bandra",
+      "lines": [
+        "Western",
+        "Harbour"
+      ],
+      "latitude": 19.055589,
+      "longitude": 72.840328,
+      "source_feature_ids": [
+        "existing_suburban_stations.12"
+      ],
+      "source_name": "Bandra",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Bandra suburban"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "ANDHERI",
+      "station_name": "Andheri",
+      "lines": [
+        "Western",
+        "Harbour"
+      ],
+      "latitude": 19.117175,
+      "longitude": 72.846504,
+      "source_feature_ids": [
+        "existing_suburban_stations.16"
+      ],
+      "source_name": "Andheri",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "GOREGAON",
+      "station_name": "Goregaon",
+      "lines": [
+        "Western",
+        "Harbour"
+      ],
+      "latitude": 19.16487,
+      "longitude": 72.849628,
+      "source_feature_ids": [
+        "existing_suburban_stations.18"
+      ],
+      "source_name": "Goregaon",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "MALAD",
+      "station_name": "Malad",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 19.186834,
+      "longitude": 72.848936,
+      "source_feature_ids": [
+        "existing_suburban_stations.19"
+      ],
+      "source_name": "Malad",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "KANDIVALI",
+      "station_name": "Kandivali",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 19.204532,
+      "longitude": 72.852051,
+      "source_feature_ids": [
+        "existing_suburban_stations.20"
+      ],
+      "source_name": "Kandivali",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Kandivli"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "BORIVALI",
+      "station_name": "Borivali",
+      "lines": [
+        "Western"
+      ],
+      "latitude": 19.229063,
+      "longitude": 72.856649,
+      "source_feature_ids": [
+        "existing_suburban_stations.21"
+      ],
+      "source_name": "Borivali",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "WADALA_ROAD",
+      "station_name": "Wadala Road",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.016006,
+      "longitude": 72.858942,
+      "source_feature_ids": [
+        "existing_suburban_stations.45"
+      ],
+      "source_name": "Wadala Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Vadala Road",
+        "Vadala Rd"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "SEWRI",
+      "station_name": "Sewri",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 18.998931,
+      "longitude": 72.854579,
+      "source_feature_ids": [
+        "existing_suburban_stations.44"
+      ],
+      "source_name": "Sewri",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "CHEMBUR",
+      "station_name": "Chembur",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.062598,
+      "longitude": 72.901244,
+      "source_feature_ids": [
+        "existing_suburban_stations.49"
+      ],
+      "source_name": "Chembur",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "GOVANDI",
+      "station_name": "Govandi",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.055093,
+      "longitude": 72.915394,
+      "source_feature_ids": [
+        "existing_suburban_stations.50"
+      ],
+      "source_name": "Govandi",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "MANKHURD",
+      "station_name": "Mankhurd",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.048165,
+      "longitude": 72.931724,
+      "source_feature_ids": [
+        "existing_suburban_stations.51"
+      ],
+      "source_name": "Mankhurd",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "VASHI",
+      "station_name": "Vashi",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.063117,
+      "longitude": 72.998897,
+      "source_feature_ids": [
+        "existing_suburban_stations.59"
+      ],
+      "source_name": "Vashi",
+      "city": "Navi Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "NERUL",
+      "station_name": "Nerul",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.033471,
+      "longitude": 73.018211,
+      "source_feature_ids": [
+        "existing_suburban_stations.62"
+      ],
+      "source_name": "Nerul",
+      "city": "Navi Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "BELAPUR",
+      "station_name": "CBD Belapur",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 19.019046,
+      "longitude": 73.039087,
+      "source_feature_ids": [
+        "existing_suburban_stations.64"
+      ],
+      "source_name": "CBD Belapur",
+      "city": "Navi Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [
+        "Belapur"
+      ],
+      "anchor_method": "source_station_point"
+    },
+    {
+      "station_id": "PANVEL",
+      "station_name": "Panvel",
+      "lines": [
+        "Harbour"
+      ],
+      "latitude": 18.99057,
+      "longitude": 73.121341,
+      "source_feature_ids": [
+        "existing_suburban_stations.68"
+      ],
+      "source_name": "Panvel",
+      "city": "Navi Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "aliases": [],
+      "anchor_method": "source_station_point"
+    }
+  ]
+}

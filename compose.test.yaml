@@ -1,0 +1,24 @@
+name: medylink-tests
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: medylink_test
+      POSTGRES_PASSWORD: isolated-test-only
+      POSTGRES_DB: medylink_test
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medylink_test"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  tests:
+    build: ./backend
+    environment:
+      DJANGO_SETTINGS_MODULE: config.test_settings
+      TEST_DATABASE_URL: postgresql://medylink_test:isolated-test-only@postgres:5432/medylink_test
+    command: python manage.py test --noinput --verbosity 2
+    depends_on:
+      postgres:
+        condition: service_healthy

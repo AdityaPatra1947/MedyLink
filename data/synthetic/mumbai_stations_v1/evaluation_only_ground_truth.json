@@ -1,0 +1,6044 @@
+{
+  "dataset_id": "mumbai_stations_v1",
+  "evaluation_only": true,
+  "labels": [
+    {
+      "patient_key": "PAT0001",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0002",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0003",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0004",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0005",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0006",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0007",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0008",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0009",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0010",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0011",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0012",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0013",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0014",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0015",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0016",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0017",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0018",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0019",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0020",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0021",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0022",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0023",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0024",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0025",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0026",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0027",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0028",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0029",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0030",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0031",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0032",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0033",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0034",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0035",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0036",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0037",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0038",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0039",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0040",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0041",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0042",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0043",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0044",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0045",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0046",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0047",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0048",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0049",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0050",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0051",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0052",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0053",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0054",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0055",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0056",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0057",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0058",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0059",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0060",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0061",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0062",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0063",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0064",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0065",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0066",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0067",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0068",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0069",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0070",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0071",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0072",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0073",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0074",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0075",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0076",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0077",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0078",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0079",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0080",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0081",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0082",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0083",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0084",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0085",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0086",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0087",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0088",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0089",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0090",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0091",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0092",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0093",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0094",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0095",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0096",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0097",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0098",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0099",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0100",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0101",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0102",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0103",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0104",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0105",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0106",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0107",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0108",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0109",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0110",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0111",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0112",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0113",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0114",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0115",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0116",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0117",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0118",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0119",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0120",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0121",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0122",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0123",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0124",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0125",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0126",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0127",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0128",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0129",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0130",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0131",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0132",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0133",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0134",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0135",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0136",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0137",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0138",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0139",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0140",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0141",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0142",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0143",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0144",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0145",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0146",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0147",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0148",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0149",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0150",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0151",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0152",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0153",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0154",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0155",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0156",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0157",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0158",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0159",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0160",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0161",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0162",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0163",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0164",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0165",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0166",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0167",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0168",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0169",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0170",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0171",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0172",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0173",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0174",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0175",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0176",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0177",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0178",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0179",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0180",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0181",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0182",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0183",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0184",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0185",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0186",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0187",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0188",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0189",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0190",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0191",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0192",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0193",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0194",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0195",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0196",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0197",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0198",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0199",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0200",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0201",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0202",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0203",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0204",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0205",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0206",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0207",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0208",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0209",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0210",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0211",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0212",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0213",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0214",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0215",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0216",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0217",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0218",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0219",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0220",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0221",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0222",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0223",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0224",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0225",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0226",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0227",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0228",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0229",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0230",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0231",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0232",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0233",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0234",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0235",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0236",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0237",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0238",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0239",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0240",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0241",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0242",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0243",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0244",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0245",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0246",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0247",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0248",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0249",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0250",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0251",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0252",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0253",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0254",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0255",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0256",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0257",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0258",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0259",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0260",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0261",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0262",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0263",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0264",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0265",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0266",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0267",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0268",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0269",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0270",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0271",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0272",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0273",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0274",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0275",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0276",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0277",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0278",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0279",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0280",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0281",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0282",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0283",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0284",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0285",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0286",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0287",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0288",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0289",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0290",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0291",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0292",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0293",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0294",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0295",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0296",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0297",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0298",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0299",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0300",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0301",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0302",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0303",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0304",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0305",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0306",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0307",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0308",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0309",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0310",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0311",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0312",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0313",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0314",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0315",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0316",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0317",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0318",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0319",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0320",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0321",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0322",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0323",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0324",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0325",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0326",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0327",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0328",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0329",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0330",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0331",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0332",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0333",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0334",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0335",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0336",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0337",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0338",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0339",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0340",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0341",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0342",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0343",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0344",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0345",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0346",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0347",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0348",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0349",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0350",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0351",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0352",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0353",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0354",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0355",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0356",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0357",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0358",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0359",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0360",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0361",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0362",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0363",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0364",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0365",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0366",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0367",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0368",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0369",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0370",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0371",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0372",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0373",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0374",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0375",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0376",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0377",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0378",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0379",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0380",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0381",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0382",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0383",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0384",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0385",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0386",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0387",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0388",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0389",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0390",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0391",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0392",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0393",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0394",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0395",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0396",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0397",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0398",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0399",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0400",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0401",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0402",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0403",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0404",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0405",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0406",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0407",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0408",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0409",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0410",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0411",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0412",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0413",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0414",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0415",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0416",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0417",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0418",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0419",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0420",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0421",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0422",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0423",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0424",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0425",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0426",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0427",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0428",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0429",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0430",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0431",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0432",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0433",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0434",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0435",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0436",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0437",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0438",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0439",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0440",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0441",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0442",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0443",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0444",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0445",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0446",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0447",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0448",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0449",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0450",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0451",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0452",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0453",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0454",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0455",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0456",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0457",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0458",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0459",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0460",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0461",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0462",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0463",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0464",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0465",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0466",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0467",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0468",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0469",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0470",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0471",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0472",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0473",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0474",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0475",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0476",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0477",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0478",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0479",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0480",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0481",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0482",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0483",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0484",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0485",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0486",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0487",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0488",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0489",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0490",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0491",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0492",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0493",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0494",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0495",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0496",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0497",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0498",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0499",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0500",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0501",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0502",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0503",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0504",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0505",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0506",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0507",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0508",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0509",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0510",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0511",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0512",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0513",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0514",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0515",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0516",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0517",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0518",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0519",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0520",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0521",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0522",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0523",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0524",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0525",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0526",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0527",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0528",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0529",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0530",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0531",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0532",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0533",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0534",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0535",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0536",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0537",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0538",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0539",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0540",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0541",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0542",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0543",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0544",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0545",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0546",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0547",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0548",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0549",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0550",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0551",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0552",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0553",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0554",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0555",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0556",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0557",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0558",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0559",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0560",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0561",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0562",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0563",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0564",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0565",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0566",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0567",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0568",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0569",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0570",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0571",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0572",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0573",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0574",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0575",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0576",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0577",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0578",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0579",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0580",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0581",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0582",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0583",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0584",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0585",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0586",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0587",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0588",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0589",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0590",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0591",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0592",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0593",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0594",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0595",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0596",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0597",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0598",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0599",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0600",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0601",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0602",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0603",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0604",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0605",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0606",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0607",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0608",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0609",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0610",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0611",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0612",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0613",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0614",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0615",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0616",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0617",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0618",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0619",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0620",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0621",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0622",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0623",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0624",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0625",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0626",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0627",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0628",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0629",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0630",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0631",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0632",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0633",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0634",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0635",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0636",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0637",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0638",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0639",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0640",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0641",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0642",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0643",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0644",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0645",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0646",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0647",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0648",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0649",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0650",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0651",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0652",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0653",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0654",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0655",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0656",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0657",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0658",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0659",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0660",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0661",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0662",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0663",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0664",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0665",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0666",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0667",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0668",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0669",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0670",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0671",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0672",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0673",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0674",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0675",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0676",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0677",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0678",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0679",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0680",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0681",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0682",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0683",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0684",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0685",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0686",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0687",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0688",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0689",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0690",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0691",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0692",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0693",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0694",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0695",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0696",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0697",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0698",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0699",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0700",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0701",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0702",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0703",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0704",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0705",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0706",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0707",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0708",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0709",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0710",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0711",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0712",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0713",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0714",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0715",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0716",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0717",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0718",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0719",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0720",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0721",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0722",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0723",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0724",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0725",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0726",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0727",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0728",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0729",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0730",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0731",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0732",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0733",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0734",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0735",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0736",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0737",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0738",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0739",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0740",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0741",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0742",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0743",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0744",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0745",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0746",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0747",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0748",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0749",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0750",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0751",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0752",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0753",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0754",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0755",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0756",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0757",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0758",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0759",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0760",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0761",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0762",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0763",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0764",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0765",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0766",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0767",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0768",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0769",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0770",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0771",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0772",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0773",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0774",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0775",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0776",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0777",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0778",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0779",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0780",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0781",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0782",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0783",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0784",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0785",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0786",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0787",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0788",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0789",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0790",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0791",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0792",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0793",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0794",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0795",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0796",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0797",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0798",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0799",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0800",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0801",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0802",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0803",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0804",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0805",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0806",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0807",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0808",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0809",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0810",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0811",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0812",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0813",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0814",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0815",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0816",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0817",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0818",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0819",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0820",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0821",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0822",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0823",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0824",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0825",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0826",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0827",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0828",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0829",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0830",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0831",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0832",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0833",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0834",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0835",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0836",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0837",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0838",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0839",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0840",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0841",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0842",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0843",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0844",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0845",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0846",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0847",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0848",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0849",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0850",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0851",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0852",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0853",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0854",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0855",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0856",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0857",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0858",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0859",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0860",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0861",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0862",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0863",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0864",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0865",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0866",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0867",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0868",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0869",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0870",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0871",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0872",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0873",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0874",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0875",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0876",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0877",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0878",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0879",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0880",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0881",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0882",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0883",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0884",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0885",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0886",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0887",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0888",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0889",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0890",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0891",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0892",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0893",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0894",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0895",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0896",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0897",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0898",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0899",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0900",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0901",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_BORIVALI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0902",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0903",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0904",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0905",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0906",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0907",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0908",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0909",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0910",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0911",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0912",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0913",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0914",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0915",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0916",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0917",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0918",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0919",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0920",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0921",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0922",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0923",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0924",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0925",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0926",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0927",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0928",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0929",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0930",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0931",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0932",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0933",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0934",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0935",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0936",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0937",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0938",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0939",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0940",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0941",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0942",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0943",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0944",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0945",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0946",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0947",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0948",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0949",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0950",
+      "primary_disease_code": "MALARIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0951",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0952",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0953",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0954",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0955",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0956",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0957",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0958",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0959",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0960",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0961",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0962",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_KURLA",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0963",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0964",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0965",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0966",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0967",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0968",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0969",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0970",
+      "primary_disease_code": "OSTEOARTHRITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0971",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0972",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0973",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0974",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0975",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0976",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0977",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0978",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0979",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0980",
+      "primary_disease_code": "ASTHMA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0981",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0982",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_ANDHERI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0983",
+      "primary_disease_code": "ANEMIA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0984",
+      "primary_disease_code": "DENGUE",
+      "planted_group": "SIM_DENGUE_VASHI",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0985",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0986",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0987",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0988",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0989",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_NERUL",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0990",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0991",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0992",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0993",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0994",
+      "primary_disease_code": "HYPOTHYROIDISM",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0995",
+      "primary_disease_code": "INFLUENZA",
+      "planted_group": "SIM_FLU_GHATKOPAR",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0996",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0997",
+      "primary_disease_code": "TYPE2_DIABETES",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0998",
+      "primary_disease_code": "NO_RECORDED_DISEASE",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT0999",
+      "primary_disease_code": "HYPERTENSION",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    },
+    {
+      "patient_key": "PAT1000",
+      "primary_disease_code": "GASTROENTERITIS",
+      "planted_group": "BACKGROUND",
+      "evaluation_only": true
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "SIM_DENGUE_KURLA",
+      "disease_code": "DENGUE",
+      "station_id": "KURLA",
+      "size": 50
+    },
+    {
+      "label": "SIM_DENGUE_ANDHERI",
+      "disease_code": "DENGUE",
+      "station_id": "ANDHERI",
+      "size": 50
+    },
+    {
+      "label": "SIM_DENGUE_VASHI",
+      "disease_code": "DENGUE",
+      "station_id": "VASHI",
+      "size": 50
+    },
+    {
+      "label": "SIM_FLU_GHATKOPAR",
+      "disease_code": "INFLUENZA",
+      "station_id": "GHATKOPAR",
+      "size": 35
+    },
+    {
+      "label": "SIM_FLU_BORIVALI",
+      "disease_code": "INFLUENZA",
+      "station_id": "BORIVALI",
+      "size": 35
+    },
+    {
+      "label": "SIM_FLU_NERUL",
+      "disease_code": "INFLUENZA",
+      "station_id": "NERUL",
+      "size": 35
+    }
+  ]
+}

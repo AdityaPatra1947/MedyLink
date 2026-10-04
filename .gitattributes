@@ -1,0 +1,8 @@
+# Keep source files and checksum-verified fixtures stable across platforms.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.xlsx binary

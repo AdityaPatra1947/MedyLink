@@ -1,0 +1,27 @@
+.scannerBox { margin-top: 18px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: #f8faf6; min-width: 0; }
+.reader { width: 100%; max-width: 420px; margin-inline: auto; }
+.reader video, .reader canvas, .reader img { max-width: 100%; }
+.status { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; margin: 12px 0; }
+.cameraDetails { margin: 12px 0; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.cameraDetails summary { cursor: pointer; }
+.cameraDetails p { margin-top: 6px; }
+.patientHeading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.patientHeading h2 { overflow-wrap: anywhere; }
+.patientMeta { color: var(--muted); font-size: 12px; margin-top: 7px; overflow-wrap: anywhere; }
+.patientActions { display: grid; justify-items: end; gap: 10px; flex-shrink: 0; }
+.saved { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #cee2d0; border-radius: 7px; padding: 9px 11px; background: #edf6eb; color: #326547; font-size: 12px; font-weight: 600; }
+.historyNote { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 14px; color: var(--muted); font-size: 12px; }
+.patientRows { display: grid; gap: 0; }
+.patientRow { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.patientRow:first-child { padding-top: 0; }
+.patientRow:last-child { border-bottom: 0; padding-bottom: 0; }
+.patientRow h3 { overflow-wrap: anywhere; }
+.patientRow p { color: var(--muted); font-size: 12px; margin-top: 5px; overflow-wrap: anywhere; }
+.listPanel :global(.panel-head) { flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .patientHeading { flex-direction: column; gap: 16px; }
+  .patientActions { display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center; }
+  .patientRow { grid-template-columns: 32px minmax(0,1fr); gap: 11px; }
+  .patientRow > button { grid-column: 2; justify-self: start; }
+  .scannerBox { padding: 12px; }
+}
