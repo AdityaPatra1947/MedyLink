@@ -47,6 +47,8 @@ SYNTHETIC_IMPORT_ALLOWED = True
 SYNTHETIC_IMPORT_DATABASE_NAME = _database_name
 # A direct TLS connection is required even in the dedicated development database.
 DATABASES["default"].setdefault("OPTIONS", {}).setdefault("sslmode", "require")  # noqa: F405
+# Reuse connections: a fresh TLS handshake to a remote Neon host costs seconds per request.
+DATABASES["default"]["CONN_MAX_AGE"] = 300  # noqa: F405
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 PRIVATE_MEDIA_ROOT = BASE_DIR.parent / ".local" / "synthetic" / "private-media"  # noqa: F405
 MEDIA_ROOT = PRIVATE_MEDIA_ROOT

@@ -43,7 +43,8 @@ if (action === 'manage') {
   // Direct connections are retained for management commands; web requests use Neon pooling.
   if (env.SYNTHETIC_POOLED_DATABASE_URL) env.SYNTHETIC_DATABASE_URL = env.SYNTHETIC_POOLED_DATABASE_URL;
   console.log(`MedyLink SYNTHETIC DEMO: ${origin}/admin/analytics\nFictional patient data only. Ctrl+C stops both services.`);
-  launch(python, ['manage.py', 'runserver', `127.0.0.1:${apiPort}`, '--noreload'], backend);
+  // --nothreading keeps one thread, so CONN_MAX_AGE can reuse the remote database connection.
+  launch(python, ['manage.py', 'runserver', `127.0.0.1:${apiPort}`, '--noreload', '--nothreading'], backend);
   launch(process.execPath, [path.join(root, 'frontend/node_modules/next/dist/bin/next'), 'dev', '--hostname', '127.0.0.1', '--port', String(port)], path.join(root, 'frontend'), { ...env, MEDYLINK_SYNTHETIC: 'true', API_INTERNAL_URL: `http://127.0.0.1:${apiPort}` });
 } else {
   console.error('Usage: node scripts/synthetic.mjs <dev|manage> [Django arguments]');
